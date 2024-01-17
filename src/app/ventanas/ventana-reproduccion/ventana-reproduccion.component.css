@@ -1,0 +1,27 @@
+.contenedor{
+  display:flex;
+  flex-direction: row;
+  margin-top: 50px;
+}
+.contenedor1 {
+  display: flex;
+  flex-direction: column;
+  margin-left: 50px;
+}
+.datos{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+}
+.datos>p{
+  margin-left: 50px;
+}
+.texto{
+  width: 860px;
+  margin-bottom: 50px;
+}
+.reproductor2{
+  margin-left: 50px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
