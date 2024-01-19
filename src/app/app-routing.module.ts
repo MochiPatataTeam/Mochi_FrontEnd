@@ -11,7 +11,7 @@ import { SpinnerComponent } from './componentes/spinner/spinner.component';
 const routes: Routes = [
   {path: '', redirectTo: '/Inicio',pathMatch: 'full'},
   {path: 'Inicio', component: VentanaInicioComponent},
-  {path: 'reproducir', component: VentanaReproduccionComponent}
+  {path: 'reproducir', component: VentanaReproduccionComponent},
   {path: 'login', component: VentanaLoginComponent, data: { showNavbar: false }},
   {path: 'perfil', component: VentanaPerfilComponent},
   {path: 'registro', component: RegistroComponent},
