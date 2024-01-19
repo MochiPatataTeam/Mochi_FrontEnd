@@ -1,0 +1,51 @@
+<div class="Container">
+  <ul id="progressbar">
+    <li
+      *ngFor="let step of steps; let i = index"
+      [ngClass]="{ active: i === numPage }"
+    >
+      {{ step }}
+    </li>
+  </ul>
+  <div class="Div" *ngIf="this.numPage == 1">
+    <h1>Datos Personales</h1>
+    <div [innerHTML]="generarInputs(inputsStep1)"></div>
+  </div>
+
+  <div class="Div" *ngIf="this.numPage == 2">
+    <h1>Datos Del Canal</h1>
+
+    <div [innerHTML]="generarInputs(inputsStep2)"></div>
+  </div>
+
+  <div class="Div" *ngIf="this.numPage == 3">
+    <h1>Preguntas Frecuentes</h1>
+    <div [innerHTML]="generarInputs(inputsStep3)"></div>
+  </div>
+
+  <div class="buttons">
+    <button (click)="volver()" *ngIf="this.numPage == 2">Volver</button>
+    <button (click)="volver()" *ngIf="this.numPage == 3">Volver</button>
+    <button (click)="avanzar()" *ngIf="this.numPage == 1">Siguiente</button>
+    <button (click)="avanzar()" *ngIf="this.numPage == 2">Siguiente</button>
+    <button
+      (click)="
+        Datos(
+          nombre,
+          primerApellido,
+          segundoApellido,
+          username,
+          password,
+          email,
+          telefono,
+          nombre_canal,
+          descripcion,
+          imagen
+        )
+      "
+      *ngIf="this.numPage == 3"
+    >
+      Enviar
+    </button>
+  </div>
+</div>
