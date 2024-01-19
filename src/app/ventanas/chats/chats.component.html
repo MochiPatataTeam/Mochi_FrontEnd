@@ -1,0 +1,82 @@
+<div class="Container">
+  <div class="div">
+    <div class="div2">
+      <div class="contactos">
+        <button
+          *ngFor="let chat of obtenerContactos(persona[idPersona].id)"
+          (click)="obtenerUsuario(chat.id)"
+          class="etiqueta"
+        >
+          <img
+           [src]="persona[chat.id_receptor].img"
+            alt="avatar"
+          />
+          <div class="names">
+            <div>{{ persona[chat.id_receptor].nombre }}</div>
+            <p class="time">left 7 mins ago</p>
+          </div>
+        </button>
+      </div>
+      <div class="chat-arriba">
+        <div *ngIf="idChatBuscado != null" class="usuario">
+          <div>
+            <img
+            [src]="persona[chat[idChatBuscado].id_receptor].img"
+              alt="avatar"
+            />
+            <div>
+              <h6>
+                {{
+                  chat[idChatBuscado].id_receptor
+                    ? persona[chat[idChatBuscado].id_receptor].nombre
+                    : "Usuario Desconocido"
+                }}
+              </h6>
+              <small>Last seen: 2 hours ago</small>
+            </div>
+          </div>
+        </div>
+
+        <div #componentContainer class="chat">
+          <div class="scroll">
+            <div *ngFor="let mensaje of mensajesDelChat">
+              <ul
+                *ngIf="mensaje.id_usuario === chat[idChatBuscado].id_emisor"
+                class="ul-self"
+              >
+                <li class="self">
+                  <div class="msg">
+                    <span>{{ mensaje.fecha }}:</span>
+                  </div>
+                  <div class="conver">{{ mensaje.mensaje }}</div>
+                </li>
+              </ul>
+
+              <ul
+                *ngIf="mensaje.id_usuario === chat[idChatBuscado].id_receptor"
+                class="ul-other"
+              >
+                <li class="other">
+                  <div class="msg">
+                    <span>{{ mensaje.fecha }}:</span>
+                  </div>
+                  <div class="conver">
+                    {{ mensaje.mensaje }}
+                  </div>
+                  <br />
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-abajo">
+          <button (click)="enviarMensaje(nuevoMensaje)">
+            <img src="../../../assets/imagenes/envio.png" alt="" />
+          </button>
+          <input type="text" [(ngModel)]="nuevoMensaje" placeholder="Escribe tu mensaje..." />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

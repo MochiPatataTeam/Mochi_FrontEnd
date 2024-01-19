@@ -1,0 +1,145 @@
+.Container {
+  margin-top: 0.5em;
+  background-color: #ff00ff;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+ul {
+  list-style: none;
+  width: 58vw;
+}
+.div {
+  background-color: blue;
+}
+.div2 {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  height: 91vh;
+}
+.chat-arriba {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  width: 60vw;
+  background-color: white;
+}
+.chat {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  height: 100vh;
+  background: rgb(255, 0, 255);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 255, 1) 32%,
+    rgba(255, 255, 0, 1) 71%
+  );
+  overflow: hidden; 
+}
+.scroll {
+  max-height: 100%;
+  overflow-y: auto;
+  background: white;
+}
+img {
+  width: 8vh;
+  border-radius: 50%;
+}
+.contactos {
+  border-style: double;
+  width: 15vw;
+}
+.etiqueta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 14.8vw;
+  background-color: white;
+}
+.etiqueta:hover {
+  background-color: #efefef;
+}
+.names {
+  margin-top: 1em;
+  margin-left: 0.5em;
+}
+.time {
+  opacity: 50%;
+  font-size: 14px;
+}
+.usuario {
+  border-style: double;
+}
+.other {
+  margin-top: 1em;
+  width: 30vw;
+  background-color: #c1cbcd;
+  border-top-left-radius: 0px;
+  box-shadow: 1px 2px 0px #c1cbcd;
+}
+.other:before {
+  content: "";
+  position: relative;
+  top: 0.5vh;
+  right: 0px;
+  left: -9px;
+  width: 0px;
+  height: 0px;
+  border: 5px solid #c1cbcd;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+.ul-other{
+  display: flex;
+  justify-content:left;
+}
+.ul-self{
+  display: flex;
+  justify-content:right;
+}
+.msg {
+  margin-top: -1em;
+  padding: 10px;
+  border-radius: 2px;
+}
+.self {
+  background-color: chartreuse;
+  margin-top: 3em;
+  width: 20vw;
+  justify-content: flex-end;
+  align-items: flex-end;
+  border-bottom-right-radius: 0px;
+  box-shadow: 1px 2px 0px #c1cbcd;
+  border-radius: 3%;
+}
+.self:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  float: right;
+  bottom: 0vh;
+  right: 0px;
+  left: 0.65vw;
+  width: 0px;
+  height: 0px;
+  border: 5px solid chartreuse;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  box-shadow: 0px 2px 0px #c1cbcd;
+}
+span{
+font-size: 13px;
+}
+.conver{
+  margin-left: 1em;
+  margin-top: -0.5em;
+}
+.chat-abajo{
+  display: flex;
+  flex-direction: row;
+}
+.chat-abajo input{
+  width: 50vw;
+}
