@@ -1,0 +1,177 @@
+
+h2{
+    text-align: center;
+}
+
+p, span, :placeholder-shown, a, button{
+    font-family: 'Raleway', sans-serif;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    min-height: 100%;
+    /* background: rgb(89, 178, 223); */
+    background-image: url(../../../assets/imagenes/a.jpg);
+    background-size: cover;
+
+    animation: change 10s ease-in-out infinite;
+}
+
+  @keyframes change{
+    0%, 100%{
+      background-image: url(../../../assets/imagenes/login/dr_House.jpg);
+    }
+    25%{
+      background-image: url(../../../assets/imagenes/login/interstellar.jpeg);
+    }
+    50%{
+      background-image: url(../../../assets/imagenes/login/invencible.jpg);
+    }
+    75%{
+      background-image: url(../../../assets/imagenes/login/la-la-land-1454x817.jpg);
+    }
+  }
+
+img{
+    width: 10rem;
+    height: auto;
+    margin-bottom: 2rem;
+    display: flex;
+    margin: auto;
+}
+
+.card-header{
+    display: flex;
+    align-items: center; 
+    flex-direction: column;  
+}
+
+.card-container{
+    width: 35%;
+    background: rgba(128, 128, 128, 0.474);
+    display: flex;
+    justify-content: space-evenly;  
+    flex-direction: column;  
+    padding: 3rem;
+    border-radius: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.card-container::before{
+    content: '';
+    position: absolute;
+    background: rgb(255, 255, 255, .15);
+    inset: 0;
+    border-radius: 1rem;
+    transform: rotate(-5deg);
+    z-index: -1;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    position: relative;
+  }
+  
+  
+  .form label, i {
+    position: relative;
+  }
+  
+  .form label .input {
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+  }
+
+  .form label .input + span {
+    position: absolute;
+    left: 35px;
+    top: 15px;
+    color: rgb(255, 255, 255); /* Color letras input*/
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+  }
+
+  .form i {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: grey;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+  }
+  
+  .form label .input:placeholder-shown + span {
+    top: 15px;
+    font-size: 0.9em;
+  }
+  
+  .form label .input:focus + span,.form label .input:valid + span {
+    top: 30px;
+    font-size: 0.7em;
+    font-weight: 600;
+  }
+  
+  .form label .input:valid + span {
+    color: green;
+  }
+  
+  .submit {
+    border: none;
+    outline: none;
+    background-color: rgb(225, 158, 65);
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
+  }
+  
+  .submit:hover {
+    background-color: rgb(211, 136, 50);
+  }
+  
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+  
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+
+.card-footer{
+    padding-top: 1rem;
+}
+
+.card-footer p, 
+.card-footer a {
+    display: inline-block;
+    margin-right: 1px;
+    margin-top: 1.5rem;
+}
+
+input[type="text"],
+input[type="password"] {
+    background: rgba(255, 255, 255, .3);
+    padding: 1rem 1.5rem;
+    padding-left: calc(1rem * 3.5);
+    border-radius: 100px;
+    width: 100%;
+
+}
