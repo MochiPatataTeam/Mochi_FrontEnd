@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/Inicio',pathMatch: 'full'},
   {path: 'Inicio', component: VentanaInicioComponent},
   {path: 'reproducir', component: VentanaReproduccionComponent},
-  {path: 'login', component: VentanaLoginComponent, data: { showNavbar: false }},
+  {path: 'Login', component: VentanaLoginComponent, data: { showNavbar: false }},
   {path: 'perfil', component: VentanaPerfilComponent},
   {path: 'registro', component: RegistroComponent},
   {path: 'chats', component: ChatsComponent},
