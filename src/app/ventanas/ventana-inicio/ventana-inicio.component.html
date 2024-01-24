@@ -194,3 +194,50 @@
   </div>
 </div>
 
+<!--Aqui empieza la tabla de prueba-->
+<div class="prueba">
+  <section>
+    <main class="table">
+
+      <div class="table__header">
+        <h1>Usuarios</h1>
+      </div>
+
+      <div class="table__body">
+        <table>
+          <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th>Nombre canal</th>
+            <th>Descripcion</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor= "let patata of patata">
+            <td> <strong> {{ patata.nombre }} </strong> </td>
+            <td> <strong> {{ patata.apellidos }} </strong> </td>
+            <td> <strong> {{ patata.username }} </strong> </td>
+            <td> <strong> {{ patata.email }} </strong> </td>
+            <td> <strong> {{ patata.telefono }} </strong> </td>
+            <td> <strong> {{ patata.nombreCanal }} </strong> </td>
+            <td> <strong> {{ patata.descripcion }} </strong> </td>
+          </tr>
+
+
+
+
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+  </section>
+
+
+
+</div>
+
