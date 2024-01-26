@@ -8,12 +8,20 @@
     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAYRJREFUSEvF1T9IVlEYBvDfV5ARTiI6BEUKSqvQ4KJFtLq0RYtIY7Q41NDfQVAXBwcHaYm25loig9oKAhdt6Z+DQ9HWEBF1XrgfXK/36zv3Q+lsl/u+z3Oe9zznOS2HvFqHjO+/EaxiFid6ULiFeTyN3joFF/G8B+ByyweMdiJ4jCt4gLsZRH+KmvZm93xXFfTjK45jBB8PmiDm/hCvMJUBHiWNFLzENOYKohyObIKTCXgHPzGIHznoTRTcLg42DvlqJnijEb3HGC41tGn2iNqFR0qyc4Q0JmgaH9kEn5NzTnXZ8jtMlGqOFaaotn3CmepNnknZs4Txf5Bs42zp/6MaQ2ziJp51ioo6/BXcwGLRHDV3Upbdx3ecQ+TPvpUz76jZxXAB9BaX8QS/cR6vO6nOIbiQYuMFvuA0JtNt30AfrqdLGdHeceUQLKSDvIVlrOENBrCOa918nEMQkX2vAhRhGO/Gr4MgGEqPR7glAI8iLBiH+q0beBMX5WDV1uSMqGfwaPwL0qFKGXzmC7EAAAAASUVORK5CYII="/>
   </div>
   <p>Comentarios</p>
-  <div class="texto">
-    <form><textarea class="form-control" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px"></textarea><button class="btn btn-primary" type="submit">Enviar</button></form>
-    <p>Hola soy un comentario de prueba que pongo para ver como queda.</p>
-    <p>Hola soy un comentario de prueba que pongo para ver como queda. Y yo voy a ser más largo porque me hace ilusión
-    probar cómo quedaría un comentario largo y no viene mal probar.</p>
-  </div></div>
+    <div class="texto">
+      <form>
+        <textarea class="form-control" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px"></textarea>
+        <button class="btn btn-primary" type="submit">Enviar</button>
+      </form>
+
+      <!-- Iterar sobre la lista de comentarios -->
+      <div *ngFor="let comentario of comentarios" class="comentario">
+        <p class="datos_usuario">{{comentario.usuario}}</p>
+        <p class="comentario1">{{ comentario.comentario}}</p>
+      </div>
+    </div>
+
+  </div>
   <div class="listvideos">
     <div class="temporary__storage">
       <div class="card">
