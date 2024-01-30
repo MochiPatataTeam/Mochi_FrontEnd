@@ -154,3 +154,19 @@
 .categories__btn:hover {
   background-color: rgb(79, 79, 79);
 }
+.datos_usuario{
+
+  font-size: small;
+  font-weight: bold;
+}
+.comentario1{
+  margin-left: 10px;
+  padding: 10px;
+
+
+}
+
+form{
+  margin-bottom: 20px;
+}
+/**

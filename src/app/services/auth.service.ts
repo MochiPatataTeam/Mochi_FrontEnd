@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class AuthService {
+  private lista_usuarios= 'http://127.0.0.1:8000/api/usuario';
+  private lista_comentarios ='http://127.0.0.1:8000/api/comentario'
+  private lista_respuestas ='http://127.0.0.1:8000/api/respuesta'
 
   constructor(private http: HttpClient,
               private router: Router) {}
@@ -20,7 +23,10 @@ export class AuthService {
 
 
   usuario(): Observable<any>{
-    return this.http.get(`${this.url}`);
+    return this.http.get(`${this.lista_usuarios}`);
+  }
+  comentario(): Observable<any>{
+    return this.http.get(`${this.lista_comentarios}`)
   }
   video(): Observable<any>{
     return this.http.get(`${this.videolista}`);
@@ -66,6 +72,9 @@ export class AuthService {
     return true;
   }
 
+  respuesta():Observable<any>{
+    return this.http.get(`${this.lista_respuestas}`)
+  }
 
   login(username: string, password: string): Observable<any>{
     return this.http.post(`${this.urlGeneral}/api/login_check`, {username, password});
@@ -105,3 +114,4 @@ export class AuthService {
   }
 
 }
+//
