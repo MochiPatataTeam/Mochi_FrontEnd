@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +13,10 @@ import { VentanaPerfilComponent } from './ventanas/ventana-perfil/ventana-perfil
 import { RegistroComponent } from './ventanas/registro/registro.component';
 import { SpinnerComponent } from './componentes/spinner/spinner.component';
 import { ChatsComponent } from './ventanas/chats/chats.component';
-
+import { ModalChangeWallpaperComponent } from './componentes/modal-change-wallpaper/modal-change-wallpaper.component';
+import { JwtInterceptorService } from './services/jwt-interceptor.service';
+import { ResetPasswordComponent } from './componentes/reset-password/reset-password.component';
+import { VentanaNewPasswordComponent } from './ventanas/ventana-new-password/ventana-new-password.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +28,9 @@ import { ChatsComponent } from './ventanas/chats/chats.component';
     RegistroComponent,
     SpinnerComponent,
     ChatsComponent,
+    ModalChangeWallpaperComponent,
+    ResetPasswordComponent,
+    VentanaNewPasswordComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,9 @@ import { ChatsComponent } from './ventanas/chats/chats.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

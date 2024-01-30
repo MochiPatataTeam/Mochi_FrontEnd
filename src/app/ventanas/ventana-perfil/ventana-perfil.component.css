@@ -11,22 +11,20 @@
     display: flex;
     justify-content: center;
     background: linear-gradient(#f9ce99, transparent);
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.75rem;
 }
 
 .seccion-perfil-usuario .perfil-usuario-portada { /* PORTADA CON IMAGEN */
     display: block;
     position: relative;
     width: 93%;
-    height: 10rem;
-    background-image: linear-gradient(45deg, #f9ce99, #e4a95b);
+    height: 16.5rem;
+    /* background-image: linear-gradient(45deg, #f9ce99, #e4a95b); */
     border-radius: 0 0 10px 10px;
-    /*
-    background-image: url('http://localhost/multimedia/png/user-portada-3.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    */
+
 }
 
 .seccion-perfil-usuario .perfil-usuario-portada .boton-portada { /* WALLPAPER */
@@ -47,8 +45,8 @@
 
 .seccion-perfil-usuario .perfil-usuario-avatar { /* Circulo foto d perfil */
     display: flex;
-    width: 15rem;
-    height: 15rem;
+    width: 17rem;
+    height: 17rem;
     align-items: center;
     justify-content: center;
     border: 7px solid #FFFFFF;
@@ -56,8 +54,8 @@
     border-radius: 50%;
     box-shadow: 0 0 12px rgba(0, 0, 0, .2);
     position: absolute;
-    bottom: -8rem;
-    left: calc(10% - 60px);
+    bottom: -10rem;
+    left: calc(10% - 9rem);
     z-index: 1;
 }
 
@@ -74,8 +72,8 @@
     border: 0;
     background-color: #fff;
     box-shadow: 0 0 12px rgba(0, 0, 0, .2);
-    width: 45px;
-    height: 45px;
+    width: 3.8rem;
+    height: 3.8rem;
     border-radius: 50%;
     cursor: pointer;
 }
@@ -110,7 +108,7 @@
     justify-content: space-between; /* Distribuir elementos en el espacio disponible */
 }
 
-.seccion-perfil-usuario .perfil-usuario-footer { /* deberia quitar el footer de aqui para q tenga su medida independiente?*/ 
+.seccion-perfil-usuario .perfil-usuario-footer { /* deberia quitar el footer de aqui para q tenga su medida independiente?*/
     display: flex;
     flex-wrap: wrap;
     padding: 1.5rem 2rem;
@@ -135,7 +133,7 @@
     width: 40%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, auto); 
+    grid-template-rows: repeat(2, auto);
     gap: 0.2rem;
     margin-bottom: 1.25rem;
 }
@@ -154,7 +152,7 @@
     font-size: 1.3rem;
     margin-right: 0.4rem;
 }
-    
+
 
 .seccion-perfil-usuario .lista-datos {
     width: 50%;
@@ -199,4 +197,3 @@
         margin-top: 0;
     }
 }
-

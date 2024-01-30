@@ -1,0 +1,11 @@
+<main>
+
+    <p>¡Elige el fondo que más te guste!</p>
+
+    <div class="modalWallpaper">  
+        <button *ngFor="let wallpaper of opcionesWallpaper" (click)="cambiarWallpaper(wallpaper)">
+          <img [src]=" '../../../assets/imagenes/wallpaper_Mochi/' + wallpaper " alt="Opcion de fondo">
+        </button>
+    </div>
+
+</main>
