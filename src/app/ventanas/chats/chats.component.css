@@ -1,29 +1,27 @@
 .Container {
-  margin-top: 0.5em;
   background-color: #ff00ff;
   width: 100vw;
   display: flex;
   justify-content: center;
+  height: 91.5vh;
 }
 ul {
   list-style: none;
   width: 58vw;
-}
-.div {
-  background-color: blue;
 }
 .div2 {
   display: flex;
   flex-direction: row;
   background-color: white;
   height: 91vh;
+  width: 80vw;
 }
 .chat-arriba {
   display: flex;
   flex-direction: column;
   align-content: space-between;
-  width: 65vw;
   background-color: white;
+  width: 65vw;
 }
 .chat {
   display: flex;
@@ -36,12 +34,11 @@ ul {
     rgba(255, 0, 255, 1) 32%,
     rgba(255, 255, 0, 1) 71%
   );
-  overflow: hidden; 
+  overflow: hidden;
 }
 .scroll {
   max-height: 100%;
   overflow-y: auto;
-  background: white;
 }
 img {
   width: 8vh;
@@ -53,24 +50,40 @@ img {
 }
 .etiqueta {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  width: 14.8vw;
-  background-color: white;
+  width: 14.5vw;
+  margin-top: 0.2em;
+  border: none;
 }
 .etiqueta:hover {
-  background-color: #efefef;
+  background-color: grey;
 }
 .names {
-  margin-top: 1em;
   margin-left: 0.5em;
+  font-size: 20px;
 }
 .time {
   opacity: 50%;
   font-size: 14px;
 }
+.spinner{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
 .usuario {
   border-style: double;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  
+}
+h6{
+  text-decoration: underline;
+  font-size: 20px;
 }
 .other {
   margin-top: 1em;
@@ -91,13 +104,18 @@ img {
   border-left-color: transparent;
   border-bottom-color: transparent;
 }
-.ul-other{
+.ul-other {
   display: flex;
-  justify-content:left;
+  justify-content: left;
 }
-.ul-self{
+.ul-self {
   display: flex;
-  justify-content:right;
+  justify-content: right;
+}
+.other .msg {
+  margin-top: -2em;
+  padding: 10px;
+  border-radius: 2px;
 }
 .msg {
   margin-top: -1em;
@@ -129,22 +147,114 @@ img {
   border-top-color: transparent;
   box-shadow: 0px 2px 0px #c1cbcd;
 }
-span{
-font-size: 13px;
+span {
+  font-size: 13px;
 }
-.conver{
+.conver {
   margin-left: 1em;
   margin-top: -0.5em;
 }
-.chat-abajo{
+.chat-abajo {
   height: 7vh;
   display: flex;
   flex-direction: row;
 }
-.chat-abajo input{
+.chat-abajo input {
   width: 70vw;
 }
-.imgButton{
+.imgButton {
   margin-top: -0.2em;
   height: 7vh;
+}
+.img {
+  width: 50vw;
+}
+
+.self-dots {
+  margin-right: -2em;
+  background-color: chartreuse;
+  margin-top: 3em;
+  width: 20vw;
+  height: 8vh;
+  justify-content: flex-end;
+  align-items: flex-end;
+  border-bottom-right-radius: 0px;
+  box-shadow: 1px 2px 0px #c1cbcd;
+  border-radius: 3%;
+}
+.self-dots:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  float: right;
+  bottom: 0vh;
+  top: -0.9vh;
+  right: 0px;
+  left: 0.65vw;
+  width: 0px;
+  height: 0px;
+  border: 5px solid chartreuse;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  box-shadow: 0px 2px 0px #c1cbcd;
+}
+.dots-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2em;
+  height: 4vh;
+  width: 10vw;
+  background-color: chartreuse;
+}
+
+.dot {
+  height: 10px;
+  width: 10px;
+  margin-right: 10px;
+  border-radius: 10px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.dot:last-child {
+  margin-right: 0;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.3s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.1s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.1s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.8);
+    background-color: #b3d4fc;
+    box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
+  }
+
+  50% {
+    transform: scale(1.2);
+    background-color: #6793fb;
+    box-shadow: 0 0 0 10px rgba(178, 212, 252, 0);
+  }
+
+  100% {
+    transform: scale(0.8);
+    background-color: #b3d4fc;
+    box-shadow: 0 0 0 0 rgba(178, 212, 252, 0.7);
+  }
+}
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  width: 60vw;
 }
