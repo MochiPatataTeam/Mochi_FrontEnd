@@ -3,34 +3,50 @@
     <div class="div2">
       <div class="contactos">
         <button
-          *ngFor="let chat of obtenerContactos(persona[idPersona].id)"
-          (click)="obtenerUsuario(chat.id)"
+          *ngFor="let chat of chatsRelacionados"
           class="etiqueta"
+          (click)="seleccionarChat(chat)"
         >
           <img
-           [src]="persona[chat.id_receptor].img"
+            *ngIf="chat.id_usuario2 == idPersona"
+            src="{{ persona[chat.id_usuario].img }}"
+            alt="avatar"
+          />
+          <img
+            *ngIf="chat.id_usuario2 != idPersona"
+            src="{{ persona[chat.id_usuario2].img }}"
             alt="avatar"
           />
           <div class="names">
-            <div>{{ persona[chat.id_receptor].nombre }}</div>
+            <div *ngIf="chat.id_usuario2 == idPersona">
+              {{ persona[chat.id_usuario].nombre }}
+            </div>
+            <div *ngIf="chat.id_usuario2 != idPersona">
+              {{ persona[chat.id_usuario2].nombre }}
+            </div>
             <p class="time">left 7 mins ago</p>
           </div>
         </button>
       </div>
       <div class="chat-arriba">
-        <div *ngIf="idChatBuscado != null" class="usuario">
+        <div class="usuario" *ngIf="chatSeleccionado">
           <div>
             <img
-            [src]="persona[chat[idChatBuscado].id_receptor].img"
+              *ngIf="chatSeleccionado.id_usuario2 == idPersona"
+              src="{{ persona[chatSeleccionado.id_usuario].img }}"
+              alt="avatar"
+            />
+            <img
+              *ngIf="chatSeleccionado.id_usuario2 != idPersona"
+              src="{{ persona[chatSeleccionado.id_usuario2].img }}"
               alt="avatar"
             />
             <div>
-              <h6>
-                {{
-                  chat[idChatBuscado].id_receptor
-                    ? persona[chat[idChatBuscado].id_receptor].nombre
-                    : "Usuario Desconocido"
-                }}
+              <h6 *ngIf="chatSeleccionado.id_usuario2 == idPersona">
+                {{ persona[chatSeleccionado.id_usuario].nombre }}
+              </h6>
+              <h6 *ngIf="chatSeleccionado.id_usuario2 != idPersona">
+                {{ persona[chatSeleccionado.id_usuario2].nombre }}
               </h6>
               <small>Last seen: 2 hours ago</small>
             </div>
@@ -39,42 +55,52 @@
 
         <div #componentContainer class="chat">
           <div class="scroll">
-            <div *ngFor="let mensaje of mensajesDelChat">
-              <ul
-                *ngIf="mensaje.id_usuario === chat[idChatBuscado].id_emisor"
-                class="ul-self"
-              >
-                <li class="self">
-                  <div class="msg">
-                    <span>{{ mensaje.fecha }}:</span>
-                  </div>
-                  <div class="conver">{{ mensaje.mensaje }}</div>
-                </li>
-              </ul>
-
-              <ul
-                *ngIf="mensaje.id_usuario === chat[idChatBuscado].id_receptor"
-                class="ul-other"
-              >
-                <li class="other">
-                  <div class="msg">
-                    <span>{{ mensaje.fecha }}:</span>
-                  </div>
-                  <div class="conver">
-                    {{ mensaje.mensaje }}
-                  </div>
-                  <br />
+            <div class="chat-mensajes">
+              <ul *ngIf="chatSeleccionado" class="ul-chat">
+                <li *ngFor="let mensajeId of chatSeleccionado.arrayMensajes">
+                  <ng-container *ngIf="mensajes[mensajeId] as mensaje">
+                    <ng-container
+                      *ngIf="
+                        mensaje.id_usuario === idPersona;
+                        else otherMessage
+                      "
+                    >
+                      <ul class="ul-self">
+                        <li class="self">
+                          <div class="msg">
+                            <span>{{ mensaje.fecha }}:</span>
+                          </div>
+                          <div class="conver">{{ mensaje.mensaje }}</div>
+                        </li>
+                      </ul>
+                    </ng-container>
+                    <ng-template #otherMessage>
+                      <ul class="ul-other">
+                        <li class="other">
+                          <div class="msg">
+                            <span>{{ mensaje.fecha }}:</span>
+                          </div>
+                          <div class="conver">{{ mensaje.mensaje }}</div>
+                          <br />
+                        </li>
+                      </ul>
+                    </ng-template>
+                  </ng-container>
                 </li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div class="chat-abajo">
-          <button (click)="enviarMensaje(nuevoMensaje)">
-            <img src="../../../assets/imagenes/envio.png" alt="" />
+        <div *ngIf="chatSeleccionado" class="chat-abajo">
+          <button (click)="enviarMensaje()">
+            <img src="../../../assets/imagenes/envio.png" alt="" class="imgButton"/>
           </button>
-          <input type="text" [(ngModel)]="nuevoMensaje" placeholder="Escribe tu mensaje..." />
+          <input
+            type="text"
+            [(ngModel)]="nuevoMensaje"
+            placeholder="Escribe tu mensaje..."
+          />
         </div>
       </div>
     </div>

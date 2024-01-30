@@ -7,6 +7,9 @@ import { VentanaPerfilComponent } from './ventanas/ventana-perfil/ventana-perfil
 import { RegistroComponent } from './ventanas/registro/registro.component';
 import { ChatsComponent } from './ventanas/chats/chats.component';
 import { SpinnerComponent } from './componentes/spinner/spinner.component';
+import { ModalChangeWallpaperComponent } from './componentes/modal-change-wallpaper/modal-change-wallpaper.component';
+import { ResetPasswordComponent } from './componentes/reset-password/reset-password.component';
+import { VentanaNewPasswordComponent } from './ventanas/ventana-new-password/ventana-new-password.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/Inicio',pathMatch: 'full'},
@@ -17,6 +20,9 @@ const routes: Routes = [
   {path: 'registro', component: RegistroComponent},
   {path: 'chats', component: ChatsComponent},
   {path: 'spinner', component: SpinnerComponent},
+  {path: 'changeWallpaper', component: ModalChangeWallpaperComponent},
+  {path: 'resetPassword', component: ResetPasswordComponent},
+  {path: 'newPassword/:token', component: VentanaNewPasswordComponent},
 ];
 
 @NgModule({

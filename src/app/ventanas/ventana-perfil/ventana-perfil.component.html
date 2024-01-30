@@ -2,22 +2,40 @@
 
     <section class="seccion-perfil-usuario">
         <section class="perfil-usuario-header">
-            <div class="perfil-usuario-portada">
+            <div class="perfil-usuario-portada" [ngStyle]="{ 'background-image': wallpaperDefault }"> <!-- Wallpaper default -->
+
                 <div class="perfil-usuario-avatar">
                     <img src="http://localhost/multimedia/relleno/img-c9.png" alt="img-avatar">
                     <button type="button" class="boton-avatar">
                         <i class='bx bxs-cog'></i>
                     </button>
                 </div>
-                <button type="button" class="boton-portada">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#WallpaperModal" class="boton-portada">
                     <i class='bx bxs-image'></i>Cambiar fondo
                 </button>
+
+                    <!-- Modal Wallpaper -->
+                    <div class="modal fade" id="WallpaperModal" tabindex="-1" aria-labelledby="wallpaperModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-centered">
+                            <div class="modal-content" style="height: 47rem;">
+                                <div class="modal-header">
+                                    <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Adopción</h1> -->
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <app-modal-change-wallpaper (wallpaperChanged)="onWallpaperChanged($event)"></app-modal-change-wallpaper>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal Wallpaper -->
+
             </div>
         </section>
         <section class="perfil-usuario-body">
             <div class="perfil-usuario-bio">
                 <div class="perfil-usuario-usernameBio">
-                    <h3 class="titulo">Maria Alejandra De la Cruz</h3>
+                    <h3 class="titulo">Carla Alejandra de la Divina Providencia</h3>
                     <p class="texto">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                         tempor incididunt ut labore et dolore magna aliqua.</p>
                 </div>
