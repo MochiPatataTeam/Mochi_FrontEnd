@@ -1,0 +1,27 @@
+  p{
+    font-family: 'Raleway', sans-serif;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+  }
+
+
+  img{
+    height: 12rem;
+    width: 20rem;
+    border-radius: 0.75rem;
+  }
+
+  button{
+    border: none;
+    height: 12rem;
+    width: 20rem;
+    background-color: #ffff;
+  }
+
+  .modalWallpaper{
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+
+  }

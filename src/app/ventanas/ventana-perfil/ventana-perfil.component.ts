@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class VentanaPerfilComponent {
 
+  wallpaperDefault: string = `url('../../../assets/imagenes/wallpaper_Mochi/Mochi.jpg')`;
+
+  onWallpaperChanged(event: string): void {
+    this.wallpaperDefault = event;
+  }
+
 }
