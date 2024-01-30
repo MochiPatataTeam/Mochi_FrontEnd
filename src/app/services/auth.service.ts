@@ -88,6 +88,20 @@ export class AuthService {
     return this.http.post(url, body);
   }
 
-
+  mensajes(id:number,id2: number): Observable<any>{
+    return this.http.get(`${this.urlGeneral}/mensajes/${id}/${id2}`);
+  }
+  contactos(id:number): Observable<any>{
+    return this.http.get(`${this.urlGeneral}/mensajes/${id}`);
+  }
+  enviarMensaje(mensaje: string,fecha:string,idEmisor:number,idReceptor:number): Observable<any>{
+    const credentials = {
+      mensaje: mensaje,
+      fecha: fecha,
+      id_emisor:idEmisor,
+      id_receptor:idReceptor
+    };
+    return this.http.post(`${this.urlGeneral}/mensajes`,credentials);
+  }
 
 }
