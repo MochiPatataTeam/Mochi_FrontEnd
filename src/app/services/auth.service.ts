@@ -14,8 +14,9 @@ export class AuthService {
   constructor(private http: HttpClient,
               private router: Router) {}
 
-  private urlGeneral= 'https://127.0.0.1:8000';
-  private url= 'https://127.0.0.1:8000/api/usuario';
+  private urlGeneral= 'http://127.0.0.1:8000';
+  private url= 'http://127.0.0.1:8000/api/usuario';
+  private videolista = 'http://127.0.0.1:8000/api/video';
 
   private userName: string | null = null;
 
@@ -26,6 +27,9 @@ export class AuthService {
   }
   comentario(): Observable<any>{
     return this.http.get(`${this.lista_comentarios}`)
+  }
+  video(): Observable<any>{
+    return this.http.get(`${this.videolista}`);
   }
 
   //----------------------------- REGISTRO -----------------------------------
