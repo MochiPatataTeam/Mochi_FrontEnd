@@ -13,7 +13,7 @@ export class VentanaReproduccionComponent {
   constructor(private authservice: AuthService) {
   }
 
-  //Listar comentarios
+  //Listar comentarios y eso
   ngOnInit():void{
     this.authservice.comentario().subscribe(
       (response)=>{
