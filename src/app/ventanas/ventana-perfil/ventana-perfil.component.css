@@ -55,7 +55,7 @@
     box-shadow: 0 0 12px rgba(0, 0, 0, .2);
     position: absolute;
     bottom: -10rem;
-    left: calc(10% - 9rem);
+    left: calc(14% - 9rem);
     z-index: 1;
 }
 
@@ -76,6 +76,10 @@
     height: 3.8rem;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.boton-avatar i, .boton-portada i{
+    font-size: 1.6rem;
 }
 
 .seccion-perfil-usuario .perfil-usuario-body {

@@ -20,8 +20,6 @@ const routes: Routes = [
   {path: 'registro', component: RegistroComponent},
   {path: 'chats', component: ChatsComponent},
   {path: 'spinner', component: SpinnerComponent},
-  {path: 'changeWallpaper', component: ModalChangeWallpaperComponent},
-  {path: 'resetPassword', component: ResetPasswordComponent},
   {path: 'newPassword/:token', component: VentanaNewPasswordComponent},
 ];
 

@@ -20,12 +20,13 @@
                 <span>Contraseña</span>
             </label>
 
-            <button class="submit" (click)="login()">Iniciar sesión</button>
+            <!-- <button class="submit" (click)="login()">Iniciar sesión</button> -->
+            <div class="btn">
+              <app-boton [buttonText]="customButtonText" (click)="login()"></app-boton>
+            </div>
             <div class="right-align">
                 <a data-bs-toggle="modal" data-bs-target="#modalReset" >He olvidado mi contraseña</a>
             </div>
-
-
 
             <!-- Modal 1. Resetear contreseña con correo-->
             <div class="modal fade" id="modalReset" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
