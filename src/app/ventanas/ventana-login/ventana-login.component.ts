@@ -14,6 +14,8 @@ export class VentanaLoginComponent {
 
   constructor(private authService: AuthService, private router: Router){}
 
+  customButtonText: string = 'Iniciar sesión';
+
   login(): void{
     this.authService.login(this.username, this.password).subscribe(
       (response) => {

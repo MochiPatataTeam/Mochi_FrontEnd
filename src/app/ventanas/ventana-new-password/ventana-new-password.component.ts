@@ -9,6 +9,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class VentanaNewPasswordComponent implements OnInit{
 
+  customButtonText: string = 'Actualizar contraseña';
+
   constructor(private route: ActivatedRoute,
               private authService: AuthService) {
                 this.route.params.subscribe(params => {
@@ -20,30 +22,10 @@ export class VentanaNewPasswordComponent implements OnInit{
   newPassword: string = '';
   token: string = '';
 
-    
 
   ngOnInit(): void {
-    // this.route.params.subscribe(params => {
-    //   const token = params['token']; //almaceno el token que recibe la url en una variable
-    //   if (token){
-    //     this.resetPassword(token);
-    //   } else {
-    //     console.error('No se encontró el token en la URL.');
-    //   }
-    // });
   }
 
-
-  // submitForm(): void{
-  //   this.authService.resetPassword(this.token, this.newPassword).subscribe(
-  //     response => {
-  //       console.log('Contraseña actualizada correctamente', response);
-  //     },
-  //     error => {
-  //       console.error('Error al restablecer la contraseña', error);
-  //     }
-  //   );
-  // }
 
   submitForm(): void{
     this.authService.resetPassword(this.token, this.newPassword).subscribe(

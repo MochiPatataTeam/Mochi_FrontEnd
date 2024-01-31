@@ -139,7 +139,7 @@ img{
     color: rgb(211, 136, 50);
   }
 
-  .submit {
+  /* .submit {
     border: none;
     outline: none;
     background-color: rgb(225, 158, 65);
@@ -152,7 +152,7 @@ img{
 
   .submit:hover {
     background-color: rgb(211, 136, 50);
-  }
+  } */
 
   @keyframes pulse {
     from {

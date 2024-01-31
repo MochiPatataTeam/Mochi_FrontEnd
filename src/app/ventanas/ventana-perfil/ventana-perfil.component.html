@@ -6,9 +6,24 @@
 
                 <div class="perfil-usuario-avatar">
                     <img src="http://localhost/multimedia/relleno/img-c9.png" alt="img-avatar">
-                    <button type="button" class="boton-avatar">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#editModal" class="boton-avatar">
                         <i class='bx bxs-cog'></i>
                     </button>
+
+                    <!-- Modal Editar Perfil -->
+                    <!-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-centered">
+                            <div class="modal-content" style="height: 47rem;">
+                                <div class="modal-header">
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <app-editar-perfil></app-editar-perfil>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- Modal Editar Perfil -->
                 </div>
                 <button type="button" data-bs-toggle="modal" data-bs-target="#WallpaperModal" class="boton-portada">
                     <i class='bx bxs-image'></i>Cambiar fondo
@@ -19,7 +34,6 @@
                         <div class="modal-dialog modal-xl modal-dialog-centered">
                             <div class="modal-content" style="height: 47rem;">
                                 <div class="modal-header">
-                                    <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Adopción</h1> -->
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">

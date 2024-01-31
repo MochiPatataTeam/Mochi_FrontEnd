@@ -17,6 +17,8 @@ import { ModalChangeWallpaperComponent } from './componentes/modal-change-wallpa
 import { JwtInterceptorService } from './services/jwt-interceptor.service';
 import { ResetPasswordComponent } from './componentes/reset-password/reset-password.component';
 import { VentanaNewPasswordComponent } from './ventanas/ventana-new-password/ventana-new-password.component';
+import { BotonComponent } from './componentes/boton/boton.component';
+import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +33,8 @@ import { VentanaNewPasswordComponent } from './ventanas/ventana-new-password/ven
     ModalChangeWallpaperComponent,
     ResetPasswordComponent,
     VentanaNewPasswordComponent,
+    BotonComponent,
+    EditarPerfilComponent,
   ],
   imports: [
     BrowserModule,

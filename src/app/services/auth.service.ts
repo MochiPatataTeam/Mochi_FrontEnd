@@ -4,26 +4,40 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient, private router: Router) {}
 
-  private urlGeneral = 'http://127.0.0.1:8000';
-  private url = 'http://127.0.0.1:8000/api/usuario';
-  private videolista = 'http://127.0.0.1:8000/api/video';
+  constructor(private http: HttpClient,
+              private router: Router) {}
+
+  private urlGeneral= 'https://127.0.0.1:8000';
+  private videolista = 'https://127.0.0.1:8000/api/video';
+  private lista_comentarios ='http://127.0.0.1:8000/api/comentario'
+  private lista_respuestas ='http://127.0.0.1:8000/api/respuesta'
+  private lista_usuarios= 'http://127.0.0.1:8000/api/usuario';
+
 
   private userName: string | null = null;
 
-  usuario(): Observable<any> {
-    return this.http.get(`${this.url}`);
+
+
+  usuario(): Observable<any>{
+    return this.http.get(`${this.lista_usuarios}`);
+  }
+  comentario(): Observable<any>{
+    return this.http.get(`${this.lista_comentarios}`)
   }
   video(): Observable<any> {
     return this.http.get(`${this.videolista}`);
   }
 
+  respuesta():Observable<any>{
+    return this.http.get(`${this.lista_respuestas}`)
+  }
+
   //----------------------------- REGISTRO -----------------------------------
-  registrar(data: any): Observable<any> {
+  registrar(data:any): Observable<any>{
     let payload = {
       nombre: data.nombre,
       apellidos: data.apellidos,
@@ -39,15 +53,14 @@ export class AuthService {
   }
 
   //----------------------------- LOGIN Y LOGOUT -----------------------------------
-  getUsername(): string | null {
-    //Para obtener el username como variable y poder mostrarlo
+  getUsername(): string | null { //Para obtener el username como variable y poder mostrarlo
     return this.userName;
   }
 
-  isLoggedIn(): boolean {
-    const jwt = localStorage.getItem('jwt');
+  isLoggedIn(): boolean{
+    const jwt= localStorage.getItem('jwt');
 
-    if (jwt !== null && this.isTokenValid(jwt)) {
+    if(jwt !== null && this.isTokenValid(jwt)){
       const decodedToken: any = JSON.parse(atob(jwt.split('.')[1]));
 
       this.userName = decodedToken.username;
@@ -63,44 +76,38 @@ export class AuthService {
     return true;
   }
 
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.urlGeneral}/api/login_check`, {
-      username,
-      password,
-    });
+  login(username: string, password: string): Observable<any>{
+    return this.http.post(`${this.urlGeneral}/api/login_check`, {username, password});
   }
 
-  logout(): void {
+  logout(): void{
     localStorage.removeItem('jwt');
     this.router.navigate(['/Inicio']);
   }
 
   //----------------------------- RECUPERAR CONTRASEÑA -----------------------------------
-  requestPasswordReset(email: string): Observable<any> {
-    //donde agarra el email para enviarselo al backend
-    const data = { email: email };
+  requestPasswordReset(email: string): Observable<any>{ //donde agarra el email para enviarselo al backend
+    const data= { email: email};
     return this.http.post(`${this.urlGeneral}/api/resetPassword`, data);
   }
 
-  resetPassword(token: string, newPassword: string): Observable<any> {
-    //donde agarra la nueva contraseña y el token para verificarlo y setearlo al backend.
-    const url = `${this.urlGeneral}/reset/${token}`; //(Haciendo referencia al metodo de mi backend que me modifica la contraseña)
+  resetPassword(token: string, newPassword: string): Observable<any>{ //donde agarra la nueva contraseña y el token para verificarlo y setearlo al backend.
+    const url = `${this.urlGeneral}/reset/${token}`;                  //(Haciendo referencia al metodo de mi backend que me modifica la contraseña)
     const body = { newPassword };
     return this.http.post(url, body);
   }
 
+
+  //----------------------------- MENSAJES -----------------------------------
   mensajes(id: number, id2: number): Observable<any> {
     return this.http.get(`${this.urlGeneral}/api/mensajes/${id}/${id2}`);
   }
+
   contactos(id: number): Observable<any> {
     return this.http.get(`${this.urlGeneral}/api/mensajes/${id}`);
   }
-  enviarMensaje(
-    mensaje: string,
-    fecha: string,
-    idEmisor: number,
-    idReceptor: number
-  ): Observable<any> {
+
+  enviarMensaje(mensaje: string,fecha:string,idEmisor:number,idReceptor:number): Observable<any>{
     const credentials = {
       mensaje: mensaje,
       fecha: fecha,
@@ -109,4 +116,5 @@ export class AuthService {
     };
     return this.http.post(`${this.urlGeneral}/api/mensajes`, credentials);
   }
+
 }
