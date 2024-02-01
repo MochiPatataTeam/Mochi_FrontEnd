@@ -118,7 +118,7 @@
   <div class="buttons">
     <button (click)="volver()" *ngIf="this.numPage == 2">Volver</button>
     <button (click)="avanzar()" *ngIf="this.numPage == 1">Siguiente</button>
-    <button
+    <button *ngIf="this.numPage == 2"
       (click)="
         Datos(
           nombre,
@@ -132,8 +132,7 @@
           descripcion,
           imagen
         )
-      "
-      *ngIf="this.numPage == 2"
+       ; registrarAction()"
     >
       Enviar
     </button>

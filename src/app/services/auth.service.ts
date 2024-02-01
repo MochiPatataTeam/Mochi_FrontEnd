@@ -13,12 +13,14 @@ export class AuthService {
 
   private urlGeneral= 'https://127.0.0.1:8000';
   private videolista = 'https://127.0.0.1:8000/api/video';
-  private lista_comentarios ='http://127.0.0.1:8000/api/comentario'
-  private lista_respuestas ='http://127.0.0.1:8000/api/respuesta'
-  private lista_usuarios= 'http://127.0.0.1:8000/api/usuario';
+  
+  private lista_comentarios ='https://127.0.0.1:8000/api/comentario'
+  private lista_respuestas ='https://127.0.0.1:8000/api/respuesta'
+  private lista_usuarios= 'https://127.0.0.1:8000/api/usuario';
 
 
   private userName: string | null = null;
+  private idUsuario: number | null = null;
 
 
 
@@ -57,6 +59,10 @@ export class AuthService {
     return this.userName;
   }
 
+  getId(): number | null { //Para obtener el id como variable y poder mostrarlo
+    return this.idUsuario;
+  }
+
   isLoggedIn(): boolean{
     const jwt= localStorage.getItem('jwt');
 
@@ -64,9 +70,11 @@ export class AuthService {
       const decodedToken: any = JSON.parse(atob(jwt.split('.')[1]));
 
       this.userName = decodedToken.username;
+      this.idUsuario = decodedToken.idUsuario;
 
       return true;
     } else {
+      localStorage.removeItem('jwt');
       return false;
     }
   }
