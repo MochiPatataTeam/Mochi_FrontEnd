@@ -125,4 +125,18 @@ export class AuthService {
     return this.http.post(`${this.urlGeneral}/api/mensajes`, credentials);
   }
 
+  notificaciones(id: number): Observable<any> {
+    return this.http.get(`${this.urlGeneral}/api/notificacion/${id}`);
+  }
+  notificacionesEdit(id: number,id_usuario:number,id_tipo:number, visible:boolean,id_creador:number): Observable<any> {
+    const credentials = {
+      visible: visible,
+      id_usuario: id_usuario,
+      id_tipo: id_tipo,
+      id_creador: id_creador
+    };
+
+
+    return this.http.put(`${this.urlGeneral}/api/notificacion/${id}`, credentials);
+  }
 }
