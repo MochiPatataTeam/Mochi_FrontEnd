@@ -18,7 +18,7 @@ import { JwtInterceptorService } from './services/jwt-interceptor.service';
 import { ResetPasswordComponent } from './componentes/reset-password/reset-password.component';
 import { VentanaNewPasswordComponent } from './ventanas/ventana-new-password/ventana-new-password.component';
 import { BotonComponent } from './componentes/boton/boton.component';
-import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil.component';
+import { CampanitaComponent } from './componentes/campanita/campanita.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +34,7 @@ import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil
     ResetPasswordComponent,
     VentanaNewPasswordComponent,
     BotonComponent,
-    EditarPerfilComponent,
+    CampanitaComponent,
   ],
   imports: [
     BrowserModule,
