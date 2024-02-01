@@ -50,6 +50,7 @@
     <p>Try scrolling the rest of the page to see this option in action.</p>
     <div *ngIf="isLoggedIn()">
       ¡Hola {{authService.getUsername()}}!
+      ¡Hola {{authService.getId()}}!
       <button (click)="logout()">Logout</button>
     </div>
   </div>
