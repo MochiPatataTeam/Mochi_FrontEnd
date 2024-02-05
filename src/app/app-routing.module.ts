@@ -15,6 +15,7 @@ const routes: Routes = [
   {path: '', redirectTo: '/Inicio',pathMatch: 'full'},
   {path: 'Inicio', component: VentanaInicioComponent},
   {path: 'reproducir', component: VentanaReproduccionComponent},
+  {path: 'reproducir/:id', component: VentanaReproduccionComponent},
   {path: 'Login', component: VentanaLoginComponent, data: { showNavbar: false }},
   {path: 'perfil', component: VentanaPerfilComponent},
   {path: 'registro', component: RegistroComponent},

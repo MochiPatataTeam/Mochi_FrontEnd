@@ -4,14 +4,15 @@
       <div class="temporary__storage" >
         <div class="card" >
           <div class="image prueba">
-            <img  src="assets/imagenes/blanco.png" (click)="redirigirAotraPagina()">
+            <img (click)="videoDetails(vi.id)" src="assets/imagenes/blanco.png">
+
             <iframe width="320" height="180" [src]="vi.safeUrl" allow="autoplay"> </iframe>
           </div>
           <div class="image__overlay"></div>
           <div class="content">
             <div class="avatar"><img class="avatafoto"  src="assets/imagenes/wallpaper_Mochi/city.jpg"></div>
             <div class="content__text">
-              <span (click)="redirigirAotraPagina()" class="stream__title">{{vi.titulo}}</span>
+              <span (click)="redirigirAotraPagina(vi.id)" class="stream__title">{{vi.titulo}}</span>
               <div class="content__body">
                 <span class="streamer__name">{{vi.canal}}</span>
                 <span class="event">{{vi.tematica}}</span>

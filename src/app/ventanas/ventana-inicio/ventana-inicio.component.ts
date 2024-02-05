@@ -1,6 +1,7 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import { AuthService} from "../../services/auth.service";
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ventana-inicio',
@@ -11,7 +12,8 @@ export class VentanaInicioComponent {
 
   patata: any[]=[];
   video: any[]=[];
-  constructor(private authservice:AuthService, private sanitizer: DomSanitizer){
+
+  constructor(private authservice:AuthService, private sanitizer: DomSanitizer, private router: Router){
   }
   ngOnInit():void{
     this.authservice.usuario().subscribe(
@@ -41,9 +43,12 @@ export class VentanaInicioComponent {
     }
   }
 
-  redirigirAotraPagina() {
-    window.location.href = 'http://localhost:4200/reproducir';
+  redirigirAotraPagina(id: number) {
+    window.location.href = `http://localhost:4200/reproducir/${id}`;
   }
 
+  videoDetails(id: number){
+    this.router.navigate(['reproducir', id]);
+  }
 
 }

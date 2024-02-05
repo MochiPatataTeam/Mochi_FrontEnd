@@ -35,6 +35,7 @@ import { CampanitaComponent } from './componentes/campanita/campanita.component'
     VentanaNewPasswordComponent,
     BotonComponent,
     CampanitaComponent,
+
   ],
   imports: [
     BrowserModule,
