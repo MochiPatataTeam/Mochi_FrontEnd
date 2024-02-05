@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 //import {videoDTO} from "../ventanas/ventana-reproduccion/videoDto";
 
@@ -78,6 +78,7 @@ export class AuthService {
       return true;
     } else {
       localStorage.removeItem('jwt');
+      this.removeAuthId()
       return false;
     }
   }
@@ -93,6 +94,7 @@ export class AuthService {
 
   logout(): void{
     localStorage.removeItem('jwt');
+    this.removeAuthId()
     this.router.navigate(['/Inicio']);
   }
 
@@ -110,13 +112,66 @@ export class AuthService {
 
 
   //----------------------------- MENSAJES -----------------------------------
-  mensajes(id: number, id2: number): Observable<any> {
-    return this.http.get(`${this.urlGeneral}/api/mensajes/${id}/${id2}`);
+  
+  setAuthId(idUsuario: number) {
+    this.idUsuario = idUsuario;
+    localStorage.setItem('Id', idUsuario.toString());
   }
 
-  contactos(id: number): Observable<any> {
-    return this.http.get(`${this.urlGeneral}/api/mensajes/${id}`);
+  getStoredIdUsuario(): number | null {
+    const storedId = localStorage.getItem('Id');
+    if (storedId !== null) {
+      return parseInt(storedId, 10);
+    }
+    return null;
   }
+  removeAuthId() {
+    this.idUsuario = null;
+    localStorage.removeItem('Id');
+  }
+
+getIdPersona() {
+  const user = this.getUsername();
+  const url = `${this.urlGeneral}/api/usuario/buscarId`;
+
+  const params = new HttpParams().set('username', user || '');
+
+  const options = {
+    params: params,
+  };
+
+  return this.http.get(url, options);
+}
+
+mensajes(id: number, id2: number): Observable<any> {
+  const url = `${this.urlGeneral}/api/mensajes/mensaje`;
+
+  const params = {
+    id: id,
+    id2: id2
+  };
+
+  const options = {
+    params: params
+  };
+
+  return this.http.get(url, options);
+}
+
+contactos(id: number): Observable<any> {
+
+  const url = `${this.urlGeneral}/api/mensajes/contactos`;
+
+  const params = {
+    id: id
+  };
+
+  const options = {
+    params: params
+  };
+
+  return this.http.get(url, options);
+}
 
   enviarMensaje(mensaje: string,fecha:string,idEmisor:number,idReceptor:number): Observable<any>{
     const credentials = {

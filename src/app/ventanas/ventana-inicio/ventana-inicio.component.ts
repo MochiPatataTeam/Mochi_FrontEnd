@@ -12,10 +12,35 @@ export class VentanaInicioComponent {
 
   patata: any[]=[];
   video: any[]=[];
+  id!: number;
 
   constructor(private authservice:AuthService, private sanitizer: DomSanitizer, private router: Router){
   }
   ngOnInit():void{
+
+    this.authservice.getIdPersona().subscribe(
+      (response: any) => {
+        if (
+          Array.isArray(response) &&
+          response.length > 0 &&
+          response[0].hasOwnProperty('id')
+        ) {
+          this.id = response[0].id;
+          this.authservice.setAuthId(this.id);
+
+        } else {
+          console.error(
+            'Invalid or empty response from getIdPersona:',
+            response
+          );
+        }
+      },
+      (error) => {
+        console.error('Error fetching ID:', error);
+      }
+    );
+
+
     this.authservice.usuario().subscribe(
       (response)=>{
         console.log(response)

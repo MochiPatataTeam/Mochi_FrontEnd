@@ -12,9 +12,7 @@
             alt="avatar"
           />
           <div class="names">
-            <div>
-              {{ contact.nombre }}
-            </div>
+            <div>{{ contact.nombre }}</div>
           </div>
           <div></div>
         </button>
@@ -36,7 +34,7 @@
         </div>
 
         <div #componentContainer class="chat">
-          <div class="scroll">
+          <div class="scroll" #chatContainer>
             <div>
               <ul>
                 <li *ngFor="let mensaje of mensajesJuntos">
@@ -112,7 +110,7 @@
       </div>
 
       <div #componentContainer class="chat">
-        <div class="scroll">
+        <div class="scroll" #chatContainer>
           <div>
             <ul>
               <li *ngFor="let mensaje of mensajesJuntos">
