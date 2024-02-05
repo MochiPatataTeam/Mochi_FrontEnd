@@ -1,6 +1,7 @@
 .notification {
   position: relative;
   text-align: right;
+  z-index: 2;
 }
 
 .notification img {

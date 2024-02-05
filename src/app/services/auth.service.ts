@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+//import {videoDTO} from "../ventanas/ventana-reproduccion/videoDto";
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,12 @@ export class AuthService {
   constructor(private http: HttpClient,
               private router: Router) {}
 
-  private urlGeneral= 'https://127.0.0.1:8000';
-  private videolista = 'https://127.0.0.1:8000/api/video';
-  
-  private lista_comentarios ='https://127.0.0.1:8000/api/comentario'
-  private lista_respuestas ='https://127.0.0.1:8000/api/respuesta'
-  private lista_usuarios= 'https://127.0.0.1:8000/api/usuario';
+  private urlGeneral= 'http://127.0.0.1:8000';
+  private videolista = 'http://127.0.0.1:8000/api/video';
+
+  private lista_comentarios ='http://127.0.0.1:8000/api/comentario'
+  private lista_respuestas ='http://127.0.0.1:8000/api/respuesta'
+  private lista_usuarios= 'http://127.0.0.1:8000/api/usuario';
 
 
   private userName: string | null = null;
@@ -33,7 +34,9 @@ export class AuthService {
   video(): Observable<any> {
     return this.http.get(`${this.videolista}`);
   }
-
+  videoid(id: number): Observable<any> {
+    return this.http.get(`${this.videolista}/${id}`);
+  }
   respuesta():Observable<any>{
     return this.http.get(`${this.lista_respuestas}`)
   }
