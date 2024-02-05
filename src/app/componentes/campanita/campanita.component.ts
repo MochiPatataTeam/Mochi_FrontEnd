@@ -7,9 +7,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./campanita.component.css'],
 })
 export class CampanitaComponent {
-  id: number = 1;
+  id!: number | null;
   notificaciones: any[] = [];
-  countFalseVisible: number = 0; 
+  countFalseVisible: number = 0;
 
   constructor(
     private elRef: ElementRef,
@@ -17,17 +17,24 @@ export class CampanitaComponent {
     private authservice: AuthService
   ) {}
   ngOnInit(): void {
-    this.authservice.notificaciones(this.id).subscribe(
-      (response) => {
-        console.log('aaaaaaaaa', response);
-        this.notificaciones = response;
-        this.countFalseVisible = this.countFalseNotifications();
-        console.log(this.countFalseVisible);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    if (!this.id == null) {
+      this.id = 0;
+    } else {
+      this.id = this.authservice.getStoredIdUsuario();
+    }
+
+    if (this.id != null) {
+      this.authservice.notificaciones(this.id).subscribe(
+        (response) => {
+          this.notificaciones = response;
+          this.countFalseVisible = this.countFalseNotifications();
+          console.log('aña2', response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
 
   toggleNotification() {
@@ -39,10 +46,12 @@ export class CampanitaComponent {
         ? 'block'
         : 'none';
 
-    if (notificationMenu.style.display === 'none' && this.countFalseVisible > 0) {
+    if (
+      notificationMenu.style.display === 'none' &&
+      this.countFalseVisible > 0
+    ) {
       this.toggleNotificationVisibility();
     } else {
-
     }
   }
 
@@ -76,7 +85,7 @@ export class CampanitaComponent {
           );
       }
     });
-    this.countFalseVisible= 0; 
+    this.countFalseVisible = 0;
     console.log(this.notificaciones);
   }
 

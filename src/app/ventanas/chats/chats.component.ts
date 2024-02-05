@@ -3,10 +3,14 @@ import {
   ChangeDetectionStrategy,
   OnInit,
   TemplateRef,
+  ElementRef,
+  ViewChild,
+  AfterViewChecked,
 } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Observable } from 'rxjs';
 import { NgIfContext } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-chats',
@@ -14,15 +18,19 @@ import { NgIfContext } from '@angular/common';
   styleUrls: ['./chats.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatsComponent implements OnInit {
+export class ChatsComponent implements OnInit, AfterViewChecked {
   mensajes: any;
+  @ViewChild('chatContainer') private chatContainer: ElementRef | undefined;
 
-  constructor(private authservice: AuthService) {}
+  constructor(
+    private authservice: AuthService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
-  id: number = 1;
+  id!: number | null;
   mensajesConver: any[] = [];
   contactos: any[] = [];
-  contactos$ = this.authservice.contactos(this.id);
+  contactos$!: Observable<any[]>;
   nuevoMensaje: string = '';
   chatSeleccionado: any = null;
   mensajes$!: Observable<any[]>;
@@ -31,22 +39,46 @@ export class ChatsComponent implements OnInit {
   fechaFormateada!: string;
   idPersona!: number;
   nombreIdPersona!: string;
-  ngOnInit(): void {
-    this.authservice.contactos(this.id).subscribe(
-      (response) => {
-        console.log('aaaaaaaaa', response);
-        this.contactos = response;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-  mensajesChat(idPersona: number, nombre: string) {
-    this.nombreIdPersona = nombre;
-    this.idPersona = idPersona;
 
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaaa', this.idPersona);
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom(): void {
+    if (this.chatContainer) {
+      this.chatContainer.nativeElement.scrollTop =
+        this.chatContainer.nativeElement.scrollHeight;
+    }
+  }
+
+  ngOnInit(): void {
+    if (!this.id == null) {
+      this.id = 0;
+    } else {
+      this.id = this.authservice.getStoredIdUsuario();
+    }
+  
+    if (this.id != null) {
+      this.contactos$ = this.authservice.contactos(this.id);
+      this.contactos$.subscribe(
+        (contactResponse) => {
+          this.contactos = contactResponse;
+        },
+        (error) => {
+          console.log('Error fetching contacts:', error);
+        }
+      );
+    }
+  
+    this.cdr.detectChanges();
+  }
+
+  mensajesChat(idPersona: number, nombre: string) {
+  this.nombreIdPersona = nombre;
+  this.idPersona = idPersona;
+  this.ngAfterViewChecked();
+
+  if (this.id != null) {
     this.mensajes$ = this.authservice.mensajes(this.id, idPersona);
     this.mensajes$.subscribe(
       (response) => {
@@ -60,43 +92,45 @@ export class ChatsComponent implements OnInit {
       }
     );
   }
+}
 
-  imprimirMensajesPorEmisor(mensajesConver: any[]) {
-    const mensajesEmisor: any[] = [];
-    const mensajesReceptor: any[] = [];
+imprimirMensajesPorEmisor(mensajesConver: any[]) {
+  const mensajesEmisor: any[] = [];
+  const mensajesReceptor: any[] = [];
 
-    mensajesConver.forEach((mensaje) => {
-      if (mensaje.idEmisor === this.id.toString()) {
-        mensaje.emisor = true;
-        mensajesEmisor.push(mensaje);
-      } else {
-        mensaje.emisor = false;
-        mensajesReceptor.push(mensaje);
-      }
-    });
+  mensajesConver.forEach((mensaje) => {
+    if (mensaje.idEmisor === this.id?.toString()) {
+      mensaje.emisor = true;
+      mensajesEmisor.push(mensaje);
+    } else {
+      mensaje.emisor = false;
+      mensajesReceptor.push(mensaje);
+    }
+  });
 
-    const mensajesUnidos = [...mensajesEmisor, ...mensajesReceptor];
+  const mensajesUnidos = [...mensajesEmisor, ...mensajesReceptor];
 
-    mensajesUnidos.sort((a, b) => a.id - b.id);
+  mensajesUnidos.sort((a, b) => a.id - b.id);
 
-    console.log('Mensajes', mensajesUnidos);
-    this.mensajesJuntos = mensajesUnidos;
-  }
-  enviarMensaje(mensaje: string, idPersona: number) {
-    const fechaActual = new Date();
-    this.fechaFormateada = `${fechaActual
-      .getDate()
-      .toString()
-      .padStart(2, '0')}/${(fechaActual.getMonth() + 1)
-      .toString()
-      .padStart(2, '0')}/${fechaActual.getFullYear()}`;
+  this.mensajesJuntos = mensajesUnidos;
+}
 
-    console.log(mensaje);
+enviarMensaje(mensaje: string, idPersona: number) {
+  const fechaActual = new Date();
+  this.fechaFormateada = `${fechaActual
+    .getDate()
+    .toString()
+    .padStart(2, '0')}/${(fechaActual.getMonth() + 1)
+    .toString()
+    .padStart(2, '0')}/${fechaActual.getFullYear()}`;
+
+  console.log(mensaje);
+
+  if (this.id != null) {
     this.authservice
       .enviarMensaje(mensaje, this.fechaFormateada, this.id, idPersona)
       .subscribe(
         (response) => {
-          console.log('aaaaaaaaa', response);
           this.contactos = response;
         },
         (error) => {
@@ -107,4 +141,6 @@ export class ChatsComponent implements OnInit {
     this.mensajesChat(idPersona, this.nombreIdPersona);
     this.nuevoMensaje = '';
   }
+}
+
 }
