@@ -10,10 +10,10 @@
   </div>
   <p>Comentarios</p>
     <div class="texto">
-      <form>
-        <textarea class="form-control" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px"></textarea>
-        <button class="btn btn-primary" type="submit">Enviar</button>
-      </form>
+
+        <textarea class="form-control" [(ngModel)]="nuevoComentario" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px"></textarea>
+        <button class="btn btn-primary" type="button" (click)="crearComentario(this.nuevoComentario)">Enviar</button>
+
 
       <!-- Iterar sobre la lista de comentarios -->
       <!-- Iterar sobre la lista de comentarios -->

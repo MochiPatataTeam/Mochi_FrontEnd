@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
 //import {videoDTO} from "../ventanas/ventana-reproduccion/videoDto";
 
@@ -112,7 +112,7 @@ export class AuthService {
 
 
   //----------------------------- MENSAJES -----------------------------------
-  
+
   setAuthId(idUsuario: number) {
     this.idUsuario = idUsuario;
     localStorage.setItem('Id', idUsuario.toString());
@@ -193,8 +193,15 @@ contactos(id: number): Observable<any> {
       id_tipo: id_tipo,
       id_creador: id_creador
     };
-
-
     return this.http.put(`${this.urlGeneral}/api/notificacion/${id}`, credentials);
   }
+  crearComentario(usuario: number, video:number, comentario:string): Observable<any>{
+    const credentials={
+      usuario: usuario,
+      video: video,
+      comentario:comentario,
+    };
+    return this.http.post(`${this.urlGeneral}/api/comentario?XDEBUG_SESSION_START=11987`, credentials);
+  }
+
 }
