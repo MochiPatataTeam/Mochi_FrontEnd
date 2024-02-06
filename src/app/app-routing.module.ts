@@ -10,6 +10,8 @@ import { SpinnerComponent } from './componentes/spinner/spinner.component';
 import { ModalChangeWallpaperComponent } from './componentes/modal-change-wallpaper/modal-change-wallpaper.component';
 import { ResetPasswordComponent } from './componentes/reset-password/reset-password.component';
 import { VentanaNewPasswordComponent } from './ventanas/ventana-new-password/ventana-new-password.component';
+import { VentanaVerifiedComponent } from './ventanas/ventana-verified/ventana-verified.component';
+import { VentanaErrorComponent } from './ventanas/ventana-error/ventana-error.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/Inicio',pathMatch: 'full'},
@@ -22,6 +24,8 @@ const routes: Routes = [
   {path: 'chats', component: ChatsComponent},
   {path: 'spinner', component: SpinnerComponent},
   {path: 'newPassword/:token', component: VentanaNewPasswordComponent},
+  {path: 'verified/:signedUrl', component: VentanaVerifiedComponent},
+  {path: 'error', component: VentanaErrorComponent},
 ];
 
 @NgModule({
