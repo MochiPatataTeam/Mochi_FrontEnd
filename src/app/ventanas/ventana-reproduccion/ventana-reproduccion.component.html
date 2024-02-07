@@ -1,22 +1,22 @@
-<div class="contenedor">
-  <div class="contenedor1">
-    <iframe class="reproductor" width="860" height="415" [src]="videopatata.url"></iframe>
-    <div class="datos">
-      <h1>{{videoId.titulo}}</h1>
-      <p>{{videoId.canal}}</p>
-      <p>3 suscriptores</p>
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAXZJREFUSEvV1D9IVlEYx/GPRjo4FS0hihlYiGMOikODzi0OTWKDYyAJQYhh5KCT4KggREOTcyQEOriom4O4CIENiXMUEnWPnBv3vb6+V1/vO3iWyz3nPL/v8+c8T5MGr6YG67sK4B520IU/+IIXOK7l5GUBt7GZiA7kxN7jbRmA1ejtCZ7gJabwLhGfvS4giC3hN4awm8C+oRNPY2QXMopSFAQ3cAujWEM/tvED9/G33gi6Y1HvJkWdwVwUWsBrLOJV0SvMRvAM83icM/qIsczeAXpqCO/H+nwOd7KAI7RXMWzBaWZ/D30Fnh/iYR6Q5jKF5v+LspGeV9hlIygD0Byb8L/zZQNGsI5Qh95GpOgTnic98yY+mIoiXzdFbQid3ooOfC87ggks4yuG04qXWYOtJP+DsWdC75ytsgAPEuHw9n/hTvyWCghjZBofMJ5tmGwE6YS8bENVu3duuuZnURhkj+og/EzGzAom87ZF47oOVqXJzQf8A3WdSRlen1+/AAAAAElFTkSuQmCC"/>
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAYRJREFUSEvF1T9IVlEYBvDfV5ARTiI6BEUKSqvQ4KJFtLq0RYtIY7Q41NDfQVAXBwcHaYm25loig9oKAhdt6Z+DQ9HWEBF1XrgfXK/36zv3Q+lsl/u+z3Oe9zznOS2HvFqHjO+/EaxiFid6ULiFeTyN3joFF/G8B+ByyweMdiJ4jCt4gLsZRH+KmvZm93xXFfTjK45jBB8PmiDm/hCvMJUBHiWNFLzENOYKohyObIKTCXgHPzGIHznoTRTcLg42DvlqJnijEb3HGC41tGn2iNqFR0qyc4Q0JmgaH9kEn5NzTnXZ8jtMlGqOFaaotn3CmepNnknZs4Txf5Bs42zp/6MaQ2ziJp51ioo6/BXcwGLRHDV3Upbdx3ecQ+TPvpUz76jZxXAB9BaX8QS/cR6vO6nOIbiQYuMFvuA0JtNt30AfrqdLGdHeceUQLKSDvIVlrOENBrCOa918nEMQkX2vAhRhGO/Gr4MgGEqPR7glAI8iLBiH+q0beBMX5WDV1uSMqGfwaPwL0qFKGXzmC7EAAAAASUVORK5CYII="/>
-    </div>
-    <p>Comentarios</p>
+<div class="contenedor" >
+  <div class="contenedor1" >
+    <iframe class="reproductor" width="860" height="415" [src]="videopatata.url" ></iframe>
+  <div class="datos text-light">
+    <h1>{{videoId.titulo}}</h1>
+    <p>{{videoId.canal}}</p>
+    <p>3 suscriptores</p>
+    <i class='bx bx-like'></i>
+    <i class='bx bx-dislike' ></i>
+  </div>
+  <p>Comentarios</p>
     <div class="texto">
 
       <textarea class="form-control" [(ngModel)]="nuevoComentario" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px"></textarea>
       <button class="btn btn-primary" type="button" (click)="crearComentario(this.nuevoComentario)">Enviar</button>
 
-
       <!-- Iterar sobre la lista de comentarios -->
-      <div class="comentario" *ngFor="let comentario of videoId.comentarioDTO">
+      <!-- Iterar sobre la lista de comentarios -->
+      <div class="comentario text-light" *ngFor="let comentario of videoId.comentarioDTO">
         <p class="datos_usuario">{{comentario.usuario}}</p>
         <p class="comentario1">{{comentario.comentario}}</p>
         <!-- Agregar botón de responder -->
@@ -84,3 +84,5 @@
     </div>
   </div>
 </div>
+
+<!---->

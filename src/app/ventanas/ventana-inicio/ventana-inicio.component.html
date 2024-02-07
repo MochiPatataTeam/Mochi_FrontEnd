@@ -1,3 +1,5 @@
+
+<!--
 <div class="container-fluid fondo">
   <div class="row">
     <div class="col-12 col-lg-3 col-md-6 d-flex " *ngFor= "let vi of video">
@@ -23,4 +25,75 @@
       </div>
     </div>
   </div>
+</div>-->
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="page-content">
+
+        <!-- ***** Banner Start ***** -->
+        <div class="main-banner">
+          <div class="row">
+            <div class="col-lg-7">
+              <div class="header-text">
+                <h6>Bienvenido a MochiTV</h6>
+                <h4><em>Nuestra Popular Aplicación de Videos</em></h4>
+                <div class="main-button">
+                  <a href="browse.html">Naverga Ahora</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ***** Banner End ***** -->
+
+        <!-- ***** Most Popular Start ***** -->
+        <div class="most-popular">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="heading-section">
+                <h4><em>Most Popular</em> Right Now</h4>
+              </div>
+              <div class="row">
+                <div class="col-lg-3 col-sm-6 " *ngFor= "let vi of video">
+                  <div class="item">
+                    <iframe  width="320" height="180" [src]="vi.safeUrl" allow="autoplay"> </iframe>
+                    <img (click)="videoDetails(vi.id)" src="assets/imagenes/blanco.png">
+
+                    <h4>{{vi.titulo}}<br><span>{{vi.tematica}}</span> <span> {{vi.canal}}</span></h4>
+                    <ul>
+                      <li><i class='bx bx-like' ></i> 4.8 M</li>
+                      <li><i class='bx bx-download'></i> 2.3M</li>
+                    </ul>
+                  </div>
+                </div>
+
+               <!-- <div class="col-lg-12">
+                  <div class="main-button">
+                    <a href="browse.html">Discover Popular</a>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ***** Most Popular End ***** -->
+
+      </div>
+    </div>
+  </div>
 </div>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <p>Copyright © 2036 <b>Team Patata </b>  Company. All rights reserved.
+
+          <br>Design: Team Patata</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
