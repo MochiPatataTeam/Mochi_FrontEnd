@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit{
-
-  constructor(public authService: AuthService){}
+  id: any = null;
+  constructor(public authService: AuthService, private location: Location){}
 
   ngOnInit(): void {
-
+    this.id = JSON.parse(localStorage.getItem('Id')!);
   }
 
   //----------------------------- LOGIN Y LOGOUT -----------------------------------
@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit{
 
   logout(): void{
     this.authService.logout();
+
   }
 
   getIdUsuario(): number | null {
