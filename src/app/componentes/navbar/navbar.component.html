@@ -20,10 +20,10 @@
 
           <ul class="nav">
             <li><a routerLink="/Inicio" routerLinkActive="active" class="active">Inicio</a></li>
-            <li><a routerLink="/chats" routerLinkActive="active">Chats</a></li>
+            <li *ngIf="isLoggedIn()"><a routerLink="/chats" routerLinkActive="active">Chats</a></li>
             <li><a href="details.html">Details</a></li>
             <li><a href="streams.html">Streams</a></li>
-            <li><app-campanita></app-campanita></li>
+            <li *ngIf="isLoggedIn()"><app-campanita></app-campanita></li>
             <li *ngIf="isLoggedIn()"> <a (click)="logout()">Logout</a></li>
             <li *ngIf="isLoggedIn() else prueba"><a routerLink="/perfil" routerLinkActive="active">Perfil de {{authService.getUsername()}} <img src="./assets/imagenes/login_img/avengers.jpg" alt=""></a></li>
             <ng-template #prueba>
