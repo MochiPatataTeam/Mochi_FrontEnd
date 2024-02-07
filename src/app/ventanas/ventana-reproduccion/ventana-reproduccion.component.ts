@@ -41,7 +41,6 @@ export class VentanaReproduccionComponent implements OnInit {
     this.authservice.videoid(this.id).subscribe(
       (response) => {
         this.videoId = response;
-        // Supongamos que deseas acceder al ID del primer comentario en el arreglo comentarioDTO
         if (response.comentarioDTO && response.comentarioDTO.length > 0) {
           this.comentarioId = response.comentarioDTO[0].id;
         }

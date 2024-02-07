@@ -195,6 +195,7 @@ export class AuthService {
     };
     return this.http.put(`${this.urlGeneral}/api/notificacion/${id}`, credentials);
   }
+  //-----COMENTARIOS Y RESPUESTAS
   crearComentario(usuario: number, video:number, comentario:string): Observable<any>{
     const credentials={
       usuario: usuario,
