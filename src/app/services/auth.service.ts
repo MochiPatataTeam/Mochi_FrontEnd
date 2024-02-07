@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Router } from '@angular/router';
 //import {videoDTO} from "../ventanas/ventana-reproduccion/videoDto";
 
@@ -112,7 +112,7 @@ export class AuthService {
 
 
   //----------------------------- MENSAJES -----------------------------------
-  
+
   setAuthId(idUsuario: number) {
     this.idUsuario = idUsuario;
     localStorage.setItem('Id', idUsuario.toString());
@@ -130,48 +130,48 @@ export class AuthService {
     localStorage.removeItem('Id');
   }
 
-getIdPersona() {
-  const user = this.getUsername();
-  const url = `${this.urlGeneral}/api/usuario/buscarId`;
+  getIdPersona() {
+    const user = this.getUsername();
+    const url = `${this.urlGeneral}/api/usuario/buscarId`;
 
-  const params = new HttpParams().set('username', user || '');
+    const params = new HttpParams().set('username', user || '');
 
-  const options = {
-    params: params,
-  };
+    const options = {
+      params: params,
+    };
 
-  return this.http.get(url, options);
-}
+    return this.http.get(url, options);
+  }
 
-mensajes(id: number, id2: number): Observable<any> {
-  const url = `${this.urlGeneral}/api/mensajes/mensaje`;
+  mensajes(id: number, id2: number): Observable<any> {
+    const url = `${this.urlGeneral}/api/mensajes/mensaje`;
 
-  const params = {
-    id: id,
-    id2: id2
-  };
+    const params = {
+      id: id,
+      id2: id2
+    };
 
-  const options = {
-    params: params
-  };
+    const options = {
+      params: params
+    };
 
-  return this.http.get(url, options);
-}
+    return this.http.get(url, options);
+  }
 
-contactos(id: number): Observable<any> {
+  contactos(id: number): Observable<any> {
 
-  const url = `${this.urlGeneral}/api/mensajes/contactos`;
+    const url = `${this.urlGeneral}/api/mensajes/contactos`;
 
-  const params = {
-    id: id
-  };
+    const params = {
+      id: id
+    };
 
-  const options = {
-    params: params
-  };
+    const options = {
+      params: params
+    };
 
-  return this.http.get(url, options);
-}
+    return this.http.get(url, options);
+  }
 
   enviarMensaje(mensaje: string,fecha:string,idEmisor:number,idReceptor:number): Observable<any>{
     const credentials = {
@@ -193,8 +193,25 @@ contactos(id: number): Observable<any> {
       id_tipo: id_tipo,
       id_creador: id_creador
     };
-
-
     return this.http.put(`${this.urlGeneral}/api/notificacion/${id}`, credentials);
   }
+  //-----COMENTARIOS Y RESPUESTAS
+  crearComentario(usuario: number, video:number, comentario:string): Observable<any>{
+    const credentials={
+      usuario: usuario,
+      video: video,
+      comentario:comentario,
+    };
+    return this.http.post(`${this.urlGeneral}/api/comentario`, credentials);
+  }
+
+  crearRespuesta(usuario: number, comentario:number, mensaje:string): Observable<any>{
+    const credentials ={
+      usuario: usuario,
+      comentario: comentario,
+      mensaje: mensaje
+    }
+    return this.http.post(`${this.urlGeneral}/api/respuesta`, credentials);
+  }
+
 }

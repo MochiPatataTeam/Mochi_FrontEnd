@@ -10,16 +10,25 @@
   </div>
   <p>Comentarios</p>
     <div class="texto">
-      <form>
-        <textarea class="form-control" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px"></textarea>
-        <button class="btn btn-primary" type="submit">Enviar</button>
-      </form>
+
+      <textarea class="form-control" [(ngModel)]="nuevoComentario" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px"></textarea>
+      <button class="btn btn-primary" type="button" (click)="crearComentario(this.nuevoComentario)">Enviar</button>
 
       <!-- Iterar sobre la lista de comentarios -->
       <!-- Iterar sobre la lista de comentarios -->
       <div class="comentario text-light" *ngFor="let comentario of videoId.comentarioDTO">
         <p class="datos_usuario">{{comentario.usuario}}</p>
         <p class="comentario1">{{comentario.comentario}}</p>
+        <!-- Agregar botón de responder -->
+        <button class="btn btn-primary" (click)="mostrarRespuesta(comentario)">Responder</button>
+
+        <!-- Mostrar caja de respuesta si el comentario está seleccionado -->
+        <div *ngIf="comentario.mostrarCajaRespuesta">
+          <textarea class="form-control" [(ngModel)]="comentario.nuevaRespuesta" placeholder="Escribe tu respuesta aquí" style="height: 100px"></textarea>
+          <button class="btn btn-primary" (click)="crearRespuesta(comentario)">Enviar respuesta</button>
+        </div>
+
+        <!-- Iterar sobre las respuestas -->
         <div class="comentario" *ngFor="let resp of comentario.respuesta">
           <p class="datos_usuario">{{resp.usuario}}</p>
           <p class="comentario1">{{resp.mensaje}}</p>
@@ -43,10 +52,10 @@
             </div>
 
             <span class="categories">
-          <a class="categories__btn" href="#">Español</a>
-          <a class="categories__btn" href="#">KOI</a>
-          <a class="categories__btn" href="#">LOL</a>
-        </span>
+              <a class="categories__btn" href="#">Español</a>
+              <a class="categories__btn" href="#">KOI</a>
+              <a class="categories__btn" href="#">LOL</a>
+            </span>
           </div>
         </div>
       </div>
@@ -65,10 +74,10 @@
             </div>
 
             <span class="categories">
-          <a class="categories__btn" href="#">Español</a>
-          <a class="categories__btn" href="#">KOI</a>
-          <a class="categories__btn" href="#">LOL</a>
-        </span>
+              <a class="categories__btn" href="#">Español</a>
+              <a class="categories__btn" href="#">KOI</a>
+              <a class="categories__btn" href="#">LOL</a>
+            </span>
           </div>
         </div>
       </div>
