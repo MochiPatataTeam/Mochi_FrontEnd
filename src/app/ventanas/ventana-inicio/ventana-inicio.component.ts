@@ -1,64 +1,54 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
-import { AuthService} from "../../services/auth.service";
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ventana-inicio',
   templateUrl: './ventana-inicio.component.html',
-  styleUrls: ['./ventana-inicio.component.css']
+  styleUrls: ['./ventana-inicio.component.css'],
 })
 export class VentanaInicioComponent {
-
-  patata: any[]=[];
-  video: any[]=[];
+  patata: any[] = [];
+  video: any[] = [];
   id!: number;
 
-  constructor(private authservice:AuthService, private sanitizer: DomSanitizer, private router: Router){
-  }
-  ngOnInit():void{
+  constructor(
+    private authservice: AuthService,
+    private sanitizer: DomSanitizer,
+    private router: Router
+  ) {}
+  ngOnInit(): void {
+    const idFromService = this.authservice.getId();
 
-    this.authservice.getIdPersona().subscribe(
-      (response: any) => {
-        if (
-          Array.isArray(response) &&
-          response.length > 0 &&
-          response[0].hasOwnProperty('id')
-        ) {
-          this.id = response[0].id;
-          this.authservice.setAuthId(this.id);
+    if (idFromService !== null) {
+      this.id = idFromService;
+      this.authservice.setAuthId(this.id);
+    } else {
+      console.error('ID is null');
+    }
 
-        } else {
-          console.error(
-            'Invalid or empty response from getIdPersona:',
-            response
-          );
-        }
+    this.authservice.usuario().subscribe(
+      (response) => {
+        console.log(response);
+        this.patata = response;
       },
+
       (error) => {
-        console.error('Error fetching ID:', error);
+        console.log(error);
       }
     );
 
-
-    this.authservice.usuario().subscribe(
-      (response)=>{
-        console.log(response)
-        this.patata=response;
-      },
-
-(error)=>{console.log(error)}
-    )
-
     this.authservice.video().subscribe(
-      (response)=>{
-        this.video=response;
+      (response) => {
+        this.video = response;
         this.sanitizarUrls();
       },
 
-      (error)=>{console.log(error)}
-    )
-
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   sanitizarUrls() {
@@ -72,8 +62,7 @@ export class VentanaInicioComponent {
     window.location.href = `http://localhost:4200/reproducir/${id}`;
   }
 
-  videoDetails(id: number){
+  videoDetails(id: number) {
     this.router.navigate(['reproducir', id]);
   }
-
 }
