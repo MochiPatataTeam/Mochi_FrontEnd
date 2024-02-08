@@ -41,8 +41,9 @@
 
             <div *ngIf="comentario.mostrarCajaRespuesta">
               <input class="form-control" [(ngModel)]="comentario.nuevaRespuesta" placeholder="Escribe tu respuesta aquí" style="height: 100px">
-              <button class="btn btn-primary" (click)="crearRespuesta( comentario)">Enviar respuesta</button>
+              <button class="botoncito" (click)="crearRespuesta(comentario.nuevaRespuesta, comentario.id)">Enviar respuesta</button>
             </div>
+
             <div *ngFor="let resp of comentario.respuesta">
               <!-- Respuestas de los comentarios -->
               <ul class="comments-list reply-list">

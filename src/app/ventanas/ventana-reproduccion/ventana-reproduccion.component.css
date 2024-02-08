@@ -193,7 +193,6 @@ body {
  * Lista de Comentarios
  =======================*/
 .comments-container {
-  margin: 60px auto 15px;
   width: 768px;
 }
 
@@ -306,5 +305,8 @@ body {
   border-radius: 3px;
 }
 
-
+.btn-primary{
+  background-color: #df9a41;
+  border: none;
+}
 
