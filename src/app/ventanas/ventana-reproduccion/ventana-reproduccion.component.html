@@ -14,26 +14,81 @@
       <textarea class="form-control" [(ngModel)]="nuevoComentario" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px"></textarea>
       <button class="btn btn-primary" type="button" (click)="crearComentario(this.nuevoComentario)">Enviar</button>
 
+      <!--probando el comentario que he robado-->
+      <h1 class="text-light">Comentarios</h1>
+      <div class="comments-container" *ngFor="let comentario of videoId.comentarioDTO ">
+
+        <ul id="comments-list"class="comments-list">
+          <li>
+            <div class="comment-main-level">
+              <!--Avatar-->
+              <!--Contenedor del comentario-->
+              <div class="comment-box">
+                <div class="comment-head">
+                  <h6 class="comment-name by-author">{{comentario.usuario}}</h6>
+                  <i class="fa fa-reply"></i>
+                  <i class="fa fa-heart"></i>
+                </div>
+                <div class="comment-content">
+                  <p>{{comentario.comentario}}</p>
+                </div>
+                <button class="btn btn-primary" (click)="mostrarRespuesta(comentario)">Responder</button>
+              </div>
+
+            </div>
+
+
+
+            <div *ngIf="comentario.mostrarCajaRespuesta">
+              <input class="form-control" [(ngModel)]="comentario.nuevaRespuesta" placeholder="Escribe tu respuesta aquí" style="height: 100px">
+              <button class="btn btn-primary" (click)="crearRespuesta( comentario)">Enviar respuesta</button>
+            </div>
+            <div *ngFor="let resp of comentario.respuesta">
+              <!-- Respuestas de los comentarios -->
+              <ul class="comments-list reply-list">
+                <li>
+                  <!-- Avatar -->
+
+                  <!-- Contenedor del Comentario -->
+                  <div class="comment-box">
+                    <div class="comment-head">
+                      <h6 class="comment-name"><a href="http://creaticode.com/blog">{{resp.usuario }}</a></h6>
+                      <i class="fa fa-reply"></i>
+                      <i class="fa fa-heart"></i>
+                    </div>
+                    <div class="comment-content">
+                      <p>{{resp.mensaje}}</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+          </li>
+        </ul>
+      </div>
+
+      <!--LOS COMENTARIOS ANTIGUOS-->
       <!-- Iterar sobre la lista de comentarios -->
-      <!-- Iterar sobre la lista de comentarios -->
-      <div class="comentario text-light" *ngFor="let comentario of videoId.comentarioDTO">
+
+      <!--<div class="comentario text-light" *ngFor="let comentario of videoId.comentarioDTO">
         <p class="datos_usuario">{{comentario.usuario}}</p>
         <p class="comentario1">{{comentario.comentario}}</p>
-        <!-- Agregar botón de responder -->
+
         <button class="btn btn-primary" (click)="mostrarRespuesta(comentario)">Responder</button>
 
-        <!-- Mostrar caja de respuesta si el comentario está seleccionado -->
+
         <div *ngIf="comentario.mostrarCajaRespuesta">
-          <textarea class="form-control" [(ngModel)]="comentario.nuevaRespuesta" placeholder="Escribe tu respuesta aquí" style="height: 100px"></textarea>
-          <button class="btn btn-primary" (click)="crearRespuesta(comentario)">Enviar respuesta</button>
+          <input class="form-control" [(ngModel)]="comentario.nuevaRespuesta" placeholder="Escribe tu respuesta aquí" style="height: 100px">
+          <button class="btn btn-primary" (click)="crearRespuesta( comentario)">Enviar respuesta</button>
         </div>
 
-        <!-- Iterar sobre las respuestas -->
+        Iterar sobre las respuestas
         <div class="comentario" *ngFor="let resp of comentario.respuesta">
           <p class="datos_usuario">{{resp.usuario}}</p>
           <p class="comentario1">{{resp.mensaje}}</p>
         </div>
-      </div>
+      </div>-->
     </div>
 
   </div>

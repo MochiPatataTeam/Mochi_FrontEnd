@@ -41,9 +41,10 @@ export class VentanaReproduccionComponent implements OnInit {
     this.authservice.videoid(this.id).subscribe(
       (response) => {
         this.videoId = response;
+        //esta es la linea que coge mal el comentario, solo coge el primero
         if (response.comentarioDTO && response.comentarioDTO.length > 0) {
           this.comentarioId = response.comentarioDTO[0].id;
-        }
+        }//aqui termina
         this.sanitizarUrls();
       },
       (error) => {
