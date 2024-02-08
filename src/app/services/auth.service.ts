@@ -73,7 +73,7 @@ export class AuthService {
       const decodedToken: any = JSON.parse(atob(jwt.split('.')[1]));
 
       this.userName = decodedToken.username;
-      this.idUsuario = decodedToken.idUsuario;
+      this.idUsuario = decodedToken.id;
 
       return true;
     } else {
@@ -128,19 +128,6 @@ export class AuthService {
   removeAuthId() {
     this.idUsuario = null;
     localStorage.removeItem('Id');
-  }
-
-  getIdPersona() {
-    const user = this.getUsername();
-    const url = `${this.urlGeneral}/api/usuario/buscarId`;
-
-    const params = new HttpParams().set('username', user || '');
-
-    const options = {
-      params: params,
-    };
-
-    return this.http.get(url, options);
   }
 
   mensajes(id: number, id2: number): Observable<any> {

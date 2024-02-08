@@ -3,6 +3,7 @@
     <div class="div2">
       <div class="contactos">
         <button
+          [class.activado]="estadosBotones[contact.id]"
           *ngFor="let contact of contactos"
           class="etiqueta"
           (click)="mensajesChat(contact.id, contact.nombre)"
@@ -37,10 +38,18 @@
           <div class="scroll" #chatContainer>
             <div>
               <ul>
-                <li *ngFor="let mensaje of mensajesJuntos">
+                <li *ngFor="let mensaje of mensajesJuntos; let i = index">
                   <div *ngIf="mensaje.emisor">
                     <ul class="ul-self">
-                      <li class="self">
+                      <li
+                        class="self"
+                        [ngClass]="{
+                          self1: i % 2 === 0,
+                          self2: i % 2 !== 0,
+                          'self1:before': i % 2 === 0,
+                          'self2:before': i % 2 !== 0
+                        }"
+                      >
                         <div class="msg">
                           <span>{{ mensaje.fecha }}:</span>
                         </div>
@@ -50,7 +59,15 @@
                   </div>
                   <div *ngIf="!mensaje.emisor">
                     <ul class="ul-other">
-                      <li class="other">
+                      <li
+                        class="other"
+                        [ngClass]="{
+                          other1: i % 2 === 0,
+                          other2: i % 2 !== 0,
+                          'other1:before': i % 2 === 0,
+                          'other2:before': i % 2 !== 0
+                        }"
+                      >
                         <div class="msg">
                           <span>{{ mensaje.fecha }}:</span>
                         </div>
@@ -65,29 +82,42 @@
         </div>
 
         <div *ngIf="chatSeleccionado" class="chat-abajo">
-          <button (click)="enviarMensaje(nuevoMensaje, idPersona)">
-            <img
-              src="../../../assets/imagenes/envio.png"
-              alt=""
-              class="imgButton"
-            />
-          </button>
           <input
+            class="input"
             type="text"
             [(ngModel)]="nuevoMensaje"
             placeholder="Escribe tu mensaje..."
           />
+          <button
+            class="button"
+            (click)="enviarMensaje(nuevoMensaje, idPersona)"
+          >
+            <i
+              class="bx bxs-send"
+              style="color: #030606"
+              onmouseover="this.style.color='#DF9A37'"
+              onmouseout="this.style.color='#030606'"
+            ></i>
+          </button>
         </div>
       </div>
     </div>
   </div>
   <ng-template #loading>
-    <div class="spinner">
-      <img
-        class="img"
-        src="https://media1.tenor.com/m/tT8SWAnd5CcAAAAC/lucky-star-lucky.gif"
-        alt="Lucky Star Anime GIF - Lucky Star Lucky Star GIFs"
-      />
+    <div class="image">
+      <img class="img" src="./assets/imagenes/logito.png" />
+      <div class="spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </div>
   </ng-template>
 
@@ -113,10 +143,18 @@
         <div class="scroll" #chatContainer>
           <div>
             <ul>
-              <li *ngFor="let mensaje of mensajesJuntos">
+              <li *ngFor="let mensaje of mensajesJuntos; let i = index">
                 <div *ngIf="mensaje.emisor">
                   <ul class="ul-self">
-                    <li class="self">
+                    <li
+                      class="self"
+                      [ngClass]="{
+                        self1: i % 2 === 0,
+                        self2: i % 2 !== 0,
+                        'self1:before': i % 2 === 0,
+                        'self2:before': i % 2 !== 0
+                      }"
+                    >
                       <div class="msg">
                         <span>{{ mensaje.fecha }}:</span>
                       </div>
@@ -126,7 +164,15 @@
                 </div>
                 <div *ngIf="!mensaje.emisor">
                   <ul class="ul-other">
-                    <li class="other">
+                    <li
+                      class="other"
+                      [ngClass]="{
+                        other1: i % 2 === 0,
+                        other2: i % 2 !== 0,
+                        'other1:before': i % 2 === 0,
+                        'other2:before': i % 2 !== 0
+                      }"
+                    >
                       <div class="msg">
                         <span>{{ mensaje.fecha }}:</span>
                       </div>
@@ -158,18 +204,20 @@
       </div>
 
       <div class="chat-abajo">
-        <button>
-          <img
-            src="../../../assets/imagenes/envio.png"
-            alt=""
-            class="imgButton"
-          />
-        </button>
         <input
+          class="input"
           type="text"
           [(ngModel)]="nuevoMensaje"
           placeholder="Escribe tu mensaje..."
         />
+        <button class="button">
+          <i
+            class="bx bxs-send"
+            style="color: #030606"
+            onmouseover="this.style.color='#DF9A37'"
+            onmouseout="this.style.color='#030606'"
+          ></i>
+        </button>
       </div>
     </div>
   </ng-template>

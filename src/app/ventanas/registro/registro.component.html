@@ -1,140 +1,162 @@
 <form class="Container">
-  <ul id="progressbar">
-    <li
-      *ngFor="let step of steps; let i = index"
-      [ngClass]="{ active: i === numPage }"
-    >
-      {{ step }}
-    </li>
-  </ul>
-  <div class="Div" *ngIf="this.numPage == 1">
-    <h1>Datos Personales</h1>
-    <div class="input-box">
-      <input
-        required=""
-        name="nombre"
-        type="text"
-        class="input"
-        [(ngModel)]="nombre"
-      />
-      <label class="label text--flicking">Nombre:</label>
-    </div>
-    <div class="input-box">
-      <input
-        required=""
-        name="primerApellido"
-        type="text"
-        class="input"
-        [(ngModel)]="primerApellido"
-      />
-      <label class="label text--flicking">Primer Apellido:</label>
-    </div>
-    <div class="input-box">
-      <input
-        required=""
-        name="segundoApellido"
-        type="text"
-        class="input"
-        [(ngModel)]="segundoApellido"
-      />
-      <label class="label text--flicking">Segundo Apellido:</label>
-    </div>
-    <div class="input-box">
-      <input
-        required=""
-        name="telefono"
-        type="text"
-        class="input"
-        [(ngModel)]="telefono"
-      />
-      <label class="label text--flicking">Telefono:</label>
-    </div>
-    <div class="input-box">
-      <input
-        required=""
-        name="email"
-        type="email"
-        class="input"
-        [(ngModel)]="email"
-      />
-      <label class="label text--flicking">Email:</label>
-    </div>
-   
+  <div class="imagenes">
+    <img class="img" src="./assets/imagenes/logito.png" />
+    Descubre un mundo de posibilidades al registrarte en nuestra aplicación.
+    Únete a una comunidad apasionada y accede a funciones exclusivas.
+    ¡Registrate ahora y comienza tu emocionante viaje con nosotros! 🚀✨
   </div>
+  <div class="box">
+    <ul id="progressbar">
+      <li
+        *ngFor="let step of steps; let i = index"
+        [ngClass]="{ active: i === numPage }"
+      >
+        {{ step }}
+      </li>
+    </ul>
 
-  <div class="Div" *ngIf="this.numPage == 2">
-    <h1>Datos Del Canal</h1>
-    <div class="input-box">
-      <input
-        required=""
-        name="nombre_canal"
-        type="text"
-        class="input"
-        [(ngModel)]="nombre_canal"
-      />
-      <label class="label text--flicking">Nombre del Canal:</label>
-    </div>
-    <div class="input-box">
-      <input
-        required=""
-        name="username"
-        type="text"
-        class="input"
-        [(ngModel)]="username"
-      />
-      <label class="label text--flicking">Usuario:</label>
-    </div>
-    <div class="input-box">
-      <input
-        required=""
-        name="password"
-        type="password"
-        class="input"
-        [(ngModel)]="password"
-      />
-      <label class="label text--flicking">Contraseña:</label>
-    </div>
-    <div class="input-box">
-      <textarea
-        required=""
-        name="descripcion"
-        class="textarea"
-        [(ngModel)]="descripcion"
-      ></textarea>
-      <label class="label text--flicking">Descripcion:</label>
-    </div>
-    <div class="input-box">
-      <input
-        required=""
-        name="imagen"
-        type="text"
-        class="input"
-        [(ngModel)]="imagen"
-      />
-      <label class="label text--flicking">Imagen:</label>
-    </div>
+    <div class="registro">
+      <div class="Div" *ngIf="this.numPage == 1">
+        <div class="h1"><h1>Datos Personales</h1></div>
 
-  </div>
-  <div class="buttons">
-    <button (click)="volver()" *ngIf="this.numPage == 2">Volver</button>
-    <button (click)="avanzar()" *ngIf="this.numPage == 1">Siguiente</button>
-    <button *ngIf="this.numPage == 2"
-      (click)="
-        Datos(
-          nombre,
-          primerApellido,
-          segundoApellido,
-          username,
-          password,
-          email,
-          telefono,
-          nombre_canal,
-          descripcion,
-          imagen
-        )
-       ; registrarAction()"
-    >
-      Enviar
-    </button>
+        <div class="globalInput">
+          <div class="input-box">
+            <input
+              required=""
+              name="nombre"
+              type="text"
+              class="input"
+              [(ngModel)]="nombre"
+            />
+            <label class="label text--flicking">Nombre:</label>
+          </div>
+          <div class="input-box">
+            <input
+              required=""
+              name="primerApellido"
+              type="text"
+              class="input"
+              [(ngModel)]="primerApellido"
+            />
+            <label class="label text--flicking">Primer Apellido:</label>
+          </div>
+          <div class="input-box">
+            <input
+              required=""
+              name="segundoApellido"
+              type="text"
+              class="input"
+              [(ngModel)]="segundoApellido"
+            />
+            <label class="label text--flicking">Segundo Apellido:</label>
+          </div>
+          <div class="input-box">
+            <input
+              required=""
+              name="telefono"
+              type="text"
+              class="input"
+              [(ngModel)]="telefono"
+            />
+            <label class="label text--flicking">Telefono:</label>
+          </div>
+          <div class="input-box">
+            <input
+              required=""
+              name="email"
+              type="email"
+              class="input"
+              [(ngModel)]="email"
+            />
+            <label class="label text--flicking">Email:</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="Div" *ngIf="this.numPage == 2">
+        <div class="h1"><h1>Datos Del Canal</h1></div>
+
+        <div class="globalInput">
+          <div class="input-box">
+            <input
+              required=""
+              name="nombre_canal"
+              type="text"
+              class="input"
+              [(ngModel)]="nombre_canal"
+            />
+            <label class="label text--flicking">Nombre del Canal:</label>
+          </div>
+          <div class="input-box">
+            <input
+              required=""
+              name="username"
+              type="text"
+              class="input"
+              [(ngModel)]="username"
+            />
+            <label class="label text--flicking">Usuario:</label>
+          </div>
+          <div class="input-box">
+            <input
+              required=""
+              name="password"
+              type="password"
+              class="input"
+              [(ngModel)]="password"
+            />
+            <label class="label text--flicking">Contraseña:</label>
+          </div>
+          <div class="input-box">
+            <textarea
+              required=""
+              name="descripcion"
+              class="textarea"
+              [(ngModel)]="descripcion"
+            ></textarea>
+            <label class="label text--flicking">Descripcion:</label>
+          </div>
+          <div class="input-box">
+            <input
+              required=""
+              name="imagen"
+              type="text"
+              class="input"
+              [(ngModel)]="imagen"
+            />
+            <label class="label text--flicking">Imagen:</label>
+          </div>
+        </div>
+      </div>
+      <div class="buttons">
+        <button class="button" (click)="volver()" *ngIf="this.numPage == 2">
+          Volver
+        </button>
+        <button
+          class="button"
+          *ngIf="this.numPage == 2"
+          (click)="
+            Datos(
+              nombre,
+              primerApellido,
+              segundoApellido,
+              username,
+              password,
+              email,
+              telefono,
+              nombre_canal,
+              descripcion,
+              imagen
+            );
+            registrarAction()
+          "
+        >
+          Enviar
+        </button>
+        <button class="button" (click)="avanzar()" *ngIf="this.numPage == 1">
+          Siguiente
+        </button>
+      </div>
+    </div>
   </div>
 </form>
