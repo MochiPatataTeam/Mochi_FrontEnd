@@ -16,7 +16,7 @@ export class VentanaReproduccionComponent implements OnInit {
   videoId: any = {};
   videopatata: { url?: SafeResourceUrl } = {};
   nuevoComentario!: string;
-
+  customButtonText: string = 'Enviar comentario';
   constructor(private authservice: AuthService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
     this.videoId = {};
   }
