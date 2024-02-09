@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { Observable, catchError, map, throwError  } from 'rxjs';
+import {HttpClient, HttpHeaders, HttpParams, HttpErrorResponse} from '@angular/common/http';
 import { Router } from '@angular/router';
 //import {videoDTO} from "../ventanas/ventana-reproduccion/videoDto";
 
@@ -73,7 +73,7 @@ export class AuthService {
       const decodedToken: any = JSON.parse(atob(jwt.split('.')[1]));
 
       this.userName = decodedToken.username;
-      this.idUsuario = decodedToken.idUsuario;
+      this.idUsuario = decodedToken.id;
 
       return true;
     } else {
@@ -102,7 +102,7 @@ export class AuthService {
   getUsuariobyId(id: number): Observable<any> {
     return this.http.get(`${this.urlGeneral}/api/usuario/${id}`);
   }
-  
+
 
   //----------------------------- VERIFICACION -----------------------------------
 
@@ -158,7 +158,7 @@ export class AuthService {
 
 
   //----------------------------- MENSAJES -----------------------------------
-  
+
   setAuthId(idUsuario: number) {
     this.idUsuario = idUsuario;
     localStorage.setItem('Id', idUsuario.toString());
@@ -176,48 +176,35 @@ export class AuthService {
     localStorage.removeItem('Id');
   }
 
-getIdPersona() {
-  const user = this.getUsername();
-  const url = `${this.urlGeneral}/api/usuario/buscarId`;
+  mensajes(id: number, id2: number): Observable<any> {
+    const url = `${this.urlGeneral}/api/mensajes/mensaje`;
 
-  const params = new HttpParams().set('username', user || '');
+    const params = {
+      id: id,
+      id2: id2
+    };
 
-  const options = {
-    params: params,
-  };
+    const options = {
+      params: params
+    };
 
-  return this.http.get(url, options);
-}
+    return this.http.get(url, options);
+  }
 
-mensajes(id: number, id2: number): Observable<any> {
-  const url = `${this.urlGeneral}/api/mensajes/mensaje`;
+  contactos(id: number): Observable<any> {
 
-  const params = {
-    id: id,
-    id2: id2
-  };
+    const url = `${this.urlGeneral}/api/mensajes/contactos`;
 
-  const options = {
-    params: params
-  };
+    const params = {
+      id: id
+    };
 
-  return this.http.get(url, options);
-}
+    const options = {
+      params: params
+    };
 
-contactos(id: number): Observable<any> {
-
-  const url = `${this.urlGeneral}/api/mensajes/contactos`;
-
-  const params = {
-    id: id
-  };
-
-  const options = {
-    params: params
-  };
-
-  return this.http.get(url, options);
-}
+    return this.http.get(url, options);
+  }
 
   enviarMensaje(mensaje: string,fecha:string,idEmisor:number,idReceptor:number): Observable<any>{
     const credentials = {
@@ -239,8 +226,25 @@ contactos(id: number): Observable<any> {
       id_tipo: id_tipo,
       id_creador: id_creador
     };
-
-
     return this.http.put(`${this.urlGeneral}/api/notificacion/${id}`, credentials);
   }
+  //-----COMENTARIOS Y RESPUESTAS
+  crearComentario(usuario: number, video:number, comentario:string): Observable<any>{
+    const credentials={
+      usuario: usuario,
+      video: video,
+      comentario:comentario,
+    };
+    return this.http.post(`${this.urlGeneral}/api/comentario`, credentials);
+  }
+
+  crearRespuesta(usuario: number, comentario:number, mensaje:string): Observable<any>{
+    const credentials ={
+      usuario: usuario,
+      comentario: comentario,
+      mensaje: mensaje
+    }
+    return this.http.post(`${this.urlGeneral}/api/respuesta`, credentials);
+  }
+
 }
