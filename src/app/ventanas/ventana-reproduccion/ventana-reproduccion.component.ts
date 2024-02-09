@@ -41,9 +41,10 @@ export class VentanaReproduccionComponent implements OnInit {
     this.authservice.videoid(this.id).subscribe(
       (response) => {
         this.videoId = response;
+        //esta es la linea que coge mal el comentario, solo coge el primero
         if (response.comentarioDTO && response.comentarioDTO.length > 0) {
           this.comentarioId = response.comentarioDTO[0].id;
-        }
+        }//aqui termina
         this.sanitizarUrls();
       },
       (error) => {
@@ -78,19 +79,20 @@ export class VentanaReproduccionComponent implements OnInit {
     } else {
       console.error('ID de usuario es nulo. No se puede crear el comentario.');
     }
+    window.location.reload();
 
   }
 
 
-  crearRespuesta(mensaje:string) {
-    console.log("Id usuario",this.id_usuario);
-    console.log("Id comentario",this.comentarioId);
-    console.log(typeof this.comentarioId)
-    console.log("Mensaje",mensaje);
+  crearRespuesta(mensaje: string, comentarioId: number) {
+    console.log("Id usuario", this.id_usuario);
+    console.log("Id comentario", comentarioId);
+    console.log("Mensaje", mensaje);
+
     if (this.id_usuario !== null) {
       this.authservice.crearRespuesta(
         this.id_usuario,
-        this.comentarioId,
+        comentarioId,
         mensaje
       ).subscribe(
         (response) => {
@@ -103,8 +105,9 @@ export class VentanaReproduccionComponent implements OnInit {
     } else {
       console.error('ID de usuario es nulo. No se puede crear el comentario.');
     }
-
+    window.location.reload();
   }
+
 
 
   // Función para mostrar la caja de respuesta
