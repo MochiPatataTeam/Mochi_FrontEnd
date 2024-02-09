@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { Observable, catchError, map, throwError  } from 'rxjs';
+import {HttpClient, HttpHeaders, HttpParams, HttpErrorResponse} from '@angular/common/http';
 import { Router } from '@angular/router';
 //import {videoDTO} from "../ventanas/ventana-reproduccion/videoDto";
 
@@ -12,12 +12,12 @@ export class AuthService {
   constructor(private http: HttpClient,
               private router: Router) {}
 
-  private urlGeneral= 'http://127.0.0.1:8000';
-  private videolista = 'http://127.0.0.1:8000/api/video';
+  private urlGeneral= 'https://127.0.0.1:8000';
+  private videolista = 'https://127.0.0.1:8000/api/video';
 
-  private lista_comentarios ='http://127.0.0.1:8000/api/comentario'
-  private lista_respuestas ='http://127.0.0.1:8000/api/respuesta'
-  private lista_usuarios= 'http://127.0.0.1:8000/api/usuario';
+  private lista_comentarios ='https://127.0.0.1:8000/api/comentario'
+  private lista_respuestas ='https://127.0.0.1:8000/api/respuesta'
+  private lista_usuarios= 'https://127.0.0.1:8000/api/usuario';
 
 
   private userName: string | null = null;
@@ -97,6 +97,18 @@ export class AuthService {
     this.removeAuthId()
     this.router.navigate(['/Inicio']);
   }
+  //----------------------------- PERFIL -----------------------------------
+
+  getUsuariobyId(id: number): Observable<any> {
+    return this.http.get(`${this.urlGeneral}/api/usuario/${id}`);
+  }
+
+
+  //----------------------------- VERIFICACION -----------------------------------
+
+  verifyEmail(params: any){
+    return this.http.get<any>(`${this.urlGeneral}/api/registro/verify`, {params: params});
+  }
 
   //----------------------------- RECUPERAR CONTRASEÑA -----------------------------------
   requestPasswordReset(email: string): Observable<any>{ //donde agarra el email para enviarselo al backend
@@ -108,6 +120,40 @@ export class AuthService {
     const url = `${this.urlGeneral}/reset/${token}`;                  //(Haciendo referencia al metodo de mi backend que me modifica la contraseña)
     const body = { newPassword };
     return this.http.post(url, body);
+  }
+
+  //----------------------------- MANEJO DE ERRORES -----------------------------------
+
+  // errores(){
+  //   const urlErrorLogin = 'https://127.0.0.1:8000/api/login_check'
+
+  //   return this.http.get(urlErrorLogin)
+  //     .pipe(
+  //       catchError((error => {
+  //         return throwError(error);
+  //       }))
+  //     )
+  // }
+
+
+  public handleError(err: HttpErrorResponse){
+    let errorMessage: string;
+
+    if(err.error instanceof ErrorEvent){
+      //ocurrio un error del cliente
+      errorMessage= `Un error ocurrio: ${err.error.message}`;
+    } else {
+      //backend
+      // errorMessage = `Algo ocurrio`;
+      switch (err.status) {
+        case 403:
+          errorMessage = `${err.status}: Nose no funciona`;
+          break;
+        default:
+          errorMessage = `Algo ocurrio`;
+      }
+    }
+    this.router.navigate(['/error'], { state: { message: errorMessage } });
   }
 
 
