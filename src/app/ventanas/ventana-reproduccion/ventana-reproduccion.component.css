@@ -61,7 +61,7 @@
 }
 
 .image::before {
-  content: "LIVE";
+
   position: absolute;
   top: 7px;
   left: 7px;
@@ -73,7 +73,7 @@
 }
 
 .image::after {
-  content: "102.2k viewers";
+
   position: absolute;
   bottom: 7px;
   left: 7px;
