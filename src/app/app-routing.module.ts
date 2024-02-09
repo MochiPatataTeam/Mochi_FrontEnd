@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'reproducir/:id', component: VentanaReproduccionComponent},
   {path: 'Login', component: VentanaLoginComponent, data: { showNavbar: false }},
   {path: 'perfil', component: VentanaPerfilComponent},
-  {path: 'registro', component: RegistroComponent},
+  {path: 'Registro', component: RegistroComponent, data: { showNavbar: false }},
   {path: 'chats', component: ChatsComponent},
   {path: 'spinner', component: SpinnerComponent},
   {path: 'newPassword/:token', component: VentanaNewPasswordComponent},

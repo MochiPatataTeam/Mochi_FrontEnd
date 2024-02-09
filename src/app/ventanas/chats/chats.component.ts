@@ -39,7 +39,17 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
   fechaFormateada!: string;
   idPersona!: number;
   nombreIdPersona!: string;
+  estadosBotones: { [key: string]: boolean } = {};
+  mensajeActualColor = 'even';
+  colorSelf = 'chartreuse';
+  colorOther = '#c1cbcd';
 
+  toggleEtiqueta(id: number) {
+    Object.keys(this.estadosBotones).forEach((key) => {
+      this.estadosBotones[key] = false;
+    });
+    this.estadosBotones[id] = true;
+  }
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
@@ -57,7 +67,7 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
     } else {
       this.id = this.authservice.getStoredIdUsuario();
     }
-  
+
     if (this.id != null) {
       this.contactos$ = this.authservice.contactos(this.id);
       this.contactos$.subscribe(
@@ -69,78 +79,78 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
         }
       );
     }
-  
+
     this.cdr.detectChanges();
   }
 
   mensajesChat(idPersona: number, nombre: string) {
-  this.nombreIdPersona = nombre;
-  this.idPersona = idPersona;
-  this.ngAfterViewChecked();
+    this.toggleEtiqueta(idPersona);
+    this.nombreIdPersona = nombre;
+    this.idPersona = idPersona;
+    this.ngAfterViewChecked();
 
-  if (this.id != null) {
-    this.mensajes$ = this.authservice.mensajes(this.id, idPersona);
-    this.mensajes$.subscribe(
-      (response) => {
-        this.mensajesConver = response;
-        this.chatSeleccionado = 1;
-        this.imprimirMensajesPorEmisor(this.mensajesConver);
-        this.nombreIdPersona = nombre;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-  }
-}
-
-imprimirMensajesPorEmisor(mensajesConver: any[]) {
-  const mensajesEmisor: any[] = [];
-  const mensajesReceptor: any[] = [];
-
-  mensajesConver.forEach((mensaje) => {
-    if (mensaje.idEmisor === this.id?.toString()) {
-      mensaje.emisor = true;
-      mensajesEmisor.push(mensaje);
-    } else {
-      mensaje.emisor = false;
-      mensajesReceptor.push(mensaje);
-    }
-  });
-
-  const mensajesUnidos = [...mensajesEmisor, ...mensajesReceptor];
-
-  mensajesUnidos.sort((a, b) => a.id - b.id);
-
-  this.mensajesJuntos = mensajesUnidos;
-}
-
-enviarMensaje(mensaje: string, idPersona: number) {
-  const fechaActual = new Date();
-  this.fechaFormateada = `${fechaActual
-    .getDate()
-    .toString()
-    .padStart(2, '0')}/${(fechaActual.getMonth() + 1)
-    .toString()
-    .padStart(2, '0')}/${fechaActual.getFullYear()}`;
-
-  console.log(mensaje);
-
-  if (this.id != null) {
-    this.authservice
-      .enviarMensaje(mensaje, this.fechaFormateada, this.id, idPersona)
-      .subscribe(
+    if (this.id != null) {
+      this.mensajes$ = this.authservice.mensajes(this.id, idPersona);
+      this.mensajes$.subscribe(
         (response) => {
-          this.contactos = response;
+          this.mensajesConver = response;
+          this.chatSeleccionado = 1;
+          this.imprimirMensajesPorEmisor(this.mensajesConver);
+          this.nombreIdPersona = nombre;
         },
         (error) => {
           console.log(error);
         }
       );
-
-    this.mensajesChat(idPersona, this.nombreIdPersona);
-    this.nuevoMensaje = '';
+    }
   }
-}
 
+  imprimirMensajesPorEmisor(mensajesConver: any[]) {
+    const mensajesEmisor: any[] = [];
+    const mensajesReceptor: any[] = [];
+
+    mensajesConver.forEach((mensaje) => {
+      if (mensaje.idEmisor === this.id?.toString()) {
+        mensaje.emisor = true;
+        mensajesEmisor.push(mensaje);
+      } else {
+        mensaje.emisor = false;
+        mensajesReceptor.push(mensaje);
+      }
+    });
+
+    const mensajesUnidos = [...mensajesEmisor, ...mensajesReceptor];
+
+    mensajesUnidos.sort((a, b) => a.id - b.id);
+
+    this.mensajesJuntos = mensajesUnidos;
+  }
+
+  enviarMensaje(mensaje: string, idPersona: number) {
+    const fechaActual = new Date();
+    this.fechaFormateada = `${fechaActual
+      .getDate()
+      .toString()
+      .padStart(2, '0')}/${(fechaActual.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}/${fechaActual.getFullYear()}`;
+
+    console.log(mensaje);
+
+    if (this.id != null) {
+      this.authservice
+        .enviarMensaje(mensaje, this.fechaFormateada, this.id, idPersona)
+        .subscribe(
+          (response) => {
+            this.contactos = response;
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+
+      this.mensajesChat(idPersona, this.nombreIdPersona);
+      this.nuevoMensaje = '';
+    }
+  }
 }

@@ -1,20 +1,28 @@
 .Container {
-  background-color: #ff00ff;
+  background-color: #212529;
   width: 100vw;
   display: flex;
   justify-content: center;
-  height: 91.5vh;
+  height: 91vh;
 }
 ul {
   list-style: none;
   width: 58vw;
 }
+.div {
+  background-color: #212529;
+}
 .div2 {
+  margin: 1em;
   display: flex;
   flex-direction: row;
-  background-color: white;
-  height: 91vh;
+  background-color: #212529;
+  height: 87vh;
   width: 80vw;
+  border-top-right-radius: 3%;
+  border-bottom-right-radius: 3%;
+  border-top-left-radius: 3%;
+  border-bottom-left-radius: 3%;
 }
 .chat-arriba {
   display: flex;
@@ -22,42 +30,59 @@ ul {
   align-content: space-between;
   background-color: white;
   width: 65vw;
+  border-top-right-radius: 3%;
+  border-bottom-right-radius: 3%;
 }
 .chat {
   display: flex;
   flex-direction: column;
   align-content: space-between;
+  width: 65vw;
   height: 100vh;
-  background: rgb(255, 0, 255);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 0, 255, 1) 32%,
-    rgba(255, 255, 0, 1) 71%
-  );
+  background-image: url("../../../assets/imagenes/mochi_fondo.png");
+  background-size: 35vw 60vh;
+  background-repeat: no-repeat;
+  background-position: center center;
   overflow: hidden;
 }
 .scroll {
   max-height: 100%;
   overflow-y: auto;
 }
-img {
+.etiqueta img {
+  width: 8vh;
+  border-radius: 50%;
+}
+.usuario img {
   width: 8vh;
   border-radius: 50%;
 }
 .contactos {
-  border-style: double;
-  width: 15vw;
+  width: 20vw;
+  background-color: #9dadbd;
+  border-top-left-radius: 5%;
+  border-bottom-left-radius: 5%;
 }
 .etiqueta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 14.5vw;
+  width: 14vw;
+  height: 10vh;
   margin-top: 0.2em;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
   border: none;
+  background-color: #334b48;
+  border-radius: 10%;
 }
 .etiqueta:hover {
-  background-color: grey;
+  color: white;
+  background-color: #df9a37;
+}
+.etiqueta.activado {
+  color: white;
+  background-color: #df9a37;
 }
 .names {
   margin-left: 0.5em;
@@ -67,21 +92,15 @@ img {
   opacity: 50%;
   font-size: 14px;
 }
-.spinner{
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
 .usuario {
-  border-style: double;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  
+  border-top-right-radius: 3%;
+  background-color: #9dadbd;
 }
-h6{
+h6 {
   text-decoration: underline;
   font-size: 20px;
 }
@@ -92,15 +111,34 @@ h6{
   border-top-left-radius: 0px;
   box-shadow: 1px 2px 0px #c1cbcd;
 }
-.other:before {
+.other1 {
+  background-color: #fed96a;
+}
+.other1:before {
   content: "";
   position: relative;
-  top: 0.39vh;
+  top: 0.46vh;
   right: 0px;
   left: -9px;
   width: 0px;
   height: 0px;
-  border: 5px solid #c1cbcd;
+  border: 5px solid #fed96a;
+  border-left-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.other2 {
+  background-color: #ff9194;
+}
+.other2:before {
+  content: "";
+  position: relative;
+  top: 0.46vh;
+  right: 0px;
+  left: -9px;
+  width: 0px;
+  height: 0px;
+  border: 5px solid #ff9194;
   border-left-color: transparent;
   border-bottom-color: transparent;
 }
@@ -123,7 +161,6 @@ h6{
   border-radius: 2px;
 }
 .self {
-  background-color: chartreuse;
   margin-top: 3em;
   width: 20vw;
   justify-content: flex-end;
@@ -132,7 +169,10 @@ h6{
   box-shadow: 1px 2px 0px #c1cbcd;
   border-radius: 3%;
 }
-.self:after {
+.self1 {
+  background-color: #fff8e8;
+}
+.self1:after {
   content: "";
   position: relative;
   display: inline-block;
@@ -142,7 +182,26 @@ h6{
   left: 0.65vw;
   width: 0px;
   height: 0px;
-  border: 5px solid chartreuse;
+  border: 5px solid #fff8e8;
+  border-right-color: transparent;
+  border-top-color: transparent;
+  box-shadow: 0px 2px 0px #c1cbcd;
+}
+
+.self2 {
+  background-color: #c0b562;
+}
+.self2:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  float: right;
+  bottom: 0vh;
+  right: 0px;
+  left: 0.65vw;
+  width: 0px;
+  height: 0px;
+  border: 5px solid #c0b562;
   border-right-color: transparent;
   border-top-color: transparent;
   box-shadow: 0px 2px 0px #c1cbcd;
@@ -155,16 +214,32 @@ span {
   margin-top: -0.5em;
 }
 .chat-abajo {
-  height: 7vh;
+  height: 11vh;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #F0F0F0;
+  border-bottom-right-radius: 3%;
+}
+.button {
+  width: 5vw;
+  height: 5vh;
+  border-style: none;
+  border-bottom-right-radius: 5%;
+}
+.input{
+  height: 5vh;
+  border-style: none;
+  width: 10vw;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+.bx.bxs-send:hover {
+  color: #df9a37;
 }
 .chat-abajo input {
   width: 70vw;
-}
-.imgButton {
-  margin-top: -0.2em;
-  height: 7vh;
 }
 .img {
   width: 50vw;
@@ -172,7 +247,7 @@ span {
 
 .self-dots {
   margin-right: -2em;
-  background-color: chartreuse;
+  background-color: #c0b562;
   margin-top: 3em;
   width: 20vw;
   height: 8vh;
@@ -193,7 +268,7 @@ span {
   left: 0.65vw;
   width: 0px;
   height: 0px;
-  border: 5px solid chartreuse;
+  border: 5px solid #c0b562;
   border-right-color: transparent;
   border-top-color: transparent;
   box-shadow: 0px 2px 0px #c1cbcd;
@@ -205,7 +280,7 @@ span {
   margin-top: 2em;
   height: 4vh;
   width: 10vw;
-  background-color: chartreuse;
+  background-color: #c0b562;
 }
 
 .dot {
@@ -255,6 +330,122 @@ span {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
-  width: 60vw;
+  height: 87vh;
+  width: 65vw;
+  background-color: #9dadbd;
+  border-top-right-radius: 3%;
+  border-bottom-right-radius: 3%;
+}
+ng-template #datos {
+  border-top-right-radius: 3%;
+  border-bottom-right-radius: 3%;
+}
+
+.image {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.image .img {
+  width: 40vw;
+}
+
+.spinner {
+  position: relative;
+  width: 9px;
+  height: 9px;
+  margin: 50px auto;
+  top: 50px;
+}
+
+.spinner div {
+  position: absolute;
+  width: 50%;
+  height: 150%;
+  background: white;
+  transform: rotate(calc(var(--rotation) * 1deg))
+    translate(0, calc(var(--translation) * 1%));
+  animation: spinner-fzua35 1s calc(var(--delay) * 1s) infinite ease;
+}
+
+.spinner div:nth-child(1) {
+  --delay: 0.1;
+  --rotation: 36;
+  --translation: 150;
+}
+
+.spinner div:nth-child(2) {
+  --delay: 0.2;
+  --rotation: 72;
+  --translation: 150;
+}
+
+.spinner div:nth-child(3) {
+  --delay: 0.3;
+  --rotation: 108;
+  --translation: 150;
+}
+
+.spinner div:nth-child(4) {
+  --delay: 0.4;
+  --rotation: 144;
+  --translation: 150;
+}
+
+.spinner div:nth-child(5) {
+  --delay: 0.5;
+  --rotation: 180;
+  --translation: 150;
+}
+
+.spinner div:nth-child(6) {
+  --delay: 0.6;
+  --rotation: 216;
+  --translation: 150;
+}
+
+.spinner div:nth-child(7) {
+  --delay: 0.7;
+  --rotation: 252;
+  --translation: 150;
+}
+
+.spinner div:nth-child(8) {
+  --delay: 0.8;
+  --rotation: 288;
+  --translation: 150;
+}
+
+.spinner div:nth-child(9) {
+  --delay: 0.9;
+  --rotation: 324;
+  --translation: 150;
+}
+
+.spinner div:nth-child(10) {
+  --delay: 1;
+  --rotation: 360;
+  --translation: 150;
+}
+
+@keyframes spinner-fzua35 {
+  0%,
+  10%,
+  20%,
+  30%,
+  50%,
+  60%,
+  70%,
+  80%,
+  90%,
+  100% {
+    transform: rotate(calc(var(--rotation) * 1deg))
+      translate(0, calc(var(--translation) * 1%));
+  }
+
+  50% {
+    transform: rotate(calc(var(--rotation) * 1deg))
+      translate(0, calc(var(--translation) * 1.5%));
+  }
 }
