@@ -79,6 +79,7 @@ export class VentanaReproduccionComponent implements OnInit {
     } else {
       console.error('ID de usuario es nulo. No se puede crear el comentario.');
     }
+    window.location.reload();
 
   }
 
@@ -104,6 +105,7 @@ export class VentanaReproduccionComponent implements OnInit {
     } else {
       console.error('ID de usuario es nulo. No se puede crear el comentario.');
     }
+    window.location.reload();
   }
 
 

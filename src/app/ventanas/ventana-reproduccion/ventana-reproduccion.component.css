@@ -49,13 +49,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 25px;
 }
 
 .image {
   width: 100%;
   height: 180px;
   position: absolute;
-  background-color: rgb(144, 197, 47);
+  background-color: rgb(238, 153, 227);
   cursor: pointer;
   transition: all .2s ease;
 }
@@ -91,7 +92,7 @@
 
 .image:hover {
   transform: translate(8px, -8px);
-  box-shadow: -1px 1px 0px 0px violet,-2px 2px 0px 0px violet,-3px 3px 0px 0px violet,-4px 4px 0px 0px violet,-5px 5px 0px 0px violet,-6px 6px 0px 0px violet,-7px 7px 0px 0px violet,-8px 8px 0px 0px violet;
+  box-shadow: -1px 1px 0px 0px #df9a41,-2px 2px 0px 0px #df9a41,-3px 3px 0px 0px #df9a41,-4px 4px 0px 0px #df9a41,-5px 5px 0px 0px #df9a41,-6px 6px 0px 0px #df9a41,-7px 7px 0px 0px #df9a41,-8px 8px 0px 0px #df9a41;
 }
 
 .avatar {
@@ -148,7 +149,7 @@
 }
 
 .stream__title:hover, .event:hover {
-  color: #9f7cd3;
+  color: #df9a41;
 }
 
 .categories__btn:hover {
@@ -309,4 +310,6 @@ body {
   background-color: #df9a41;
   border: none;
 }
-
+.botoncito {
+  border: none;
+}
