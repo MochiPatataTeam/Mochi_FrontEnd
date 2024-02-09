@@ -113,14 +113,21 @@
 }
 
 .seccion-perfil-usuario .perfil-usuario-footer { /* deberia quitar el footer de aqui para q tenga su medida independiente?*/
-    display: flex;
-    flex-wrap: wrap;
+    /* display: flex;
+    flex-wrap: wrap; */
     padding: 1.5rem 2rem;
     box-shadow: 0 0 12px rgba(0, 0, 0, .2);
     background-color: #fff;
     border-radius: 15px;
     width: 80%;
 }
+
+.perfil-usuario-btn{
+    display: flex;
+    justify-content: space-between; 
+    align-items: flex-start;    
+
+} 
 
 .seccion-perfil-usuario .perfil-usuario-bio {
     margin-bottom: 1.25rem;

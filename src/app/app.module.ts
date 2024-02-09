@@ -22,6 +22,8 @@ import { EditarPerfilComponent } from './componentes/editar-perfil/editar-perfil
 import { VentanaVerifiedComponent } from './ventanas/ventana-verified/ventana-verified.component';
 import { VentanaErrorComponent } from './ventanas/ventana-error/ventana-error.component';
 import { CampanitaComponent } from './componentes/campanita/campanita.component';
+import { ErrorInterceptorService } from './services/error-interceptor.service'; 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,10 +49,11 @@ import { CampanitaComponent } from './componentes/campanita/campanita.component'
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true},
   ],
   bootstrap: [AppComponent]
 })

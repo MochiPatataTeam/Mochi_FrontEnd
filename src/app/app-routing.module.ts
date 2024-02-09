@@ -24,7 +24,7 @@ const routes: Routes = [
   {path: 'chats', component: ChatsComponent},
   {path: 'spinner', component: SpinnerComponent},
   {path: 'newPassword/:token', component: VentanaNewPasswordComponent},
-  {path: 'verified/:signedUrl', component: VentanaVerifiedComponent},
+  {path: 'verified', component: VentanaVerifiedComponent},
   {path: 'error', component: VentanaErrorComponent},
 ];
 
