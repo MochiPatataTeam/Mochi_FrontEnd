@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';import { ErrorService } from 'src/app/services/error.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-ventana-login',
@@ -14,7 +14,7 @@ export class VentanaLoginComponent {
 
   error: any;
 
-  constructor(private authService: AuthService, private router: Router, private errorService: ErrorService){}
+  constructor(private authService: AuthService, private router: Router, ){}
 
   customButtonText: string = 'Iniciar sesión';
 
