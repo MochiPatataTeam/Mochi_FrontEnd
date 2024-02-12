@@ -35,7 +35,7 @@ export class AuthService {
     return this.http.get(`${this.videolista}`);
   }
   videoid(id: number): Observable<any> {
-    return this.http.get(`${this.videolista}/${id}`);
+    return this.http.get(`${this.videolista}/listarId/${id}`);
   }
   respuesta():Observable<any>{
     return this.http.get(`${this.lista_respuestas}`)
@@ -246,5 +246,6 @@ export class AuthService {
     }
     return this.http.post(`${this.urlGeneral}/api/respuesta`, credentials);
   }
+
 
 }

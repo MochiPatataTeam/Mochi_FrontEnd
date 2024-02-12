@@ -51,6 +51,8 @@ export class VentanaReproduccionComponent implements OnInit {
         console.log(error);
       }
     );
+    //Sugerencias
+
   }
 
   sanitizarUrls() {
