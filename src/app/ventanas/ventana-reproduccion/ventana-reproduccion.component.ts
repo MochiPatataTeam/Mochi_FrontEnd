@@ -16,6 +16,9 @@ export class VentanaReproduccionComponent implements OnInit {
   videoId: any = {};
   videopatata: { url?: SafeResourceUrl } = {};
   nuevoComentario!: string;
+  customButtonText: string = 'Enviar comentario';
+  idUsuarioSubidaVideo: number | undefined;
+  activo : boolean=false;
 
   constructor(private authservice: AuthService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
     this.videoId = {};
@@ -41,17 +44,35 @@ export class VentanaReproduccionComponent implements OnInit {
     this.authservice.videoid(this.id).subscribe(
       (response) => {
         this.videoId = response;
-        //esta es la linea que coge mal el comentario, solo coge el primero
         if (response.comentarioDTO && response.comentarioDTO.length > 0) {
           this.comentarioId = response.comentarioDTO[0].id;
-        }//aqui termina
+        }
         this.sanitizarUrls();
+        // Verificar si el usuario conectado es el propietario del video
+        this.authservice.buscarId(this.videoId.id).subscribe(
+          (response)=>{
+            this.idUsuarioSubidaVideo=response[0].id_canal;
+            if (this.id_usuario == this.idUsuarioSubidaVideo) {
+              this.activo = true;
+            }else{
+              this.activo= false;
+            }
+          },(error)=>{
+          }
+        )
+
       },
       (error) => {
         console.log(error);
       }
     );
+
+
+
+
+
   }
+
 
   sanitizarUrls() {
     if (this.videoId.url) {
