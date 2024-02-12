@@ -246,6 +246,9 @@ export class AuthService {
     }
     return this.http.post(`${this.urlGeneral}/api/respuesta`, credentials);
   }
+  buscarId(id:number): Observable<any>{
 
+    return this.http.get(`${this.urlGeneral}/api/video/usuario/${id}`);
+  }
 
 }
