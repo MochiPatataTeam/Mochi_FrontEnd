@@ -12,15 +12,16 @@ export class AuthService {
   constructor(private http: HttpClient,
               private router: Router) {}
 
-  private urlGeneral= 'http://127.0.0.1:8000';
-  private videolista = 'http://127.0.0.1:8000/api/video';
+  private urlGeneral= 'https://127.0.0.1:8000';
+  private videolista = 'https://127.0.0.1:8000/api/video';
 
-  private lista_comentarios ='http://127.0.0.1:8000/api/comentario'
-  private lista_respuestas ='http://127.0.0.1:8000/api/respuesta'
-  private lista_usuarios= 'http://127.0.0.1:8000/api/usuario';
+  private lista_comentarios ='https://127.0.0.1:8000/api/comentario'
+  private lista_respuestas ='https://127.0.0.1:8000/api/respuesta'
+  private lista_usuarios= 'https://127.0.0.1:8000/api/usuario';
 
 
   private userName: string | null = null;
+  private nombreCanal: string | null = null;
   private idUsuario: number | null = null;
 
 
@@ -66,6 +67,10 @@ export class AuthService {
     return this.idUsuario;
   }
 
+  getNombreCanal(): string | null {
+    return this.nombreCanal;
+  }
+
   isLoggedIn(): boolean{
     const jwt= localStorage.getItem('jwt');
 
@@ -74,6 +79,7 @@ export class AuthService {
 
       this.userName = decodedToken.username;
       this.idUsuario = decodedToken.id;
+      this.nombreCanal = decodedToken.nombre_canal;
 
       return true;
     } else {
@@ -99,8 +105,33 @@ export class AuthService {
   }
   //----------------------------- PERFIL -----------------------------------
 
+  //Perfil usuario logueado
   getUsuariobyId(id: number): Observable<any> {
     return this.http.get(`${this.urlGeneral}/api/usuario/${id}`);
+  }
+
+
+  setAuthCanal(nombre_canal: string) {
+    this.nombreCanal = nombre_canal;
+    localStorage.setItem('nombre_canal', nombre_canal);
+  }
+
+  getStoredCanal(): string | null {
+    const storedCanal = localStorage.getItem('nombre_canal');
+    if (storedCanal !== null) {
+      return storedCanal;
+    }
+    return null;
+  }
+
+  removeAuthCanal() {
+    this.nombreCanal = null;
+    localStorage.removeItem('nombre_canal');
+  }
+
+  //Perfil a traves de video
+  getUsuariobyCanal(canal: string): Observable<any> {
+    return this.http.get(`${this.urlGeneral}/api/usuario/canal/${canal}`);
   }
 
 
@@ -123,18 +154,6 @@ export class AuthService {
   }
 
   //----------------------------- MANEJO DE ERRORES -----------------------------------
-
-  // errores(){
-  //   const urlErrorLogin = 'https://127.0.0.1:8000/api/login_check'
-
-  //   return this.http.get(urlErrorLogin)
-  //     .pipe(
-  //       catchError((error => {
-  //         return throwError(error);
-  //       }))
-  //     )
-  // }
-
 
   public handleError(err: HttpErrorResponse){
     let errorMessage: string;

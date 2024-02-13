@@ -1,7 +1,7 @@
 // VentanaReproduccionComponent.ts
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../services/auth.service";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 @Component({
@@ -12,17 +12,22 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 export class VentanaReproduccionComponent implements OnInit {
   id: number = 1;
   id_usuario!: number | null;
+  nombre_canal: string;
   comentarioId!: number;
-  videoId: any = {};
+  videoId: any = {}; //video DATA general
   videopatata: { url?: SafeResourceUrl } = {};
   nuevoComentario!: string;
   customButtonText: string = 'Enviar comentario';
   idUsuarioSubidaVideo: number | undefined;
   activo : boolean=false;
+  canal: any; //Para cargar el perfil
 
-  constructor(private authservice: AuthService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {
-    this.videoId = {};
-  }
+  constructor(private authservice: AuthService,
+              private route: ActivatedRoute,
+              private sanitizer: DomSanitizer,
+              private router: Router) {
+                this.videoId = {};
+              }
 
   ngOnInit(): void {
     if (!this.id_usuario == null) {
@@ -65,12 +70,16 @@ export class VentanaReproduccionComponent implements OnInit {
       (error) => {
         console.log(error);
       }
-    );
-
-
-
-
-
+    ); //Aqui empieza el metodo para cargar el perfil del q subio el video
+    this.authservice.videoid(this.id).subscribe(
+      (data) => {
+        this.videoId = data;
+        this.canal = data.canal;
+      },
+      (error => {
+        console.log(error);
+      })
+    )
   }
 
 
@@ -136,4 +145,21 @@ export class VentanaReproduccionComponent implements OnInit {
     comentario.mostrarCajaRespuesta = !comentario.mostrarCajaRespuesta;
     comentario.nuevaRespuesta = ''; // Limpiar el campo de texto de respuesta
   }
+
+  //Funcion para cargar el perfil del usuario que subio el video
+  cargarPerfil(canal: string): void{
+    this.authservice.getUsuariobyCanal(canal).subscribe(
+      (usuario) => {
+        if (usuario) {
+          this.router.navigate(['/perfil', canal]);
+        } else {
+          console.error('No existe ese canal')
+        }
+      },
+      (error) => {
+        console.error('Error al obtener el usuario por el canal', error);
+      }
+    );
+  }
+
 }
