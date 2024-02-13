@@ -21,7 +21,8 @@ import { BotonComponent } from './componentes/boton/boton.component';
 import { VentanaVerifiedComponent } from './ventanas/ventana-verified/ventana-verified.component';
 import { VentanaErrorComponent } from './ventanas/ventana-error/ventana-error.component';
 import { CampanitaComponent } from './componentes/campanita/campanita.component';
-import { ErrorInterceptorService } from './services/error-interceptor.service'; 
+import { ErrorInterceptorService } from './services/error-interceptor.service';
+import { VideoSuscripcionesComponent } from './componentes/video-suscripciones/video-suscripciones.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ErrorInterceptorService } from './services/error-interceptor.service';
     VentanaVerifiedComponent,
     VentanaErrorComponent,
     CampanitaComponent,
+    VideoSuscripcionesComponent,
 
   ],
   imports: [
