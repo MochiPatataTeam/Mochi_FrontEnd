@@ -12,6 +12,7 @@ export class VentanaInicioComponent {
   patata: any[] = [];
   video: any[] = [];
   id!: number;
+  nombreCanal: string;
 
   constructor(
     private authservice: AuthService,
@@ -20,12 +21,20 @@ export class VentanaInicioComponent {
   ) {}
   ngOnInit(): void {
     const idFromService = this.authservice.getId();
+    const nombreCanalFromService = this.authservice.getNombreCanal();
 
     if (idFromService !== null) {
       this.id = idFromService;
       this.authservice.setAuthId(this.id);
     } else {
       console.error('ID is null');
+    }
+
+    if (nombreCanalFromService !== null) {
+      this.nombreCanal = nombreCanalFromService;
+      this.authservice.setAuthCanal(this.nombreCanal);
+    } else {
+      console.error('No hay canal');
     }
 
     this.authservice.usuario().subscribe(

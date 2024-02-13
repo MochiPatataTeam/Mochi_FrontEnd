@@ -3,7 +3,8 @@
     <iframe class="reproductor" width="860" height="415" [src]="videopatata.url" ></iframe>
   <div class="datos text-light">
     <h1>{{videoId.titulo}}</h1>
-    <p>{{videoId.canal}}</p>
+    <a (click)="cargarPerfil(videoId.canal)">{{videoId.canal}}</a>
+    <!-- <p>{{videoId.canal}}</p> -->
     <p>3 suscriptores</p>
     <div class="barrita"><label class="container1">
       <input type="checkbox">

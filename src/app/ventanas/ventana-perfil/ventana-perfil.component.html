@@ -5,7 +5,7 @@
             <div class="perfil-usuario-portada" [ngStyle]="{ 'background-image': wallpaperDefault }"> <!-- Wallpaper default -->
 
                 <div class="perfil-usuario-avatar">
-                    <img src="http://localhost/multimedia/relleno/img-c9.png" alt="img-avatar">
+                    <img src="{{ usuario?.imagen }}" alt="img-avatar">
                     <button type="button" data-bs-toggle="modal" data-bs-target="#editModal" class="boton-avatar">
                         <i class='bx bxs-cog'></i>
                     </button>
@@ -49,8 +49,13 @@
         <section class="perfil-usuario-body">
             <div class="perfil-usuario-bio">
                 <div class="perfil-usuario-usernameBio">
-                    <h3 class="titulo">{{ usuario.nombre }}</h3>
-                    <p class="texto">{{ usuario.descripcion }}</p>
+                    <div *ngIf="canal">
+                        <h3>{{ canal?.nombre }}</h3>
+                        <p>{{ canal?.descripcion }}</p>
+                        <!-- Otros detalles del canal -->
+                    </div>
+                    <h3 class="titulo">{{ usuario?.nombre }}</h3>
+                    <p class="texto">{{ usuario?.descripcion }}</p>
                 </div>
                 <div class="perfil-usuario-seguidores"> <!-- Btnes de seguidores/seguidos, seguir/dejar de seguir y enviar mensaje -->
                     <div class="user-icon">

@@ -14,7 +14,7 @@ export class VentanaLoginComponent {
 
   error: any;
 
-  constructor(private authService: AuthService, private router: Router, ){}
+  constructor(private authService: AuthService, private router: Router){}
 
   customButtonText: string = 'Iniciar sesión';
 

@@ -7,7 +7,6 @@ import { VentanaPerfilComponent } from './ventanas/ventana-perfil/ventana-perfil
 import { RegistroComponent } from './ventanas/registro/registro.component';
 import { ChatsComponent } from './ventanas/chats/chats.component';
 import { SpinnerComponent } from './componentes/spinner/spinner.component';
-import { ModalChangeWallpaperComponent } from './componentes/modal-change-wallpaper/modal-change-wallpaper.component';
 import { ResetPasswordComponent } from './componentes/reset-password/reset-password.component';
 import { VentanaNewPasswordComponent } from './ventanas/ventana-new-password/ventana-new-password.component';
 import { VentanaVerifiedComponent } from './ventanas/ventana-verified/ventana-verified.component';
@@ -22,6 +21,7 @@ const routes: Routes = [
   {path: 'reproducir/:id', component: VentanaReproduccionComponent},
   {path: 'Login', component: VentanaLoginComponent, data: { showNavbar: false }},
   {path: 'perfil', component: VentanaPerfilComponent},
+  {path: 'perfil/:nombreCanal', component: VentanaPerfilComponent},
   {path: 'Registro', component: RegistroComponent, data: { showNavbar: false }},
   {path: 'chats', component: ChatsComponent},
   {path: 'spinner', component: SpinnerComponent},
