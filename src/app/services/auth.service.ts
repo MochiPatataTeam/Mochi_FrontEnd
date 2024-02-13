@@ -251,4 +251,8 @@ export class AuthService {
     return this.http.get(`${this.urlGeneral}/api/video/usuario/${id}`);
   }
 
+  listTodoBySuscripcion(id: number): Observable<any>{
+    return this.http.get(`${this.urlGeneral}/api/video/videosSuscripciones/${id}`);
+  }
+
 }

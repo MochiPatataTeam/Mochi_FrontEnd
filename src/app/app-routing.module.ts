@@ -12,6 +12,8 @@ import { ResetPasswordComponent } from './componentes/reset-password/reset-passw
 import { VentanaNewPasswordComponent } from './ventanas/ventana-new-password/ventana-new-password.component';
 import { VentanaVerifiedComponent } from './ventanas/ventana-verified/ventana-verified.component';
 import { VentanaErrorComponent } from './ventanas/ventana-error/ventana-error.component';
+import { VideoSuscripcionesComponent } from './componentes/video-suscripciones/video-suscripciones.component';
+
 
 const routes: Routes = [
   {path: '', redirectTo: '/Inicio',pathMatch: 'full'},
@@ -25,7 +27,9 @@ const routes: Routes = [
   {path: 'spinner', component: SpinnerComponent},
   {path: 'newPassword/:token', component: VentanaNewPasswordComponent},
   {path: 'verified', component: VentanaVerifiedComponent},
+  {path: 'subsvideos', component: VideoSuscripcionesComponent},
   {path: 'error', component: VentanaErrorComponent},
+
 ];
 
 @NgModule({
