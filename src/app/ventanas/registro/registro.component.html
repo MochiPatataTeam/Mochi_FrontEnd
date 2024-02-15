@@ -1,4 +1,4 @@
-<form class="Container">
+<form class="Container" [formGroup]="loginForm">
   <div class="imagenes">
     <img class="img" src="./assets/imagenes/logito.png" />
     Descubre un mundo de posibilidades al registrarte en nuestra aplicación.
@@ -6,6 +6,9 @@
     ¡Registrate ahora y comienza tu emocionante viaje con nosotros! 🚀✨
   </div>
   <div class="box">
+    <div class="logo">
+      <img class="img" src="./assets/imagenes/logo.png" />
+    </div>
     <ul id="progressbar">
       <li
         *ngFor="let step of steps; let i = index"
@@ -16,8 +19,9 @@
     </ul>
 
     <div class="registro">
+      
       <div class="Div" *ngIf="this.numPage == 1">
-        <div class="h1"><h1>Datos Personales</h1></div>
+        <div class="h1"><h1>¡Registrate con Nosotros!</h1></div>
 
         <div class="globalInput">
           <div class="input-box">
@@ -27,8 +31,26 @@
               type="text"
               class="input"
               [(ngModel)]="nombre"
+              formControlName="nombre"
+              (blur)="touched.nombre = true"
             />
-            <label class="label text--flicking">Nombre:</label>
+            <label *ngIf="!touched.nombre" class="label text--flicking"
+              >Nombre:</label
+            >
+            <label
+              *ngIf="
+                touched.nombre && !loginForm.get('nombre')?.hasError('required')
+              "
+              class="label text--flicking"
+              >Nombre:</label
+            >
+            <label
+              *ngIf="
+                touched.nombre && loginForm.get('nombre')?.hasError('required')
+              "
+              class="label text--flicking error"
+              >Nombre requerido:</label
+            >
           </div>
           <div class="input-box">
             <input
@@ -37,8 +59,28 @@
               type="text"
               class="input"
               [(ngModel)]="primerApellido"
+              formControlName="primerApellido"
+              (blur)="touched.primerApellido = true"
             />
-            <label class="label text--flicking">Primer Apellido:</label>
+            <label *ngIf="!touched.primerApellido" class="label text--flicking"
+              >Primer Apellido:</label
+            >
+            <label
+              *ngIf="
+                touched.primerApellido &&
+                !loginForm.get('primerApellido')?.hasError('required')
+              "
+              class="label text--flicking"
+              >Primer Apellido:</label
+            >
+            <label
+              *ngIf="
+                touched.primerApellido &&
+                loginForm.get('primerApellido')?.hasError('required')
+              "
+              class="label text--flicking error"
+              >Primer Apellido requerido:</label
+            >
           </div>
           <div class="input-box">
             <input
@@ -47,8 +89,28 @@
               type="text"
               class="input"
               [(ngModel)]="segundoApellido"
+              formControlName="segundoApellido"
+              (blur)="touched.segundoApellido = true"
             />
-            <label class="label text--flicking">Segundo Apellido:</label>
+            <label *ngIf="!touched.segundoApellido" class="label text--flicking"
+              >Segundo Apellido:</label
+            >
+            <label
+              *ngIf="
+                touched.segundoApellido &&
+                !loginForm.get('segundoApellido')?.hasError('required')
+              "
+              class="label text--flicking"
+              >Segundo Apellido:</label
+            >
+            <label
+              *ngIf="
+                touched.segundoApellido &&
+                loginForm.get('segundoApellido')?.hasError('required')
+              "
+              class="label text--flicking error"
+              >Segundo Apellido requerido:</label
+            >
           </div>
           <div class="input-box">
             <input
@@ -57,8 +119,28 @@
               type="text"
               class="input"
               [(ngModel)]="telefono"
+              formControlName="telefono"
+              (blur)="touched.telefono = true"
             />
-            <label class="label text--flicking">Telefono:</label>
+            <label *ngIf="!touched.telefono" class="label text--flicking"
+              >Telefono:</label
+            >
+            <label
+              *ngIf="
+                touched.telefono &&
+                !loginForm.get('telefono')?.hasError('required')
+              "
+              class="label text--flicking"
+              >Telefono:</label
+            >
+            <label
+              *ngIf="
+                touched.telefono &&
+                loginForm.get('telefono')?.hasError('required')
+              "
+              class="label text--flicking error"
+              >Telefono requerido:</label
+            >
           </div>
           <div class="input-box">
             <input
@@ -67,14 +149,36 @@
               type="email"
               class="input"
               [(ngModel)]="email"
+              formControlName="email"
+              (blur)="touched.email = true"
             />
-            <label class="label text--flicking">Email:</label>
+            <label *ngIf="!touched.email" class="label text--flicking"
+              >Email:</label
+            >
+            <label
+              *ngIf="
+                touched.email && !loginForm.get('email')?.hasError('required')
+              "
+              class="label text--flicking"
+              >Email:</label
+            >
+            <label
+              *ngIf="
+                touched.email && loginForm.get('email')?.hasError('required')
+              "
+              class="label text--flicking error"
+              >Email requerido:</label
+            >
           </div>
         </div>
+        <div class="buttons">
+          <button class="button" (click)="avanzar()">
+            Siguiente
+          </button>
+        </div>
       </div>
-
       <div class="Div" *ngIf="this.numPage == 2">
-        <div class="h1"><h1>Datos Del Canal</h1></div>
+        <div class="h1"><h1>¡Registrate con Nosotros!</h1></div>
 
         <div class="globalInput">
           <div class="input-box">
@@ -84,8 +188,28 @@
               type="text"
               class="input"
               [(ngModel)]="nombre_canal"
+              formControlName="nombre_canal"
+              (blur)="touched.nombre_canal = true"
             />
-            <label class="label text--flicking">Nombre del Canal:</label>
+            <label *ngIf="!touched.nombre_canal" class="label text--flicking"
+              >Nombre del Canal:</label
+            >
+            <label
+              *ngIf="
+                touched.nombre_canal &&
+                !loginForm.get('nombre_canal')?.hasError('required')
+              "
+              class="label text--flicking"
+              >Nombre del Canal:</label
+            >
+            <label
+              *ngIf="
+                touched.nombre_canal &&
+                loginForm.get('nombre_canal')?.hasError('required')
+              "
+              class="label text--flicking error"
+              >Nombre del Canal requerido:</label
+            >
           </div>
           <div class="input-box">
             <input
@@ -94,8 +218,28 @@
               type="text"
               class="input"
               [(ngModel)]="username"
+              formControlName="username"
+              (blur)="touched.username = true"
             />
-            <label class="label text--flicking">Usuario:</label>
+            <label *ngIf="!touched.username" class="label text--flicking"
+              >Usuario:</label
+            >
+            <label
+              *ngIf="
+                touched.username &&
+                !loginForm.get('username')?.hasError('required')
+              "
+              class="label text--flicking"
+              >Usuario:</label
+            >
+            <label
+              *ngIf="
+                touched.username &&
+                loginForm.get('username')?.hasError('required')
+              "
+              class="label text--flicking error"
+              >Usuario requerido:</label
+            >
           </div>
           <div class="input-box">
             <input
@@ -104,8 +248,28 @@
               type="password"
               class="input"
               [(ngModel)]="password"
+              formControlName="password"
+              (blur)="touched.password = true"
             />
-            <label class="label text--flicking">Contraseña:</label>
+            <label *ngIf="!touched.password" class="label text--flicking"
+              >Contraseña:</label
+            >
+            <label
+              *ngIf="
+                touched.password &&
+                !loginForm.get('password')?.hasError('required')
+              "
+              class="label text--flicking"
+              >Contraseña:</label
+            >
+            <label
+              *ngIf="
+                touched.password &&
+                loginForm.get('password')?.hasError('required')
+              "
+              class="label text--flicking error"
+              >Contraseña requerido:</label
+            >
           </div>
           <div class="input-box">
             <textarea
@@ -113,8 +277,28 @@
               name="descripcion"
               class="textarea"
               [(ngModel)]="descripcion"
+              formControlName="descripcion"
+              (blur)="touched.descripcion = true"
             ></textarea>
-            <label class="label text--flicking">Descripcion:</label>
+            <label *ngIf="!touched.descripcion" class="label text--flicking"
+              >Descripción:</label
+            >
+            <label
+              *ngIf="
+                touched.descripcion &&
+                !loginForm.get('descripcion')?.hasError('required')
+              "
+              class="label text--flicking"
+              >Descripción:</label
+            >
+            <label
+              *ngIf="
+                touched.descripcion &&
+                loginForm.get('descripcion')?.hasError('required')
+              "
+              class="label text--flicking error"
+              >Descripción requerido:</label
+            >
           </div>
           <div class="input-box">
             <input
@@ -123,39 +307,46 @@
               type="text"
               class="input"
               [(ngModel)]="imagen"
+              formControlName="imagen"
             />
+            <!-- (blur)="touched.imagen = true" -->
             <label class="label text--flicking">Imagen:</label>
+            <!-- <label *ngIf="!touched.imagen" class="label text--flicking">Imagen:</label>
+    <label *ngIf="touched.imagen && !loginForm.get('imagen')?.hasError('required')" class="label text--flicking">Imagen:</label>
+    <label *ngIf="touched.imagen && loginForm.get('imagen')?.hasError('required')" class="label text--flicking error">Campo requerido:</label> -->
           </div>
         </div>
-      </div>
-      <div class="buttons">
-        <button class="button" (click)="volver()" *ngIf="this.numPage == 2">
-          Volver
-        </button>
-        <button
-          class="button"
-          *ngIf="this.numPage == 2"
-          (click)="
-            Datos(
-              nombre,
-              primerApellido,
-              segundoApellido,
-              username,
-              password,
-              email,
-              telefono,
-              nombre_canal,
-              descripcion,
-              imagen
-            );
-            registrarAction()
-          "
-        >
-          Enviar
-        </button>
-        <button class="button" (click)="avanzar()" *ngIf="this.numPage == 1">
-          Siguiente
-        </button>
+
+
+        <div class="buttons1">
+          <button class="button" (click)="volver()">
+            Volver
+          </button>
+          <button
+            [disabled]="!loginForm.valid"
+            class="button"
+            (click)="
+              Datos(
+                nombre,
+                primerApellido,
+                segundoApellido,
+                username,
+                password,
+                email,
+                telefono,
+                nombre_canal,
+                descripcion,
+                imagen
+              );
+              registrarAction()
+            "
+          >
+            Registrarse
+          </button>
+        </div>
+
+
+
       </div>
     </div>
   </div>

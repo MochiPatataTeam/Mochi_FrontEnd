@@ -1,0 +1,78 @@
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  height: 90vh;
+}
+p {
+  margin: 1em;
+  color: white;
+}
+.icon {
+  border-radius: 50%;
+  width: 7vw;
+  height: 13vh;
+}
+.seccion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.canalContainer {
+  width: 40vw;
+  height: 15vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+}
+h4 {
+  margin-top: 1em;
+  color: #d99a48;
+  text-decoration: underline;
+}
+.descripcion {
+  font-size: 12px;
+}
+.buttons {
+  display: flex;
+  justify-content: right;
+  align-items: flex-end;
+  margin-right: 4em;
+}
+.but {
+  margin: 1em;
+}
+.videos{
+  width: 60vw;
+}
+.item{
+  width: 60vw;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.canal{
+  width: 4vw;
+  border-radius: 50%;
+}
+.name{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* ---------------------------------------------------*/
+.modal-content {
+  background-color: #212529;
+  color: #df9a41;
+}
+.btn-close{
+  background-color:#df9a41;
+}
+.btn.btn-primary{
+  background-color:#df9a41;
+  border-color: #212529;
+}

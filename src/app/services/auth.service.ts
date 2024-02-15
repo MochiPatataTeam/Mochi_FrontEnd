@@ -85,6 +85,7 @@ export class AuthService {
     } else {
       localStorage.removeItem('jwt');
       this.removeAuthId()
+      localStorage.removeItem('seccionElegida');
       return false;
     }
   }
@@ -100,7 +101,8 @@ export class AuthService {
 
   logout(): void{
     localStorage.removeItem('jwt');
-    this.removeAuthId()
+    this.removeAuthId();
+    localStorage.removeItem('seccionElegida');
     this.router.navigate(['/Inicio']);
   }
   //----------------------------- PERFIL -----------------------------------
@@ -194,6 +196,37 @@ export class AuthService {
     this.idUsuario = null;
     localStorage.removeItem('Id');
   }
+
+  buscarTitulo(titulo: string): Observable<any> {
+
+    const url = `${this.urlGeneral}/api/video/listarTitulo`;
+
+    const params = {
+      titulo: titulo
+    };
+
+    const options = {
+      params: params
+    };
+
+    return this.http.get(url, options);
+  }
+
+  buscarCanales(canal: string): Observable<any> {
+
+    const url = `${this.urlGeneral}/api/video/listarCanales`;
+
+    const params = {
+      nombre_canal: canal
+    };
+
+    const options = {
+      params: params
+    };
+
+    return this.http.get(url, options);
+  }
+
 
   mensajes(id: number, id2: number): Observable<any> {
     const url = `${this.urlGeneral}/api/mensajes/mensaje`;

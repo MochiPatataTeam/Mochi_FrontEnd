@@ -28,7 +28,6 @@ export class CampanitaComponent {
         (response) => {
           this.notificaciones = response;
           this.countFalseVisible = this.countFalseNotifications();
-          console.log('aña2', response);
         },
         (error) => {
           console.log(error);
