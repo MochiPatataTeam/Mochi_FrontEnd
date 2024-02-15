@@ -45,16 +45,16 @@ export class VideoSuscripcionesComponent implements OnInit {
 
 
 
-  }
+    }
 
-}
+  }
   sanitizarUrls() {
     for (const vi of this.videos) {
       // Asegúrate de que 'url' sea una propiedad válida de tu objeto de video
       vi.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(vi.url);
     }
   }
-  videoDetails(id: number) {
+  videoDetails2(id: number) {
     this.router.navigate(['reproducir', id]);
   }
 }
