@@ -9,7 +9,6 @@
   margin-left: 50px;
 }
 
-
 .listvideos{
   display: flex;
   flex-direction: column;
@@ -48,7 +47,6 @@
 }
 
 .image::before {
-
   position: absolute;
   top: 7px;
   left: 7px;
@@ -60,7 +58,6 @@
 }
 
 .image::after {
-
   position: absolute;
   bottom: 7px;
   left: 7px;
@@ -379,8 +376,13 @@ svg:hover {
 }
 .barrita{
   display:flex;
+  justify-content: center;
+  align-items: stretch;
   flex-direction: row;
   margin-left: 15px;
+  margin-right: 15px;
+}
+.barrita>p{
   margin-right: 15px;
 }
 
@@ -401,4 +403,13 @@ svg:hover {
 .texto>p, button{
   margin-top: 20px;
 }
+.datos-canal{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 50px;
+}
 
+button{
+  margin-bottom: 10px;
+}
