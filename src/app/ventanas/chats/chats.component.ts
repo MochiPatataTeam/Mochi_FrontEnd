@@ -97,6 +97,7 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
           this.chatSeleccionado = 1;
           this.imprimirMensajesPorEmisor(this.mensajesConver);
           this.nombreIdPersona = nombre;
+          console.log("vvvvvvvvvvvvvvvvvvv",this.mensajesConver)
         },
         (error) => {
           console.log(error);
@@ -108,7 +109,7 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
   imprimirMensajesPorEmisor(mensajesConver: any[]) {
     const mensajesEmisor: any[] = [];
     const mensajesReceptor: any[] = [];
-
+  
     mensajesConver.forEach((mensaje) => {
       if (mensaje.idEmisor === this.id?.toString()) {
         mensaje.emisor = true;
@@ -118,11 +119,11 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
         mensajesReceptor.push(mensaje);
       }
     });
-
+  
     const mensajesUnidos = [...mensajesEmisor, ...mensajesReceptor];
-
-    mensajesUnidos.sort((a, b) => a.id - b.id);
-
+  
+    mensajesUnidos.sort((a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
+  
     this.mensajesJuntos = mensajesUnidos;
   }
 

@@ -23,6 +23,8 @@ import { VentanaErrorComponent } from './ventanas/ventana-error/ventana-error.co
 import { CampanitaComponent } from './componentes/campanita/campanita.component';
 import { ErrorInterceptorService } from './services/error-interceptor.service';
 import { VideoSuscripcionesComponent } from './componentes/video-suscripciones/video-suscripciones.component';
+import { VentanaBuscadorComponent } from './ventanas/ventana-buscador/ventana-buscador.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,12 +45,14 @@ import { VideoSuscripcionesComponent } from './componentes/video-suscripciones/v
     VentanaErrorComponent,
     CampanitaComponent,
     VideoSuscripcionesComponent,
+    VentanaBuscadorComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
   ],
   providers: [

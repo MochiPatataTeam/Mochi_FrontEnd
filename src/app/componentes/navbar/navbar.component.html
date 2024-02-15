@@ -13,8 +13,12 @@
 
           <div class="search-input">
             <form id="search" action="#">
-              <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" onkeypress="handle" />
-              <i class='bx bx-search-alt-2'></i>
+              <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" [(ngModel)]="input" onkeypress="handle" />
+              <button class="button" (click)="enviarDatos()"> <i
+                class='bx bx-search-alt-2'
+                onmouseover="this.style.color='#DF9A37'"
+                onmouseout="this.style.color=''"
+              ></i></button>
             </form>
           </div>
 
