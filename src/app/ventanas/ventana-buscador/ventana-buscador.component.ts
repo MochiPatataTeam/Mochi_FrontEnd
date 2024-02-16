@@ -12,8 +12,6 @@ import { ChangeDetectorRef } from '@angular/core';
 })
 export class VentanaBuscadorComponent {
   id!: number | null;
-  idPersona: number = 14;
-
   dato: string = '';
   videos: any[] = [];
   canales: any[] = [];
@@ -29,11 +27,7 @@ export class VentanaBuscadorComponent {
 
   ngOnInit() {
     //----------------------------------------------------
-    if (!this.id == null) {
-      this.id = 0;
-    } else {
-      this.id = this.authservice.getStoredIdUsuario();
-    }
+
     //---------------------------------------------------
     this.actualizarDatos();
     this.recuperarSeccionElegida();
@@ -48,7 +42,7 @@ export class VentanaBuscadorComponent {
   actualizarDatos() {
     this.route.queryParams.subscribe((params) => {
       const nuevoDato = params['dato'] || '';
-  
+
       if (this.dato !== nuevoDato) {
         // El valor de 'dato' ha cambiado, actualizamos el valor
         this.dato = nuevoDato;
@@ -110,37 +104,5 @@ export class VentanaBuscadorComponent {
     }
   }
   //  ------------------------------------------------------------------
-  fechaFormateada!: string;
-  mensaje: string = '';
-  botonHabilitado: boolean = false;
 
-  actualizarEstadoBoton() {
-    this.botonHabilitado = this.mensaje.trim() !== '';
-  }
-  enviarMensaje(mensaje: string) {
-    const fechaActual = new Date();
-    this.fechaFormateada = `${fechaActual
-      .getDate()
-      .toString()
-      .padStart(2, '0')}/${(fechaActual.getMonth() + 1)
-      .toString()
-      .padStart(2, '0')}/${fechaActual.getFullYear()}`;
-
-    console.log(mensaje);
-
-    if (this.id != null) {
-      this.authservice
-        .enviarMensaje(mensaje, this.fechaFormateada, this.id, this.idPersona)
-        .subscribe(
-          (response) => {
-            console.log(response);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-
-      this.mensaje = '';
-    }
-  }
 }

@@ -16,6 +16,10 @@ export class VentanaPerfilComponent implements OnInit{
   canal: any; //perfil al que se accede desde un video
   canalLogueado!: string | null;
   videos: any;
+  fechaFormateada!: string;
+  mensaje: string = '';
+  botonHabilitado: boolean = false;
+  id!: number | null;
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
 
@@ -28,6 +32,11 @@ export class VentanaPerfilComponent implements OnInit{
       this.canalLogueado = 'no funsiona. Chipi chipi chapa chapa dubidubi dabadaba ';
     } else {
       this.canalLogueado = this.authService.getStoredCanal();
+    }
+    if (!this.id == null) {
+      this.id = 0;
+    } else {
+      this.id = this.authService.getStoredIdUsuario();
     }
 
     const usuarioLogueadoCanal = localStorage.getItem('nombre_canal');
@@ -74,6 +83,36 @@ export class VentanaPerfilComponent implements OnInit{
 
 
 
+  actualizarEstadoBoton() {
+    this.botonHabilitado = this.mensaje.trim() !== '';
+  }
+  enviarMensaje(mensaje: string,idCanal: number) {
+    const fechaActual = new Date();
+    this.fechaFormateada = `${fechaActual
+      .getDate()
+      .toString()
+      .padStart(2, '0')}/${(fechaActual.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}/${fechaActual.getFullYear()}`;
+
+    console.log(mensaje);
+
+    if (this.id != null) {
+      this.authService
+        .enviarMensaje(mensaje, this.fechaFormateada, this.id, idCanal)
+        .subscribe(
+          (response) => {
+            console.log(response);
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
+
+      this.mensaje = '';
+
+    }
 
 
+  }
 }

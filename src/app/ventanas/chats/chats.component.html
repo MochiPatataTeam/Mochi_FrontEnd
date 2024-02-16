@@ -123,7 +123,10 @@
 
   <ng-template #datos>
     <div *ngIf="!chatSeleccionado">
-      <div class="text">
+      <div *ngIf="contactos.length == 0" class="text">
+        <h1>Aún no tienes conversaciones.</h1>
+      </div>
+      <div *ngIf="contactos.length > 0"  class="text">
         <h1>Elige un chat.</h1>
       </div>
     </div>
