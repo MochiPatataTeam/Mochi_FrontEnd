@@ -63,16 +63,3 @@ h4 {
   justify-content: flex-start;
   align-items: center;
 }
-
-/* ---------------------------------------------------*/
-.modal-content {
-  background-color: #212529;
-  color: #df9a41;
-}
-.btn-close{
-  background-color:#df9a41;
-}
-.btn.btn-primary{
-  background-color:#df9a41;
-  border-color: #212529;
-}

@@ -44,7 +44,7 @@
                     <h3 class="titulo">{{ usuario?.nombre }}</h3>
                     <p class="texto">{{ usuario?.descripcion }}</p>
                 </div>
-                <div class="perfil-usuario-seguidores"> <!-- Btnes de seguidores/seguidos, seguir/dejar de seguir y enviar mensaje -->
+                <div *ngIf="canal" class="perfil-usuario-seguidores"> <!-- Btnes de seguidores/seguidos, seguir/dejar de seguir y enviar mensaje -->
                     <div class="user-icon">
                         <p><i class='bx bxs-user-voice'></i>545 seguidores</p>
                     </div>
@@ -55,7 +55,103 @@
                         <button><i class='bx bxs-user-plus'></i>Seguir</button><!-- Este boton debe poder actualizarse a "dejar de seguir" -->
                     </div>
                     <div class="user-icon" *ngIf="!usuario">
-                        <button><i class='bx bxs-paper-plane bx-tada'></i>Enviar mensaje</button>
+                      <div>
+                        <div
+                          class="modal fade"
+                          id="exampleModalToggle"
+                          aria-hidden="true"
+                          aria-labelledby="exampleModalToggleLabel"
+                          tabindex="-1"
+                        >
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalToggleLabel">
+                                  Envia un mensaje para empezar un Chat
+                                </h5>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body">
+                                <form>
+                                  <div class="mb-3">
+                                    <label for="recipient-name" class="col-form-label"
+                                    >Mensaje:</label
+                                    >
+                                    <input
+                                      type="text"
+                                      class="form-control"
+                                      id="recipient-name"
+                                      [(ngModel)]="mensaje"
+                                      name="mensaje"
+                                      (input)="actualizarEstadoBoton()"
+                                    />
+                                  </div>
+                                </form>
+                              </div>
+                              <div class="modal-footer">
+                                <button
+                                  class="btn btn-primary"
+                                  data-bs-target="#exampleModalToggle2"
+                                  data-bs-toggle="modal"
+                                  data-bs-dismiss="modal"
+                                  (click)="enviarMensaje(mensaje,canal?.id)"
+                                  [disabled]="!botonHabilitado"
+                                >
+                                  Enviar Mensaje
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="modal fade"
+                          id="exampleModalToggle2"
+                          aria-hidden="true"
+                          aria-labelledby="exampleModalToggleLabel2"
+                          tabindex="-1"
+                        >
+                          <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalToggleLabel2">
+                                  Envia un mensaje para empezar un Chat
+                                </h5>
+                                <button
+                                  type="button"
+                                  class="btn-close"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                ></button>
+                              </div>
+                              <div class="modal-body">¡Mensaje Enviado!{{ mensaje }}</div>
+                              <div class="modal-footer">
+                                <button
+                                  class="btn btn-primary"
+                                  data-bs-dismiss="modal"
+                                  aria-label="Close"
+                                  [routerLink]="['/chats']"
+                                >
+                                  Ir a Chats
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          class="btn btn-primary"
+                          data-bs-toggle="modal"
+                          href="#exampleModalToggle"
+                          role="button"
+                        >
+                          <i class='bx bxs-paper-plane bx-tada'></i>
+                          Enviar Mensaje
+                        </button>
+                      </div>
                     </div>
                 </div>
             </div>
