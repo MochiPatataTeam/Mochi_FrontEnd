@@ -1,0 +1,165 @@
+<div class="container">
+
+<div class="buttons">
+  <button class="but" (click)="buscarTitulos()">Videos</button>
+  <button class="but" (click)="buscarCanales()">Canales</button>
+</div>
+
+<div class="seccion" *ngIf="seccionElegida === 'videos'">
+  <p>Contenido de Videos</p>
+  <!--   -------------------------------------------------------------------------  -->
+  <div>
+    <div
+      class="modal fade"
+      id="exampleModalToggle"
+      aria-hidden="true"
+      aria-labelledby="exampleModalToggleLabel"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel">
+              Envia un mensaje para empezar un Chat
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label"
+                  >Mensaje:</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="recipient-name"
+                  [(ngModel)]="mensaje"
+                  name="mensaje"
+                  (input)="actualizarEstadoBoton()"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-primary"
+              data-bs-target="#exampleModalToggle2"
+              data-bs-toggle="modal"
+              data-bs-dismiss="modal"
+              (click)="enviarMensaje(mensaje)"
+              [disabled]="!botonHabilitado"
+            >
+              Enviar Mensaje
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="modal fade"
+      id="exampleModalToggle2"
+      aria-hidden="true"
+      aria-labelledby="exampleModalToggleLabel2"
+      tabindex="-1"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel2">
+              Envia un mensaje para empezar un Chat
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">¡Mensaje Enviado!{{ mensaje }}</div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              routerLink="../chats"
+            >
+              Ir a Chats
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      href="#exampleModalToggle"
+      role="button"
+    >
+      Open first modal
+    </button>
+  </div>
+
+  <!--   -------------------------------------------------------------------------  -->
+
+  <div *ngIf="videos.length === 0">
+    <p>No hay ningún Video con el nombre: {{ dato }}</p>
+  </div>
+  <div *ngIf="videos.length > 0">
+  <div class="videos" *ngFor="let vi of videos">
+    <div class="item">
+      <div>
+        <iframe width="320" height="180" [src]="vi.safeUrl" allow="autoplay">
+        </iframe>
+        <img (click)="videoDetails(vi.id)" />
+      </div>
+      <div>
+        <h4>
+          {{ vi.titulo }}
+        </h4>
+        <div *ngIf="vi.imagen">
+          <img [src]="vi.imagen" alt="" />
+        </div>
+
+        <div class="name">
+          <div *ngIf="!vi.imagen">
+            <img class="canal" src="assets/imagenes/naranja.png" alt="" />
+          </div>
+          <p>{{ vi.nombre_canal }}</p>
+        </div>
+
+        <p>{{ vi.descripcion }}</p>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="seccion" *ngIf="seccionElegida === 'canales'">
+  <p>Contenido de Canales</p>
+  <div *ngIf="canales.length === 0">
+    <p>No hay ningún Canal con el nombre: {{ dato }}</p>
+  </div>
+  <div *ngIf="canales.length > 0">
+  <div class="canalContainer" *ngFor="let vi of canales">
+    <img class="icon" src="assets/imagenes/naranja.png" />
+    <div>
+      <div>
+        <a [routerLink]="['../Canal', vi.id]">
+          <h4>{{ vi.nombre_canal }}</h4>
+        </a>
+      </div>
+      <div>
+        <p>&#64;{{ vi.username }} - subs: {{ vi.suscriptores }}</p>
+        <p class="descripcion">{{ vi.descripcion }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
