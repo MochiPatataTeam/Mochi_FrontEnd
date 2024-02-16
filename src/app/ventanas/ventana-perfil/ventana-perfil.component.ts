@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -14,8 +15,9 @@ export class VentanaPerfilComponent implements OnInit{
   usuario: any; //usuario logueado
   canal: any; //perfil al que se accede desde un video
   canalLogueado!: string | null;
+  videos: any;
 
-  constructor(private authService: AuthService, private route: ActivatedRoute) {}
+  constructor(private authService: AuthService, private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
 
   onWallpaperChanged(event: string): void {
     this.wallpaperDefault = event;
@@ -43,6 +45,15 @@ export class VentanaPerfilComponent implements OnInit{
         (response) => {
           console.log(response);
           this.usuario = response;
+
+          this.authService.getVideosByIDCanal(usuarioLogueadoId).subscribe(
+            (video) => {
+              console.log(video);
+              this.videos = Object.values(video);
+              this.sanitizarUrls();
+            }
+          )
+
         },
         (error) => {
           console.log(error)
@@ -53,6 +64,13 @@ export class VentanaPerfilComponent implements OnInit{
 
   }
 
+
+  sanitizarUrls() {
+    for (const vi of this.videos) {
+      // Asegúrate de que 'url' sea una propiedad válida de tu objeto de video
+      vi.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(vi.url);
+    }
+  }
 
 
 

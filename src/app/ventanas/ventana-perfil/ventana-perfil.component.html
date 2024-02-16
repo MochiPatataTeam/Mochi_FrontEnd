@@ -1,33 +1,21 @@
-<main>
+<main class="seccion-perfil-usuario">
 
-    <section class="seccion-perfil-usuario">
         <section class="perfil-usuario-header">
             <div class="perfil-usuario-portada" [ngStyle]="{ 'background-image': wallpaperDefault }"> <!-- Wallpaper default -->
 
                 <div class="perfil-usuario-avatar">
                     <img src="{{ usuario?.imagen }}" alt="img-avatar">
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#editModal" class="boton-avatar">
-                        <i class='bx bxs-cog'></i>
-                    </button>
-
-                    <!-- Modal Editar Perfil -->
-                    <!-- <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editarModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-xl modal-dialog-centered">
-                            <div class="modal-content" style="height: 47rem;">
-                                <div class="modal-header">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <app-editar-perfil></app-editar-perfil>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- Modal Editar Perfil -->
+                    <div *ngIf="!canal">
+                        <button type="button" class="boton-avatar" [routerLink]="['/editarPerfil', usuario?.id]">
+                            <i class='bx bxs-cog'></i>
+                        </button>
+                    </div>
                 </div>
-                <button type="button" data-bs-toggle="modal" data-bs-target="#WallpaperModal" class="boton-portada">
-                    <i class='bx bxs-image'></i>Cambiar fondo
-                </button>
+                <div *ngIf="!canal">
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#WallpaperModal" class="boton-portada">
+                        <i class='bx bxs-image'></i>Cambiar fondo
+                    </button>
+                </div>
 
                     <!-- Modal Wallpaper -->
                     <div class="modal fade" id="WallpaperModal" tabindex="-1" aria-labelledby="wallpaperModalLabel" aria-hidden="true">
@@ -43,16 +31,15 @@
                         </div>
                     </div>
                     <!-- Modal Wallpaper -->
-
             </div>
         </section>
+
         <section class="perfil-usuario-body">
             <div class="perfil-usuario-bio">
                 <div class="perfil-usuario-usernameBio">
-                    <div *ngIf="canal">
+                    <div *ngIf="canal"> <!-- If del canal -->
                         <h3>{{ canal?.nombre }}</h3>
                         <p>{{ canal?.descripcion }}</p>
-                        <!-- Otros detalles del canal -->
                     </div>
                     <h3 class="titulo">{{ usuario?.nombre }}</h3>
                     <p class="texto">{{ usuario?.descripcion }}</p>
@@ -64,24 +51,66 @@
                     <div class="user-icon">
                         <p><i class='bx bxs-star' ></i>65 seguidos</p>
                     </div>
-                    <div class="user-icon">
+                    <div class="user-icon" *ngIf="!usuario">
                         <button><i class='bx bxs-user-plus'></i>Seguir</button><!-- Este boton debe poder actualizarse a "dejar de seguir" -->
                     </div>
-                    <div class="user-icon">
+                    <div class="user-icon" *ngIf="!usuario">
                         <button><i class='bx bxs-paper-plane bx-tada'></i>Enviar mensaje</button>
                     </div>
                 </div>
             </div>
-            <div class="perfil-usuario-footer">
-                <div class="perfil-usuario-btn">
-                    <h3>Mis videos</h3>
+        </section>
+
+        <section class="perfil-usuario-footer">
+
+            <div class="perfil-usuario-btn">
+                <h3>Videos</h3>
+                <div *ngIf="!canal">
                     <button><i class='bx bxs-cloud-upload'></i>Subir video</button>
                 </div>
-                <div class="videos">
-                    <!-- AQUI VAN LOS VIDEOS -->
+            </div>
+
+            <!-- <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let vid of videos">
+                    <div class="videos">
+                        <iframe  width="320" height="180" [src]="vid?.safeUrl" allow="autoplay"></iframe>
+                        <img (click)="videoDetails(vi.id)" src="assets/imagenes/blanco.png">
+
+                        <h4>{{vid?.titulo}}<br><span>{{vid?.canal}}</span></h4>
+                        <ul>
+                            <li><i class='bx bx-like' ></i> 4.8 M</li>
+                            <li><i class='bx bx-download'></i> 2.3M</li>
+                        </ul>
+                    </div>
+                </div>
+            </div> -->
+
+                        <!-- ***** Most Popular Start ***** -->
+            <div class="most-popular">
+                <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                    <div class="col-lg-3 col-sm-6 " *ngFor= "let vid of videos">
+                        <div class="item">
+                        <iframe  width="310" height="170" [src]="vid?.safeUrl" allow="autoplay"> </iframe>
+                        <!-- <img (click)="videoDetails(vid?.id)" src="assets/imagenes/blanco.png"> -->
+
+                        <h4>{{vid?.titulo}}<br><span>{{vid?.tematica}}</span> <span> {{vid?.canal}}</span></h4>
+                        <ul>
+                            <li><i class='bx bx-like' ></i> 4.8 M</li>
+                            <li><i class='bx bx-download'></i> 2.3M</li>
+                        </ul>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
                 </div>
             </div>
+            <!-- ***** Most Popular End ***** -->
+
+
         </section>
-    </section>
+
 
 </main>

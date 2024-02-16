@@ -409,7 +409,9 @@ svg:hover {
   justify-content: center;
   margin-right: 50px;
 }
-
+p#perfil:hover {
+  cursor: pointer;
+}
 button{
   margin-bottom: 10px;
 }

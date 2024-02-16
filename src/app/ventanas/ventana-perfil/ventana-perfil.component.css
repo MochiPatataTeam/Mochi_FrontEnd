@@ -1,3 +1,7 @@
+p, h3, h4, i, li{
+    color: #fff;
+}
+
 .seccion-perfil-usuario .perfil-usuario-body,
 .seccion-perfil-usuario {
     display: flex;
@@ -70,7 +74,7 @@
     left: 2px;
     top: 2px;
     border: 0;
-    background-color: #fff;
+    background-color: #1f2122;
     box-shadow: 0 0 12px rgba(0, 0, 0, .2);
     width: 3.8rem;
     height: 3.8rem;
@@ -103,8 +107,8 @@
     display: flex;
     /* flex-wrap: wrap; */
     padding: 1.5rem 5rem;
-    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
-    background-color: #fff;
+    /* box-shadow: 0 0 12px rgba(0, 0, 0, .2); */
+    background-color: #1f2122;
     border-radius: 15px;
     width: 93%;
     height: 10rem;
@@ -116,18 +120,17 @@
     /* display: flex;
     flex-wrap: wrap; */
     padding: 1.5rem 2rem;
-    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
-    background-color: #fff;
+    /* box-shadow: 0 0 12px rgba(0, 0, 0, .2); */
+    background-color: #1f2122;
     border-radius: 15px;
-    width: 80%;
+    width: 85%;
 }
 
 .perfil-usuario-btn{
     display: flex;
-    justify-content: space-between; 
-    align-items: flex-start;    
-
-} 
+    justify-content: space-between;
+    align-items: flex-start;
+}
 
 .seccion-perfil-usuario .perfil-usuario-bio {
     margin-bottom: 1.25rem;
@@ -190,21 +193,150 @@
     .seccion-perfil-usuario .perfil-usuario-body {
         width: 95%;
     }
-
-    .seccion-perfil-usuario .redes-sociales {
-        position: relative;
-        flex-direction: row;
-        width: 100%;
-        left: 0;
-        text-align: center;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        align-items: center;
-        justify-content: center
-    }
-
-    .seccion-perfil-usuario .redes-sociales .boton-redes+.boton-redes {
-        margin-left: 1rem;
-        margin-top: 0;
-    }
 }
+
+/*
+---------------------------------------------
+Videos style
+---------------------------------------------
+*/
+
+  .perfil-usuario-footer .videos {
+    background-color: #27292a;
+    padding: 5px 15px 20px 15px;
+    border-radius: 23px;
+    margin-bottom: 30px;
+    position: relative;
+  }
+
+  .videos img {
+    border-radius: 23px;
+    opacity: 0.5%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+    iframe {
+    border-radius: 15%;
+    padding: 10px 22px;
+
+    margin-bottom: 0px;
+    margin-left: -30px;
+    position: relative;
+    z-index: 0;
+  }
+
+  .perfil-usuario-footer .videos h4 {
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    display: inline-block;
+  }
+
+  .perfil-usuario-footer .videos span {
+    color: #666;
+    display: block;
+    margin-top: 7px;
+    font-weight: 400;
+  }
+
+  .perfil-usuario-footer .videos ul {
+    float: right;
+    margin-top: 20px;
+    list-style: none;
+  }
+
+  .perfil-usuario-footer .videos ul li {
+    text-align: right;
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .perfil-usuario-footer .videos ul li:first-child i {
+    color: #df9a41;
+  }
+
+  .perfil-usuario-footer .videos ul li:last-child i {
+    color: #df9a41;
+  }
+
+
+
+/*
+---------------------------------------------
+Most Popular Style
+---------------------------------------------
+*/
+.most-popular {
+    margin-top: 60px;
+    padding: 30px;
+    background-color: #1f2122;
+    border-radius: 23px;
+  }
+
+  .most-popular .item {
+    background-color: #27292a;
+    padding: 5px 15px 20px 15px;
+    border-radius: 23px;
+    margin-bottom: 30px;
+    position: relative; /* Agregado para posicionar elementos secundarios */
+  }
+
+  .most-popular .item img {
+    border-radius: 23px;
+    opacity: 0.5%;
+    position: absolute; /* Agregado para posicionar la imagen */
+    top: 0; /* Ajustado según necesidad */
+    left: 0; /* Ajustado según necesidad */
+    z-index: 1; /* Asegura que la imagen esté delante del iframe */
+  }
+
+  .most-popular .item iframe {
+    border-radius: 15%;
+    padding: 10px 22px;
+
+    margin-bottom: 0px;
+    margin-left: -30px;
+    position: relative; /* Agregado para evitar superposiciones con otros elementos */
+    z-index: 0; /* Asegura que el iframe esté detrás de la imagen */
+  }
+
+  .most-popular .item h4 {
+    font-size: 15px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    display: inline-block;
+  }
+
+  .most-popular .item span {
+    color: #666;
+    display: block;
+    margin-top: 7px;
+    font-weight: 400;
+  }
+
+  .most-popular .item ul {
+    float: right;
+    margin-top: 20px;
+  }
+
+  .most-popular .item ul li {
+    text-align: right;
+    color: #fff;
+    font-size: 14px;
+  }
+
+  .most-popular .item ul li:first-child i {
+    color: #df9a41;
+  }
+
+  .most-popular .item ul li:last-child i {
+    color: #df9a41;
+  }
+
+  .most-popular .main-button {
+    text-align: center;
+    margin-bottom: -53px;
+  }

@@ -112,7 +112,6 @@ export class AuthService {
     return this.http.get(`${this.urlGeneral}/api/usuario/${id}`);
   }
 
-
   setAuthCanal(nombre_canal: string) {
     this.nombreCanal = nombre_canal;
     localStorage.setItem('nombre_canal', nombre_canal);
@@ -134,6 +133,16 @@ export class AuthService {
   //Perfil a traves de video
   getUsuariobyCanal(canal: string): Observable<any> {
     return this.http.get(`${this.urlGeneral}/api/usuario/canal/${canal}`);
+  }
+
+  //Editar perfil
+  perfilEdit(id: number, datos: any): Observable<any>{
+    return this.http.put(`${this.urlGeneral}/api/usuario/${id}`, datos);
+  }
+
+  //Get videos del usuario por Id
+  getVideosByIDCanal(id: number): Observable<any>{
+    return this.http.get(`${this.urlGeneral}/api/video/canalId/${id}`);
   }
 
 
@@ -271,6 +280,7 @@ export class AuthService {
   notificaciones(id: number): Observable<any> {
     return this.http.get(`${this.urlGeneral}/api/notificacion/${id}`);
   }
+
   notificacionesEdit(id: number,id_usuario:number,id_tipo:number, visible:boolean,id_creador:number): Observable<any> {
     const credentials = {
       visible: visible,
@@ -280,6 +290,7 @@ export class AuthService {
     };
     return this.http.put(`${this.urlGeneral}/api/notificacion/${id}`, credentials);
   }
+
   //-----COMENTARIOS Y RESPUESTAS
   crearComentario(usuario: number, video:number, comentario:string): Observable<any>{
     const credentials={

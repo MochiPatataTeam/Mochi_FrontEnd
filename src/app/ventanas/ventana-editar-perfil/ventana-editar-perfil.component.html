@@ -1,0 +1,45 @@
+<main >
+    <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" class="form-style-5">
+
+        <fieldset>
+            <legend><span class="number">1</span>Información personal</legend>
+            
+            <div [formGroup]="usuarioForm">
+                <input type="text" formControlName="nombre" placeholder="Nombre">
+            </div>
+
+            <div [formGroup]="usuarioForm">
+                <input type="text" formControlName="apellidos" placeholder="Apellidos">
+            </div>
+
+
+            <div [formGroup]="usuarioForm">
+                <input type="text" formControlName="username" placeholder="Username">
+            </div>
+
+
+            <div [formGroup]="usuarioForm">
+                <input type="email" formControlName="email" placeholder="Email">
+            </div>
+
+
+            <div [formGroup]="usuarioForm">
+                <input type="number" formControlName="telefono" placeholder="Teléfono">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend><span class="number">2</span> Información del canal </legend>
+            <div [formGroup]="usuarioForm">
+                <input type="text" formControlName="nombre_canal" placeholder="Nombre canal">
+            </div>
+        
+            <div [formGroup]="usuarioForm">
+                <input type="text" formControlName="descripcion" placeholder="Descripción">
+            </div>
+        </fieldset>
+
+    <app-boton [buttonText]="customButtonText" type="submit"></app-boton>
+
+    </form>
+</main>

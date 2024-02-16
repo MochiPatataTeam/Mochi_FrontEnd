@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +24,7 @@ import { CampanitaComponent } from './componentes/campanita/campanita.component'
 import { ErrorInterceptorService } from './services/error-interceptor.service';
 import { VideoSuscripcionesComponent } from './componentes/video-suscripciones/video-suscripciones.component';
 import { VentanaBuscadorComponent } from './ventanas/ventana-buscador/ventana-buscador.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { VentanaEditarPerfilComponent } from './ventanas/ventana-editar-perfil/ventana-editar-perfil.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +45,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     VentanaErrorComponent,
     CampanitaComponent,
     VideoSuscripcionesComponent,
+    VentanaEditarPerfilComponent,
     VentanaBuscadorComponent,
 
   ],
