@@ -12,6 +12,7 @@ import { VentanaNewPasswordComponent } from './ventanas/ventana-new-password/ven
 import { VentanaVerifiedComponent } from './ventanas/ventana-verified/ventana-verified.component';
 import { VentanaErrorComponent } from './ventanas/ventana-error/ventana-error.component';
 import { VideoSuscripcionesComponent } from './componentes/video-suscripciones/video-suscripciones.component';
+import { VentanaEditarPerfilComponent } from './ventanas/ventana-editar-perfil/ventana-editar-perfil.component';
 import { VentanaBuscadorComponent } from './ventanas/ventana-buscador/ventana-buscador.component';
 
 
@@ -29,9 +30,9 @@ const routes: Routes = [
   {path: 'newPassword/:token', component: VentanaNewPasswordComponent},
   {path: 'verified', component: VentanaVerifiedComponent},
   {path: 'subsvideos', component: VideoSuscripcionesComponent},
+  {path: 'error', component: VentanaErrorComponent},
+  {path: 'editarPerfil/:id', component: VentanaEditarPerfilComponent},
   {path: 'buscador', component: VentanaBuscadorComponent},
-  // {path: 'error', component: VentanaErrorComponent},
-
 ];
 
 @NgModule({
