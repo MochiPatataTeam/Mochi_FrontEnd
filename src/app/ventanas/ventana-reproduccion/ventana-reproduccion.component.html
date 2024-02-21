@@ -110,8 +110,9 @@
           <div class="avatar"></div>
           <div class="content__text">
             <span class="stream__title" (click)="videoDetails2(video.id)">{{ video.titulo }}</span>
+            <!--<img (click)="videoDetails2(video.id)" src="assets/imagenes/blanco.png">-->
             <div class="content__body">
-              <span class="streamer__name">{{ video.canal }}</span>
+              <span class="streamer__name" (click)="cargarPerfil(video.canal)">{{ video.canal }}</span>
               <span class="event">{{ video.tematica }}</span>
             </div>
 
