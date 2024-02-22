@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { tap, switchMap } from 'rxjs/operators';
+import {BotonSidebarService} from "../../services/boton-sidebar.service";
 
 @Component({
   selector: 'app-navbar',
@@ -12,12 +13,14 @@ import { tap, switchMap } from 'rxjs/operators';
 export class NavbarComponent implements OnInit {
   id: any = null;
   input: string = '';
+  mostrarVideosPopulares: boolean = false;
 
   constructor(
     public authService: AuthService,
     private location: Location,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public botonsidebarservice: BotonSidebarService,
   ) {}
 
   enviarDatos() {
@@ -59,5 +62,8 @@ export class NavbarComponent implements OnInit {
 
   getIdUsuario(): number | null {
     return this.authService.getId();
+  }
+  llamarComponente() {
+    this.botonsidebarservice.mostrarVideosPopulares = true;
   }
 }

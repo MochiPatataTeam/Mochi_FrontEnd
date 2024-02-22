@@ -2,6 +2,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import {BotonSidebarService} from "../../services/boton-sidebar.service";
+
 
 @Component({
   selector: 'app-ventana-inicio',
@@ -17,7 +19,8 @@ export class VentanaInicioComponent {
   constructor(
     private authservice: AuthService,
     private sanitizer: DomSanitizer,
-    private router: Router
+    private router: Router,
+    public botonsidebarservice: BotonSidebarService
   ) {}
   ngOnInit(): void {
     const idFromService = this.authservice.getId();

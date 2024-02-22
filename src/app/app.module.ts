@@ -25,6 +25,7 @@ import { ErrorInterceptorService } from './services/error-interceptor.service';
 import { VideoSuscripcionesComponent } from './componentes/video-suscripciones/video-suscripciones.component';
 import { VentanaBuscadorComponent } from './ventanas/ventana-buscador/ventana-buscador.component';
 import { VentanaEditarPerfilComponent } from './ventanas/ventana-editar-perfil/ventana-editar-perfil.component';
+import { VideosPopularesComponent } from './componentes/videos-populares/videos-populares.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { VentanaEditarPerfilComponent } from './ventanas/ventana-editar-perfil/v
     VideoSuscripcionesComponent,
     VentanaEditarPerfilComponent,
     VentanaBuscadorComponent,
+    VideosPopularesComponent,
 
   ],
   imports: [

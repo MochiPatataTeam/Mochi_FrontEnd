@@ -14,7 +14,7 @@ import { VentanaErrorComponent } from './ventanas/ventana-error/ventana-error.co
 import { VideoSuscripcionesComponent } from './componentes/video-suscripciones/video-suscripciones.component';
 import { VentanaEditarPerfilComponent } from './ventanas/ventana-editar-perfil/ventana-editar-perfil.component';
 import { VentanaBuscadorComponent } from './ventanas/ventana-buscador/ventana-buscador.component';
-
+import { VideosPopularesComponent} from "./componentes/videos-populares/videos-populares.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/Inicio',pathMatch: 'full'},
@@ -33,6 +33,7 @@ const routes: Routes = [
   {path: 'error', component: VentanaErrorComponent},
   {path: 'editarPerfil/:id', component: VentanaEditarPerfilComponent},
   {path: 'buscador', component: VentanaBuscadorComponent},
+  {path: 'populares', component: VideosPopularesComponent}
 ];
 
 @NgModule({

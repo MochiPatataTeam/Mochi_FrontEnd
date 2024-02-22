@@ -330,8 +330,12 @@ export class AuthService {
     return this.http.get(`${this.urlGeneral}/api/video/videosSuscripciones/${id}`);
   }
 
-  listSusyTematica(id_suscripcion:number, id_tematica:number): Observable<any>{
-    return this.http.get(`${this.urlGeneral}/api/video/sugerencias/${id_suscripcion}${id_tematica}`);
+  listVideosPopulares():Observable<any>{
+    return this.http.get(`${this.urlGeneral}/api/video/populares`);
+  }
+
+  listSusyTematica(id_suscripcion:number, tematica:string): Observable<any>{
+    return this.http.get(`${this.urlGeneral}/api/video/sugerencias/${id_suscripcion}/${tematica}`);
   }
 
 }
