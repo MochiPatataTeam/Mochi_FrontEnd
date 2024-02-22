@@ -32,7 +32,7 @@ const routes: Routes = [
   {path: 'newPassword/:token', component: VentanaNewPasswordComponent},
   {path: 'verified', component: VentanaVerifiedComponent},
   {path: 'subsvideos', component: VideoSuscripcionesComponent},
-  // {path: 'error', component: VentanaErrorComponent},
+  {path: 'error', component: VentanaErrorComponent},
   {path: 'editarPerfil/:id', component: VentanaEditarPerfilComponent},
   {path: 'buscador', component: VentanaBuscadorComponent},
   {path: 'populares', component: VideosPopularesComponent},
