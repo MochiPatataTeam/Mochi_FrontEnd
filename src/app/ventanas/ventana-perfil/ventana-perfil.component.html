@@ -52,7 +52,10 @@
                         <p><i class='bx bxs-star' ></i>65 seguidos</p>
                     </div>
                     <div class="user-icon" *ngIf="canal">
-                        <button class="btn btn-primary"><i class='bx bxs-user-plus'></i>Seguir</button><!-- Este boton debe poder actualizarse a "dejar de seguir" -->
+                        <button class="btn btn-primary" (click)="suscripcion()" *ngIf="subs === false else elseBlock"><i class='bx bxs-user-plus'></i>Suscribete</button><!-- Este boton debe poder actualizarse a "dejar de seguir" -->
+                      <ng-template #elseBlock>
+                        <button class="btn btn-primary" (click)="suscripcion()" >Suscrito</button>
+                      </ng-template>
                     </div>
                     <div class="user-icon" *ngIf="canal">
                       <div>

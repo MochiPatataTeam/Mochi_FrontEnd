@@ -12,12 +12,12 @@ export class AuthService {
   constructor(private http: HttpClient,
               private router: Router) {}
 
-  private urlGeneral= 'https://127.0.0.1:8000';
-  private videolista = 'https://127.0.0.1:8000/api/video';
+  private urlGeneral= 'http://127.0.0.1:8000';
+  private videolista = 'http://127.0.0.1:8000/api/video';
 
-  private lista_comentarios ='https://127.0.0.1:8000/api/comentario'
-  private lista_respuestas ='https://127.0.0.1:8000/api/respuesta'
-  private lista_usuarios= 'https://127.0.0.1:8000/api/usuario';
+  private lista_comentarios ='http://127.0.0.1:8000/api/comentario'
+  private lista_respuestas ='http://127.0.0.1:8000/api/respuesta'
+  private lista_usuarios= 'http://127.0.0.1:8000/api/usuario';
 
 
   private userName: string | null = null;
@@ -150,6 +150,13 @@ export class AuthService {
     return this.http.get(`${this.urlGeneral}/api/video/canalNombre/${canal}`);
   }
 
+  subs(id_suscritor: number, id_canal: number): Observable<any> {
+    return this.http.post(`${this.urlGeneral}/api/suscripcion/sub/${id_suscritor}/${id_canal}`, {});
+  }
+
+  comprobar_subs(id_suscritor: number, id_canal: number): Observable<any> {
+    return this.http.get(`${this.urlGeneral}/api/suscripcion/comprobar/${id_suscritor}/${id_canal}`);
+  }
 
   //----------------------------- VERIFICACION -----------------------------------
 
