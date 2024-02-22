@@ -1,0 +1,35 @@
+<main *ngIf="this.spinner == false">
+    <form [formGroup]="videoForm" (ngSubmit)="onSubmit()" class="form-style-5">
+
+      <fieldset>
+        <legend><span class="number">1</span>Creación Del Video</legend>
+        
+        <div>
+          <input type="text" formControlName="titulo" [(ngModel)]="titulo" placeholder="Título">
+        </div>
+      
+        <div>
+          <input type="text" formControlName="url" [(ngModel)]="url" placeholder="Url">
+        </div>
+      
+        <div>
+          <select formControlName="tematica" [(ngModel)]="idTematicas">
+            <option value="" disabled selected>Selecciona una temática</option>
+            <option *ngFor="let item of tematicas" [value]="item.id">
+              {{ item.tematica }}
+            </option>
+          </select>
+        </div>
+      
+        <div>
+          <textarea type="text" formControlName="descripcion" [(ngModel)]="descripcion" placeholder="Descripción"></textarea>
+        </div>
+      </fieldset>
+    
+        <app-boton [buttonText]="customButtonText" type="submit"></app-boton>
+    
+      </form>
+</main>
+<main *ngIf="this.spinner == true">
+  <app-spinner></app-spinner>
+</main>

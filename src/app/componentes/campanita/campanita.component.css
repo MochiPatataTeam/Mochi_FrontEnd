@@ -19,6 +19,8 @@
   width: 250px;
   display: none;
   text-align: left;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .notification-menu li {

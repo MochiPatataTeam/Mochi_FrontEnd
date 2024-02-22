@@ -12,6 +12,7 @@ export class VentanaPerfilComponent implements OnInit{
 
   wallpaperDefault: string = `url('../../../assets/imagenes/wallpaper_Mochi/Mochi.jpg')`;
 
+  hovered: boolean = false; 
   usuarioLogueadoCanal = localStorage.getItem('nombre_canal');
   usuarioLogueadoId = JSON.parse(localStorage.getItem('Id')!);
   canal_url = this.route.snapshot.paramMap.get('nombreCanal') ?? '';
@@ -35,16 +36,17 @@ export class VentanaPerfilComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    
+    
     this.canalLogueado = this.authService.getStoredCanal() || 'no funsiona. Chipi chipi chapa chapa dubidubi dabadaba';
     this.id = this.authService.getStoredIdUsuario() || 0;
-
+    
     if (this.canal_url && this.canal_url !== this.usuarioLogueadoCanal) { //si el nombre del canal de la url es nulo o es diferente del nombre canal del usuario logueado
       this.cargarDatosByCanal(this.canal_url);
     } else {
       this.cargarDatosById(this.usuarioLogueadoId);
     }
-
-    this.comprobar_suscripcion();
+   
 
   }
 
@@ -52,6 +54,7 @@ export class VentanaPerfilComponent implements OnInit{
     this.authService.getUsuariobyCanal(canal).subscribe(
       (data) => {
         this.canal = data;
+        this.comprobar_suscripcion();
         this.authService.getVideosByNombreCanal(canal).subscribe(
           (video) => {
             console.log(video); //quitar
@@ -136,11 +139,39 @@ export class VentanaPerfilComponent implements OnInit{
 
   }
 
-  suscripcion(){
-    this.authService.subs(this.id!,this.canal.id).subscribe(
-      (data)=>{
+  suscripcion(canal: any) {
+    console.log("fasfasfda", canal);
+    this.authService.subs(this.id!, this.canal.id).subscribe(
+      (data) => {
         this.subs = data.prueba;
         console.log(data);
+  
+        if (this.id != null) {
+          this.authService.comprobar_subs(this.id, this.canal.id).subscribe(
+            (data) => {
+              this.subs = data.prueba;
+              console.log("fiusghasfkjghgf", data);
+              console.log(data);
+  
+              if (data.prueba === false) {
+                console.log("entro en falseeeeeeeee")
+              }
+              if (data.prueba === true) {
+                 this.authService.notificacionesCrear(canal, 2, this.id!).subscribe(
+                   (response: any) => {
+                     console.error(response);
+                   },
+                   (error) => {
+                     console.error(error);
+                   }
+                 );
+              }
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        }
       },
       (error) => {
         console.log(error);
@@ -149,7 +180,8 @@ export class VentanaPerfilComponent implements OnInit{
   }
 
   comprobar_suscripcion(){
-    this.authService.comprobar_subs(this.id!,this.canal.id).subscribe(
+    if(this.id != null){
+    this.authService.comprobar_subs(this.id,this.canal.id).subscribe(
       (data)=>{
         this.subs = data.prueba;
         console.log(data);
@@ -159,5 +191,5 @@ export class VentanaPerfilComponent implements OnInit{
       }
     );
   }
-
+}
 }

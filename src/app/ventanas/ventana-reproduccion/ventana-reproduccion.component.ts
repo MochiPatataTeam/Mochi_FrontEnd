@@ -41,8 +41,9 @@ export class VentanaReproduccionComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.authservice.videoid(this.id).subscribe(
       (response) => {
-        console.log(response);
+        console.log("achuuuuu",response);
         this.videoId = response;
+        this.nombre_canal=response.canal;
         this.tematica= this.videoId.tematica;
         console.log('asdfjkasdfjkljklasdf', this.tematica);
         this.authservice.listSusyTematica(this.id_usuario!,this.tematica).subscribe(
@@ -119,7 +120,7 @@ export class VentanaReproduccionComponent implements OnInit {
     }
   }
 
-  crearComentario(comentario:string) {
+  crearComentario(comentario:string,username:string) {
     console.log("Patata",this.id_usuario);
     console.log("Patata",this.videoId.id);
     console.log("Patata",comentario);
@@ -131,6 +132,26 @@ export class VentanaReproduccionComponent implements OnInit {
       ).subscribe(
         (response) => {
           console.log('Comentario creado:', response);
+          
+          this.authservice.buscarUsername(username).subscribe(
+            (response: any) => {
+              console.error(response);
+              if(this.id_usuario != null){
+              this.authservice.notificacionesCrear(response[0].id,3,this.id_usuario).subscribe(
+                (response: any) => {
+                  console.error(response);
+                  window.location.reload();
+                }, 
+                (error) => {
+                  console.error(error);
+               }
+              );
+            }
+            }, 
+            (error) => {
+              console.error(error);
+           }
+          );
         },
         (error) => {
           console.error('Error al crear el comentario:', error);
@@ -139,12 +160,12 @@ export class VentanaReproduccionComponent implements OnInit {
     } else {
       console.error('ID de usuario es nulo. No se puede crear el comentario.');
     }
-    window.location.reload();
+    
 
   }
 
 
-  crearRespuesta(mensaje: string, comentarioId: number) {
+  crearRespuesta(mensaje: string, comentarioId: number,username:string) {
     console.log("Id usuario", this.id_usuario);
     console.log("Id comentario", comentarioId);
     console.log("Mensaje", mensaje);
@@ -157,6 +178,25 @@ export class VentanaReproduccionComponent implements OnInit {
       ).subscribe(
         (response) => {
           console.log('Respuesta creada:', response);
+          this.authservice.buscarUsername(username).subscribe(
+            (response: any) => {
+              console.error(response);
+              if(this.id_usuario != null){
+              this.authservice.notificacionesCrear(response[0].id,4,this.id_usuario).subscribe(
+                (response: any) => {
+                  console.error(response);
+                  window.location.reload();
+                }, 
+                (error) => {
+                  console.error(error);
+               }
+              );
+            }
+            }, 
+            (error) => {
+              console.error(error);
+           }
+          );
         },
         (error) => {
           console.error('Error al crear la respuesta:', error);
@@ -165,7 +205,6 @@ export class VentanaReproduccionComponent implements OnInit {
     } else {
       console.error('ID de usuario es nulo. No se puede crear el comentario.');
     }
-    window.location.reload();
   }
 
 

@@ -1,6 +1,6 @@
 .Container {
   color: white;
-  height: 100vh;
+  height: 99.5vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,7 +126,7 @@ h1 {
   text-decoration: underline;
 }
 #progressbar {
-  width: 60vw;
+  width: 50vw;
   counter-reset: step;
   z-index: 1;
 }
