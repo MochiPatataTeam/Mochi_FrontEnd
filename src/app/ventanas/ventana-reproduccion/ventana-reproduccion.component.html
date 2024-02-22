@@ -23,7 +23,7 @@
     <div class="texto">
 
       <textarea class="form-control" [(ngModel)]="nuevoComentario" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px"></textarea>
-      <app-boton [buttonText]="customButtonText" (click)="crearComentario(this.nuevoComentario,this.nombre_canal)"></app-boton>
+      <app-boton [buttonText]="customButtonText" (click)="crearComentario(this.nuevoComentario,videoId.canal)"></app-boton>
 
       <!--probando el comentario que he robado-->
       <h1 class="text-light">Comentarios</h1>

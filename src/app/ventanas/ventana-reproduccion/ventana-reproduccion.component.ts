@@ -133,7 +133,7 @@ export class VentanaReproduccionComponent implements OnInit {
         (response) => {
           console.log('Comentario creado:', response);
           
-          this.authservice.buscarUsername(username).subscribe(
+          this.authservice.buscarIdCanal(username).subscribe(
             (response: any) => {
               console.error(response);
               if(this.id_usuario != null){
@@ -178,7 +178,7 @@ export class VentanaReproduccionComponent implements OnInit {
       ).subscribe(
         (response) => {
           console.log('Respuesta creada:', response);
-          this.authservice.buscarIdCanal(canal).subscribe(
+          this.authservice.buscarUsername(canal).subscribe(
             (response: any) => {
               console.error(response);
               if(this.id_usuario != null){
