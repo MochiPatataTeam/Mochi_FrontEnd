@@ -30,6 +30,7 @@ export class CampanitaComponent {
         (response) => {
           this.notificaciones = response;
           console.log("notiiiiiiiiiii", response)
+          this.sortNotificationsByVisibility();
           this.countFalseVisible = this.countFalseNotifications();
         },
         (error) => {
@@ -57,6 +58,23 @@ export class CampanitaComponent {
     }
   }
 
+  sortNotificationsByVisibility() {
+    this.notificaciones.sort((a, b) => {
+      if (a.visible === b.visible) {
+        return 0;
+      }
+      
+      if (a.visible === null) {
+        return -1;
+      }
+
+      if (b.visible === null) {
+        return 1;
+      }
+
+      return b.visible - a.visible;
+    });
+  }
   countFalseNotifications(): number {
     return this.notificaciones.filter((notif) => !notif.visible).length;
   }
