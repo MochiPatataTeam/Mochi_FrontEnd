@@ -257,7 +257,8 @@
             <label
               *ngIf="
                 touched.password &&
-                !loginForm.get('password')?.hasError('required')
+                !loginForm.get('password')?.hasError('required') &&
+                !loginForm.get('password')?.hasError('minlength')
               "
               class="label text--flicking"
               >Contraseña:</label
@@ -269,6 +270,14 @@
               "
               class="label text--flicking error"
               >Contraseña requerido:</label
+            >
+            <label
+              *ngIf="
+                touched.password &&
+                loginForm.get('password')?.hasError('minlength')
+              "
+              class="label text--flicking error"
+              >Contraseña requiere mínimo 5 dígitos:</label
             >
           </div>
           <div class="input-box">

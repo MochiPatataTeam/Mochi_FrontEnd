@@ -95,9 +95,10 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
         (response) => {
           this.mensajesConver = response;
           this.chatSeleccionado = 1;
-          this.imprimirMensajesPorEmisor(this.mensajesConver);
+          this.mensajesJuntos= this.imprimirMensajesPorEmisor(this.mensajesConver);
           this.nombreIdPersona = nombre;
           console.log("vvvvvvvvvvvvvvvvvvv",this.mensajesConver)
+          console.log("deeeeeeeeeeeeeee2222",this.mensajesJuntos);
         },
         (error) => {
           console.log(error);
@@ -122,10 +123,14 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
   
     const mensajesUnidos = [...mensajesEmisor, ...mensajesReceptor];
   
-    mensajesUnidos.sort((a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
+    mensajesUnidos.sort((a, b) => new Date(a.fecha.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3')).getTime() - new Date(b.fecha.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3')).getTime());
   
-    this.mensajesJuntos = mensajesUnidos;
+    console.log("Mensajes ordenados por fecha ascendente:", mensajesUnidos);
+  
+    return mensajesUnidos;
   }
+  
+  
 
   enviarMensaje(mensaje: string, idPersona: number) {
     const fechaActual = new Date();

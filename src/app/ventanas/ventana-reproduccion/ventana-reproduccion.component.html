@@ -23,7 +23,7 @@
     <div class="texto">
 
       <textarea class="form-control" [(ngModel)]="nuevoComentario" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px"></textarea>
-      <app-boton [buttonText]="customButtonText" (click)="crearComentario(this.nuevoComentario)"></app-boton>
+      <app-boton [buttonText]="customButtonText" (click)="crearComentario(this.nuevoComentario,this.nombre_canal)"></app-boton>
 
       <!--probando el comentario que he robado-->
       <h1 class="text-light">Comentarios</h1>
@@ -50,7 +50,7 @@
 
             <div class="respuestas" *ngIf="comentario.mostrarCajaRespuesta">
               <input class="form-control" [(ngModel)]="comentario.nuevaRespuesta" placeholder="Escribe tu respuesta aquí" style="height: 100px">
-              <button class="btn btn-primary" (click)="crearRespuesta(comentario.nuevaRespuesta, comentario.id)">Enviar respuesta</button>
+              <button class="btn btn-primary" (click)="crearRespuesta(comentario.nuevaRespuesta, comentario.id,comentario.usuario)">Enviar respuesta</button>
 
             </div>
 

@@ -243,6 +243,10 @@ ul {
     margin-top: 10px;
     margin-bottom: 0px;
     display: inline-block;
+    white-space: nowrap;      
+    overflow: hidden;         
+    text-overflow: ellipsis;   
+    max-width: 200px;  
   }
 
   .most-popular .item span {
@@ -254,7 +258,7 @@ ul {
 
   .most-popular .item ul {
     float: right;
-    margin-top: 20px;
+    margin-top: -3em;
     list-style-type: none;
     padding-left: 0;
   }
@@ -288,4 +292,28 @@ ul {
 .btn.btn-primary{
   background-color:#df9a41;
   border-color: #212529;
+}
+.buttonSub .btn-primary:hover::before {
+  content: "Desuscribirse ";
+}
+.clips .item h4 {
+  font-size: 15px;
+  display: inline-block;  
+}
+.boton-lapiz{
+  position: absolute;
+    top: 15vh;
+    right: 0;
+    z-index: 1;
+    border: 0;
+    background-color: #df9a41;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.boton-lapiz:hover{
+  background-color: black;
 }
