@@ -15,7 +15,7 @@ export class VentanaPerfilComponent implements OnInit{
   usuarioLogueadoCanal = localStorage.getItem('nombre_canal');
   usuarioLogueadoId = JSON.parse(localStorage.getItem('Id')!);
   canal_url = this.route.snapshot.paramMap.get('nombreCanal') ?? '';
-  
+
   usuario: any; //usuario logueado
   canal: any; //perfil al que se accede desde un video
   canalLogueado!: string | null;
@@ -25,7 +25,8 @@ export class VentanaPerfilComponent implements OnInit{
   mensaje: string = '';
   botonHabilitado: boolean = false;
   id!: number | null;
-  
+  subs: boolean ;
+
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private sanitizer: DomSanitizer, private router: Router) {}
 
@@ -42,6 +43,9 @@ export class VentanaPerfilComponent implements OnInit{
     } else {
       this.cargarDatosById(this.usuarioLogueadoId);
     }
+
+    this.comprobar_suscripcion();
+
   }
 
   cargarDatosByCanal(canal: string): void{
@@ -78,7 +82,7 @@ export class VentanaPerfilComponent implements OnInit{
         console.log(video);
         this.videos = this.videos = Object.values(video);
         this.sanitizarUrls();
-      }, 
+      },
       (error) => {
         console.log(error);
       }
@@ -131,4 +135,29 @@ export class VentanaPerfilComponent implements OnInit{
 
 
   }
+
+  suscripcion(){
+    this.authService.subs(this.id!,this.canal.id).subscribe(
+      (data)=>{
+        this.subs = data.prueba;
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  comprobar_suscripcion(){
+    this.authService.comprobar_subs(this.id!,this.canal.id).subscribe(
+      (data)=>{
+        this.subs = data.prueba;
+        console.log(data);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
 }
