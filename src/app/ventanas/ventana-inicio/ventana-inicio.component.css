@@ -920,7 +920,7 @@ Banner Style
 }
 
 .main-banner h6 {
-  font-size: 25px;
+  font-size: 20px;
   color: #fff;
   font-weight: 400;
   margin-bottom: 25px;
@@ -939,6 +939,9 @@ Banner Style
   align-items: center;
   margin-left: 40%;
 
+}
+.main-banner>.row{
+  margin-left: 15%;
 }
 
 .main-banner h4 em {
