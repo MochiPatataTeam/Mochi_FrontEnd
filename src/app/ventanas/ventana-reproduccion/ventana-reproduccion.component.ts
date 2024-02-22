@@ -165,7 +165,7 @@ export class VentanaReproduccionComponent implements OnInit {
   }
 
 
-  crearRespuesta(mensaje: string, comentarioId: number,username:string) {
+  crearRespuesta(mensaje: string, comentarioId: number,canal:string) {
     console.log("Id usuario", this.id_usuario);
     console.log("Id comentario", comentarioId);
     console.log("Mensaje", mensaje);
@@ -178,7 +178,7 @@ export class VentanaReproduccionComponent implements OnInit {
       ).subscribe(
         (response) => {
           console.log('Respuesta creada:', response);
-          this.authservice.buscarUsername(username).subscribe(
+          this.authservice.buscarIdCanal(canal).subscribe(
             (response: any) => {
               console.error(response);
               if(this.id_usuario != null){

@@ -292,6 +292,20 @@ export class AuthService {
 
     return this.http.get(url, options);
   }
+  buscarIdCanal(canal: string): Observable<any> {
+
+    const url = `${this.urlGeneral}/api/usuario/buscarIdCanal`;
+
+    const params = {
+      nombre_canal: canal
+    };
+
+    const options = {
+      params: params
+    };
+
+    return this.http.get(url, options);
+  }
   tematicas(): Observable<any> {
     return this.http.get(`${this.urlGeneral}/api/tematica`);
   }
