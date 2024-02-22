@@ -47,14 +47,18 @@ export class VentanaReproduccionComponent implements OnInit {
         console.log('asdfjkasdfjkljklasdf', this.tematica);
         this.authservice.listSusyTematica(this.id_usuario!,this.tematica).subscribe(
           (data)=>{
-            this.videosug= data;
-            console.log('LEEME A MI', data);
-            this.sanitizarUrls1();
-            console.log('LEEME A MI', data);
+            // Verificar si data es un array y tiene al menos un elemento
+            if (Array.isArray(data) && data.length > 0) {
+              // Filtrar los videos sugeridos para excluir el video que se está reproduciendo
+              this.videosug = data.filter((video: any) => video.id !== this.videoId.id);
+              console.log('LEEME A MI', this.videosug);
+              this.sanitizarUrls1();
+            } else {
+              console.log('No se han encontrado datos de video.');
 
 
 
-          }
+          }}
         )
         this.sanitizarUrls();
       },
