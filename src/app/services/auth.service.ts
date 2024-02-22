@@ -278,7 +278,43 @@ export class AuthService {
 
     return this.http.get(url, options);
   }
+  buscarUsername(username: string): Observable<any> {
 
+    const url = `${this.urlGeneral}/api/usuario/buscarId`;
+
+    const params = {
+      username: username
+    };
+
+    const options = {
+      params: params
+    };
+
+    return this.http.get(url, options);
+  }
+  tematicas(): Observable<any> {
+    return this.http.get(`${this.urlGeneral}/api/tematica`);
+  }
+  crearVideo(titulo: string,descripcion:string,url:string,id_canal:number,tematica:string): Observable<any>{
+    const credentials = {
+      titulo: titulo,
+      descripcion: descripcion,
+      url: url,
+      canal: id_canal,
+      tematica: tematica,
+    };
+    return this.http.post(`${this.urlGeneral}/api/video`, credentials);
+  }
+  modificarVideo(id:number,titulo: string,descripcion:string,url:string,id_canal:number,tematica:string): Observable<any> {
+    const credentials = {
+      titulo: titulo,
+      descripcion: descripcion,
+      url: url,
+      canal: id_canal,
+      tematica: tematica,
+    };
+    return this.http.put(`${this.urlGeneral}/api/video/${id}`, credentials);
+  }
   enviarMensaje(mensaje: string,fecha:string,idEmisor:number,idReceptor:number): Observable<any>{
     const credentials = {
       mensaje: mensaje,
@@ -288,11 +324,31 @@ export class AuthService {
     };
     return this.http.post(`${this.urlGeneral}/api/mensajes`, credentials);
   }
+  buscarSubs(id: number): Observable<any> {
 
+    const url = `${this.urlGeneral}/api/suscripcion/subs`;
+
+    const params = {
+      id_canal: id
+    };
+
+    const options = {
+      params: params
+    };
+
+    return this.http.get(url, options);
+  }
   notificaciones(id: number): Observable<any> {
     return this.http.get(`${this.urlGeneral}/api/notificacion/${id}`);
   }
-
+  notificacionesCrear(id_usuario:number,id_tipo:number,id_creador:number): Observable<any> {
+    const credentials = {
+      usuario: id_usuario,
+      tipo: id_tipo,
+      id_creador: id_creador
+    };
+    return this.http.post(`${this.urlGeneral}/api/notificacion`, credentials);
+  }
   notificacionesEdit(id: number,id_usuario:number,id_tipo:number, visible:boolean,id_creador:number): Observable<any> {
     const credentials = {
       visible: visible,

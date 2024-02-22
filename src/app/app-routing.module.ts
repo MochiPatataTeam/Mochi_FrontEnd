@@ -15,6 +15,8 @@ import { VideoSuscripcionesComponent } from './componentes/video-suscripciones/v
 import { VentanaEditarPerfilComponent } from './ventanas/ventana-editar-perfil/ventana-editar-perfil.component';
 import { VentanaBuscadorComponent } from './ventanas/ventana-buscador/ventana-buscador.component';
 import { VideosPopularesComponent} from "./componentes/videos-populares/videos-populares.component";
+import { VentanaEditarVideoComponent } from './ventanas/ventana-editar-video/ventana-editar-video.component';
+import { VentanaSubirVideoComponent } from './ventanas/ventana-subir-video/ventana-subir-video.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/Inicio',pathMatch: 'full'},
@@ -30,10 +32,12 @@ const routes: Routes = [
   {path: 'newPassword/:token', component: VentanaNewPasswordComponent},
   {path: 'verified', component: VentanaVerifiedComponent},
   {path: 'subsvideos', component: VideoSuscripcionesComponent},
-  {path: 'error', component: VentanaErrorComponent},
+  // {path: 'error', component: VentanaErrorComponent},
   {path: 'editarPerfil/:id', component: VentanaEditarPerfilComponent},
   {path: 'buscador', component: VentanaBuscadorComponent},
-  {path: 'populares', component: VideosPopularesComponent}
+  {path: 'populares', component: VideosPopularesComponent},
+  {path: 'editarVideo/:id', component: VentanaEditarVideoComponent},
+  {path: 'subirVideo', component: VentanaSubirVideoComponent},
 ];
 
 @NgModule({

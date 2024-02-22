@@ -1,4 +1,5 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class CampanitaComponent {
   constructor(
     private elRef: ElementRef,
     private renderer: Renderer2,
-    private authservice: AuthService
+    private authservice: AuthService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     if (!this.id == null) {
@@ -27,6 +29,7 @@ export class CampanitaComponent {
       this.authservice.notificaciones(this.id).subscribe(
         (response) => {
           this.notificaciones = response;
+          console.log("notiiiiiiiiiii", response)
           this.countFalseVisible = this.countFalseNotifications();
         },
         (error) => {
@@ -90,5 +93,21 @@ export class CampanitaComponent {
 
   toggleLikeButton(btn: any) {
     this.renderer.addClass(btn, 'btn-like');
+  }
+  handleClick(idTipo: number, username:string) {
+    switch (idTipo) {
+      case 1:
+        this.router.navigate(['perfil', username])
+        break;
+      case 2:
+        
+        break;
+        case 3:
+          this.router.navigate(['perfil', username]);
+        break;
+        case 4:
+          this.router.navigate(['perfil', username]);
+        break;
+    }
   }
 }

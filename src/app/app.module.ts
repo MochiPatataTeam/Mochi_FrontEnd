@@ -26,6 +26,8 @@ import { VideoSuscripcionesComponent } from './componentes/video-suscripciones/v
 import { VentanaBuscadorComponent } from './ventanas/ventana-buscador/ventana-buscador.component';
 import { VentanaEditarPerfilComponent } from './ventanas/ventana-editar-perfil/ventana-editar-perfil.component';
 import { VideosPopularesComponent } from './componentes/videos-populares/videos-populares.component';
+import { VentanaEditarVideoComponent } from './ventanas/ventana-editar-video/ventana-editar-video.component';
+import { VentanaSubirVideoComponent } from './ventanas/ventana-subir-video/ventana-subir-video.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { VideosPopularesComponent } from './componentes/videos-populares/videos-
     VentanaEditarPerfilComponent,
     VentanaBuscadorComponent,
     VideosPopularesComponent,
+    VentanaEditarVideoComponent,
+    VentanaSubirVideoComponent,
 
   ],
   imports: [

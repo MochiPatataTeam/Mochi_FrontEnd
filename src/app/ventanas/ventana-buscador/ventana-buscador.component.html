@@ -1,12 +1,11 @@
 <div class="container">
 
 <div class="buttons">
-  <button class="but" (click)="buscarTitulos()">Videos</button>
-  <button class="but" (click)="buscarCanales()">Canales</button>
+  <button class="btn btn-primary" (click)="buscarTitulos()">Videos</button>
+  <button class="btn btn-primary" (click)="buscarCanales()">Canales</button>
 </div>
 
 <div class="seccion" *ngIf="seccionElegida === 'videos'">
-  <p>Contenido de Videos</p>
   <div *ngIf="videos.length === 0">
     <p>No hay ningún Video con el nombre: {{ dato }}</p>
   </div>
@@ -16,10 +15,10 @@
       <div>
         <iframe width="320" height="180" [src]="vi.safeUrl" allow="autoplay">
         </iframe>
-        <img (click)="videoDetails(vi.id)" />
+        <img class="imagen" (click)="videoDetails(vi.id)" src="assets/imagenes/blanco.png">
       </div>
       <div>
-        <h4>
+        <h4 (click)="videoDetails(vi.id)">
           {{ vi.titulo }}
         </h4>
         <div *ngIf="vi.imagen">
@@ -28,9 +27,9 @@
 
         <div class="name">
           <div *ngIf="!vi.imagen">
-            <img class="canal" src="assets/imagenes/naranja.png" alt="" />
+            <img class="canal" (click)="cargarPerfil(vi.nombre_canal)" src="assets/imagenes/naranja.png" alt="" />
           </div>
-          <p>{{ vi.nombre_canal }}</p>
+          <p class="p" (click)="cargarPerfil(vi.nombre_canal)">{{ vi.nombre_canal }}</p>
         </div>
 
         <p>{{ vi.descripcion }}</p>
@@ -41,25 +40,20 @@
 </div>
 
 <div class="seccion" *ngIf="seccionElegida === 'canales'">
-  <p>Contenido de Canales</p>
   <div *ngIf="canales.length === 0">
     <p>No hay ningún Canal con el nombre: {{ dato }}</p>
   </div>
-  <div *ngIf="canales.length > 0">
-  <div class="canalContainer" *ngFor="let vi of canales">
-    <img class="icon" src="assets/imagenes/naranja.png" />
-    <div>
-      <div>
-        <a [routerLink]="['../Canal', vi.id]">
+  <div class="partition" *ngIf="canales.length > 0">
+    <div *ngFor="let vi of canales" class="canalContainer">
+      <img class="icon" src="assets/imagenes/naranja.png" />
+      <div class="sub">
+        <a [routerLink]="['/perfil', vi.nombre_canal]">
           <h4>{{ vi.nombre_canal }}</h4>
         </a>
-      </div>
-      <div>
         <p>&#64;{{ vi.username }} - subs: {{ vi.suscriptores }}</p>
         <p class="descripcion">{{ vi.descripcion }}</p>
       </div>
     </div>
   </div>
-</div>
 </div>
 </div>
