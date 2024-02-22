@@ -145,6 +145,18 @@ export class AuthService {
     return this.http.get(`${this.urlGeneral}/api/video/canalId/${id}`);
   }
 
+  //Get videos del usuario por Nombre Canal
+  getVideosByNombreCanal(canal: string): Observable<any>{
+    return this.http.get(`${this.urlGeneral}/api/video/canalNombre/${canal}`);
+  }
+
+  subs(id_suscritor: number, id_canal: number): Observable<any> {
+    return this.http.post(`${this.urlGeneral}/api/suscripcion/sub/${id_suscritor}/${id_canal}`, {});
+  }
+
+  comprobar_subs(id_suscritor: number, id_canal: number): Observable<any> {
+    return this.http.get(`${this.urlGeneral}/api/suscripcion/comprobar/${id_suscritor}/${id_canal}`);
+  }
 
   //----------------------------- VERIFICACION -----------------------------------
 
