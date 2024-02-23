@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class BotonSidebarService {
 
   mostrarVideosPopulares: boolean = false;
+  mostrarVideosSuscripciones: boolean = false;
 
   constructor() { }
 }

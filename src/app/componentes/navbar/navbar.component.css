@@ -1740,3 +1740,62 @@ body {
     width: 16%;
   }
 }
+
+/**SIDEBAR**/
+.offcanvas-header{
+  margin-top: 10%;
+  margin-bottom: 3%;
+  margin-left: 5%;
+
+}
+.offcanvas-title{
+  font-size: 30px;
+}
+
+.offcanvas-body{
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+/*Iconos*/
+
+.botoncitos>i{
+  margin-left:3% !important;
+  font-size: 20px;
+}
+
+/*boton*/
+
+.botoncitos>button{
+  margin-bottom: 3%;
+}
+.botoncitos>button {
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  border: none;
+  background: none;
+  font-weight: 500;
+  text-align: left;
+
+}
+
+.botoncitos>button::before {
+  margin-left: auto;
+}
+
+.botoncitos>button::after, button::before {
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: #df9a41;
+  display: block;
+  transition: 0.5s;
+}
+
+.botoncitos>button:hover::after, button:hover::before {
+  width: 100%;
+}
+

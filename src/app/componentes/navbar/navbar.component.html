@@ -8,7 +8,7 @@
           </a>
 
           <a routerLink="/Inicio" routerLinkActive="active" class="logo">
-            <img src="./assets/imagenes/logito.png">
+            <img src="./assets/imagenes/logito.png" (click)="llamarComponente3()">
           </a>
 
           <div class="search-input">
@@ -42,12 +42,13 @@
         </nav>
         <div class="offcanvas offcanvas-start bg-dark text-light" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+            <h4 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Menú</h4>
             <button type="button" class="btn-close me-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
-            <p>Try scrolling the rest of the page to see this option in action.</p>
-            <button (click)="llamarComponente()">Mostrar Videos Populares</button>
+            <div class="botoncitos"><button (click)="llamarComponente3()"><i class='bx bx-home-smile'></i>       INICIO</button></div>
+            <div class="botoncitos"><button (click)="llamarComponente()"><i class='bx bxs-hot'></i>         EN TENDENCIAS</button></div>
+            <div class="botoncitos"><button (click)="llamarComponente2()"><i class='bx bxs-user-voice'></i>              SUSCRIPCIONES</button></div>
 
 
           </div>

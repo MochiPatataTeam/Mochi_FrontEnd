@@ -949,7 +949,7 @@ Most Popular Style
 ---------------------------------------------
 */
 .most-popular {
-  margin-top: 60px;
+  /*margin-top: 60px;*/
   padding: 30px;
   background-color: #1f2122;
   border-radius: 23px;

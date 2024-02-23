@@ -53,9 +53,9 @@
           <div class="row">
             <div class="col-lg-12">
                <div class="row">
-                <ng-container *ngIf="!botonsidebarservice.mostrarVideosPopulares">
+                <ng-container *ngIf="!botonsidebarservice.mostrarVideosPopulares && !botonsidebarservice.mostrarVideosSuscripciones">
                   <div class="heading-section">
-                    <h4><em>Most Popular</em> Right Now</h4>
+                    <h4><em>Nuestros</em> videos</h4>
                   </div>
                 <div class="col-lg-3 col-sm-6 " *ngFor= "let vi of video" >
                   <div class="item">
@@ -72,7 +72,7 @@
                 </ng-container>
                 <div></div>
                 <app-videos-populares *ngIf="botonsidebarservice.mostrarVideosPopulares"></app-videos-populares>
-                <app-video-suscripciones></app-video-suscripciones>
+                <app-video-suscripciones *ngIf="botonsidebarservice.mostrarVideosSuscripciones"></app-video-suscripciones>
 
 
 

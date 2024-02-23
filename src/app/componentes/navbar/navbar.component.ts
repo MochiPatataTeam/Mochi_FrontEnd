@@ -65,5 +65,17 @@ export class NavbarComponent implements OnInit {
   }
   llamarComponente() {
     this.botonsidebarservice.mostrarVideosPopulares = true;
+    this.botonsidebarservice.mostrarVideosSuscripciones = false;
   }
+
+  llamarComponente2(){
+    this.botonsidebarservice.mostrarVideosSuscripciones = true;
+    this.botonsidebarservice.mostrarVideosPopulares = false;
+  }
+
+  llamarComponente3(){
+    this.botonsidebarservice.mostrarVideosSuscripciones = false;
+    this.botonsidebarservice.mostrarVideosPopulares = false;
+  }
+
 }
