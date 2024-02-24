@@ -5,7 +5,7 @@
           <h4><em>En</em> tendencias</h4>
         </div>
         <div class="row">
-          <div class="col-lg-3 col-sm-6 " *ngFor= "let vi of videos">
+          <div class="col-lg-3 col-sm-6 " *ngFor= "let vi of (limitarVideos2 ? videos.slice(0,4) : videos)">
             <div class="item">
               <iframe  width="320" height="180" [src]="vi.safeUrl" allow="autoplay"> </iframe>
               <img (click)="videoDetails2(vi.id)" src="assets/imagenes/blanco.png">

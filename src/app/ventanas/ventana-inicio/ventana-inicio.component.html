@@ -57,7 +57,7 @@
                   <div class="heading-section">
                     <h4><em>Nuestros</em> videos</h4>
                   </div>
-                <div class="col-lg-3 col-sm-6 " *ngFor= "let vi of video" >
+                <div class="col-lg-3 col-sm-6 " *ngFor= "let vi of video.slice(0,4)" >
                   <div class="item">
                     <iframe  width="320" height="180" [src]="vi.safeUrl" allow="autoplay"> </iframe>
                     <img (click)="videoDetails(vi.id)" src="assets/imagenes/blanco.png">
@@ -69,6 +69,7 @@
                     </ul>
                   </div>
                 </div>
+                  <app-videos-populares [limitarVideos2]="true"> </app-videos-populares>
                   <app-video-suscripciones [limitarVideos]="true"></app-video-suscripciones>
                 </ng-container>
                 <div></div>

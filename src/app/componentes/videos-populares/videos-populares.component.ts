@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {Router} from "@angular/router";
@@ -9,6 +9,7 @@ import {Router} from "@angular/router";
   styleUrls: ['./videos-populares.component.css']
 })
 export class VideosPopularesComponent {
+  @Input() limitarVideos2: boolean = false;
   videos: any[]=[];
 
   constructor(
