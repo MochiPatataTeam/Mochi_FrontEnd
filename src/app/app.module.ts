@@ -28,6 +28,7 @@ import { VentanaEditarPerfilComponent } from './ventanas/ventana-editar-perfil/v
 import { VideosPopularesComponent } from './componentes/videos-populares/videos-populares.component';
 import { VentanaEditarVideoComponent } from './ventanas/ventana-editar-video/ventana-editar-video.component';
 import { VentanaSubirVideoComponent } from './ventanas/ventana-subir-video/ventana-subir-video.component';
+import { VideosTematicaComponent } from './componentes/videos-tematica/videos-tematica.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { VentanaSubirVideoComponent } from './ventanas/ventana-subir-video/venta
     VideosPopularesComponent,
     VentanaEditarVideoComponent,
     VentanaSubirVideoComponent,
+    VideosTematicaComponent,
 
   ],
   imports: [

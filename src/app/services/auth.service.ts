@@ -408,4 +408,8 @@ export class AuthService {
     return this.http.get(`${this.urlGeneral}/api/video/sugerencias/${id_suscripcion}/${tematica}`);
   }
 
+  listTematicaByName(tematica:string): Observable<any>{
+    return this.http.get(`${this.urlGeneral}/api/video/tematica/nombre/${tematica}`);
+  }
+
 }

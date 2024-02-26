@@ -53,7 +53,7 @@
           <div class="row">
             <div class="col-lg-12">
                <div class="row">
-                <ng-container *ngIf="!botonsidebarservice.mostrarVideosPopulares && !botonsidebarservice.mostrarVideosSuscripciones">
+                <ng-container *ngIf="!botonsidebarservice.mostrarVideosPopulares && !botonsidebarservice.mostrarVideosSuscripciones && !botonsidebarservice.mostrarVideosTematica">
                   <div class="heading-section">
                     <h4><em>Nuestros</em> videos</h4>
                   </div>
@@ -75,6 +75,8 @@
                 <div></div>
                 <app-videos-populares *ngIf="botonsidebarservice.mostrarVideosPopulares"></app-videos-populares>
                 <app-video-suscripciones *ngIf="botonsidebarservice.mostrarVideosSuscripciones"></app-video-suscripciones>
+                 <app-videos-tematica *ngIf ="botonsidebarservice.mostrarVideosTematica"></app-videos-tematica>
+
 
 
 

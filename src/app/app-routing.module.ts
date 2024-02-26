@@ -17,6 +17,7 @@ import { VentanaBuscadorComponent } from './ventanas/ventana-buscador/ventana-bu
 import { VideosPopularesComponent} from "./componentes/videos-populares/videos-populares.component";
 import { VentanaEditarVideoComponent } from './ventanas/ventana-editar-video/ventana-editar-video.component';
 import { VentanaSubirVideoComponent } from './ventanas/ventana-subir-video/ventana-subir-video.component';
+import {VideosTematicaComponent} from "./componentes/videos-tematica/videos-tematica.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/Inicio',pathMatch: 'full'},
@@ -38,6 +39,7 @@ const routes: Routes = [
   {path: 'populares', component: VideosPopularesComponent},
   {path: 'editarVideo/:id', component: VentanaEditarVideoComponent},
   {path: 'subirVideo', component: VentanaSubirVideoComponent},
+  {path: 'videos-tematica', component: VideosTematicaComponent}
 ];
 
 @NgModule({
