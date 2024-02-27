@@ -1,4 +1,4 @@
-import { Component, OnInit, } from '@angular/core';
+import {Component, Input, OnInit,} from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {Router} from "@angular/router";
@@ -8,8 +8,10 @@ import {Router} from "@angular/router";
   styleUrls: ['./video-suscripciones.component.css']
 })
 export class VideoSuscripcionesComponent implements OnInit {
+  @Input() limitarVideos: boolean = false;
   id_usuario!: number | null;
   videos: any[] = [];
+
 
   constructor(
     private authservice: AuthService,

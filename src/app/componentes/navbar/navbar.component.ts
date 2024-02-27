@@ -65,5 +65,35 @@ export class NavbarComponent implements OnInit {
   }
   llamarComponente() {
     this.botonsidebarservice.mostrarVideosPopulares = true;
+    this.botonsidebarservice.mostrarVideosSuscripciones = false;
+    this.botonsidebarservice.mostrarVideosTematica = false;
   }
+
+  llamarComponente2(){
+    this.botonsidebarservice.mostrarVideosSuscripciones = true;
+    this.botonsidebarservice.mostrarVideosPopulares = false;
+    this.botonsidebarservice.mostrarVideosTematica = false;
+  }
+
+  llamarComponente3(){
+    this.botonsidebarservice.mostrarVideosSuscripciones = false;
+    this.botonsidebarservice.mostrarVideosPopulares = false;
+    this.botonsidebarservice.mostrarVideosTematica = false;
+  }
+
+  llamarComponente4(){
+    this.botonsidebarservice.mostrarVideosSuscripciones = false;
+    this.botonsidebarservice.mostrarVideosPopulares = false;
+    this.botonsidebarservice.mostrarVideosTematica = true;
+    console.log(this.mostrarVideosPopulares);
+
+  }
+  navigateToVideos(tematica: string) {
+    this.router.navigate(['/videos-tematica', { tematica }]);
+  }
+
+  seleccionarTematica(tematica: string): void {
+    this.botonsidebarservice.actualizarTematica(tematica);
+  }
+
 }
