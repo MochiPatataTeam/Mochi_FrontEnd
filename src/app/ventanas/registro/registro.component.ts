@@ -45,7 +45,6 @@ export class RegistroComponent {
   touched = {
     nombre: false,
     primerApellido: false,
-    segundoApellido: false,
     username: false,
     password: false,
     email: false,
@@ -59,23 +58,21 @@ export class RegistroComponent {
     this.loginForm = this.fb.group({
       nombre: ['', Validators.required],
       primerApellido: ['', Validators.required],
-      segundoApellido: ['', Validators.required],
       username: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(5)]],
+      password: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', [Validators.required, Validators.email]],
       telefono: ['', Validators.required],
       nombre_canal: ['', Validators.required],
       descripcion: ['', Validators.required],
       // imagen: ['', Validators.required],
     });
-    
+
   }
-  
+
 
   Datos(
     nombre: string,
     primerApellido: string,
-    segundoApellido: string,
     username: string,
     password: string,
     email: string,
@@ -86,7 +83,7 @@ export class RegistroComponent {
   ) {
     const Usuario = {
       nombre: nombre,
-      apellidos: primerApellido + ' ' + segundoApellido,
+      apellidos: primerApellido ,
       username: username,
       password: password,
       email: email,
@@ -126,12 +123,6 @@ export class RegistroComponent {
         console.log('Registrado c:', data);
         this.router.navigateByUrl('/Inicio');
 
-        // this.authService.login(payload.username, payload.password).subscribe(
-        //   (loginData) => {
-        //     localStorage.setItem('jwt', JSON.stringify(loginData));
-        //     this.router.navigateByUrl('/Inicio');
-        //   },
-        // );
       },
       (error) => {
         console.error(':C', error);
