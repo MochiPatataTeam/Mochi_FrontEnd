@@ -31,7 +31,7 @@ button{
     border-radius: 0 0 10px 10px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;    
+    background-size: cover;
     box-shadow: 0 0 5rem rgba(220, 220, 220, 0.2);
 
 }
@@ -243,10 +243,10 @@ ul {
     margin-top: 10px;
     margin-bottom: 0px;
     display: inline-block;
-    white-space: nowrap;      
-    overflow: hidden;         
-    text-overflow: ellipsis;   
-    max-width: 200px;  
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
   }
 
   .most-popular .item span {
@@ -298,7 +298,7 @@ ul {
 }
 .clips .item h4 {
   font-size: 15px;
-  display: inline-block;  
+  display: inline-block;
 }
 .boton-lapiz{
   position: absolute;
@@ -316,4 +316,22 @@ ul {
 
 .boton-lapiz:hover{
   background-color: black;
+}
+
+#alert{
+  color: #df9a41;
+  font-size: 1.8rem;
+}
+
+.isPublico{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.isPublico img{
+  height: 5rem;
+  width: auto;
+  margin: 2rem 0;
 }

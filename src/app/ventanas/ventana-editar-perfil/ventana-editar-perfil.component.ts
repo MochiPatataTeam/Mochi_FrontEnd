@@ -11,11 +11,12 @@ import { AuthService } from 'src/app/services/auth.service';
 export class VentanaEditarPerfilComponent implements OnInit{
 
   id: number;
-  usuario: any; 
+  usuario: any;
+  privacidadUsuario: any;
   usuarioForm: FormGroup;
 
   customButtonText: string = 'Guardar cambios';
-  
+
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder){}
 
@@ -26,8 +27,14 @@ export class VentanaEditarPerfilComponent implements OnInit{
     this.authService.getUsuariobyId(this.id).subscribe(
       (usuario: any) => {
         this.usuario = usuario;
-        this.iniciarForm();
-      }, 
+
+        this.authService.getPrivByUsuariId(this.id).subscribe(
+          (privacidadUsuario : any) => {
+            this.privacidadUsuario = privacidadUsuario;
+            this.iniciarForm();
+          }
+        )
+      },
       (error) => {
         console.error('Error al obtener los datos del usuario', error);
       }
@@ -43,13 +50,18 @@ export class VentanaEditarPerfilComponent implements OnInit{
       email: [this.usuario.email],
       telefono: [this.usuario.telefono],
       nombre_canal: [this.usuario.nombreCanal],
-      descripcion: [this.usuario.descripcion]
+      descripcion: [this.usuario.descripcion],
+
+      isPublico: [this.privacidadUsuario.isPublico],
+      permitirSuscripciones: [this.privacidadUsuario.permitirSuscripciones],
+      permitirDescargar: [this.privacidadUsuario.permitirDescargar],
     });
   }
 
 
+
   onSubmit(): void{
-    const formData = this.usuarioForm.value;
+    const formData = this.usuarioForm.getRawValue(); // Obtener solo los valores del formulario
 
     this.authService.perfilEdit(this.id, formData).subscribe
     (data =>{
@@ -58,23 +70,6 @@ export class VentanaEditarPerfilComponent implements OnInit{
     },
     error => {
       console.error('Error al actualizar usuario', error);
-      }
-    );
-  }
-
-
-
-  actualizarUsuario(): void {
-    this.id = this.route.snapshot.params['id'];
-    // const usuarioLogueadoId = Number(localStorage.getItem('Id')!);
-
-    this.authService.perfilEdit(this.id, this.usuario).subscribe(
-      respuesta => {
-        console.log('Usuario actualizado', respuesta);
-        this.router.navigate(['/perfil']);
-      }, 
-      error => {
-        console.error('Error al actualizar usuario', error);
       }
     );
   }
