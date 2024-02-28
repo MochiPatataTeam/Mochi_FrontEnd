@@ -20,7 +20,7 @@
 
   </div><!--aqui termina-->
   <p >Comentarios</p>
-    <div class="texto">
+    <div class="texto" *ngIf="id_usuario">
 
       <textarea class="form-control" [(ngModel)]="nuevoComentario" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px"></textarea>
       <app-boton [buttonText]="customButtonText" (click)="crearComentario(this.nuevoComentario,videoId.canal)"></app-boton>

@@ -46,6 +46,7 @@ export class VentanaReproduccionComponent implements OnInit {
         this.nombre_canal=response.canal;
         this.tematica= this.videoId.tematica;
         console.log('asdfjkasdfjkljklasdf', this.tematica);
+        if (this.id_usuario != null) {
         this.authservice.listSusyTematica(this.id_usuario!,this.tematica).subscribe(
           (data)=>{
             // Verificar si data es un array y tiene al menos un elemento
@@ -60,7 +61,7 @@ export class VentanaReproduccionComponent implements OnInit {
 
 
           }}
-        )
+        )}
         this.sanitizarUrls();
       },
       (error) => {
@@ -132,7 +133,7 @@ export class VentanaReproduccionComponent implements OnInit {
       ).subscribe(
         (response) => {
           console.log('Comentario creado:', response);
-          
+
           this.authservice.buscarIdCanal(username).subscribe(
             (response: any) => {
               console.error(response);
@@ -141,13 +142,13 @@ export class VentanaReproduccionComponent implements OnInit {
                 (response: any) => {
                   console.error(response);
                   window.location.reload();
-                }, 
+                },
                 (error) => {
                   console.error(error);
                }
               );
             }
-            }, 
+            },
             (error) => {
               console.error(error);
            }
@@ -160,7 +161,7 @@ export class VentanaReproduccionComponent implements OnInit {
     } else {
       console.error('ID de usuario es nulo. No se puede crear el comentario.');
     }
-    
+
 
   }
 
@@ -186,13 +187,13 @@ export class VentanaReproduccionComponent implements OnInit {
                 (response: any) => {
                   console.error(response);
                   window.location.reload();
-                }, 
+                },
                 (error) => {
                   console.error(error);
                }
               );
             }
-            }, 
+            },
             (error) => {
               console.error(error);
            }
