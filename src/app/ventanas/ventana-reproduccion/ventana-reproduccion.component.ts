@@ -24,6 +24,10 @@ export class VentanaReproduccionComponent implements OnInit {
   canal: any; //Para cargar el perfil
   tematica: string;
   videosug: any []=[];
+  mostrarTituloCompleto: boolean = false;
+  longitudMaximaTitulo: number = 15;
+
+
   constructor(private authservice: AuthService,
               private route: ActivatedRoute,
               private sanitizer: DomSanitizer,
@@ -68,6 +72,7 @@ export class VentanaReproduccionComponent implements OnInit {
         console.log(error);
       }
     );
+    //borra hasta aqui
     this.authservice.videoid(this.id).subscribe(
       (response) => {
         this.videoId = response;
@@ -244,4 +249,6 @@ export class VentanaReproduccionComponent implements OnInit {
 
 
   }
+
+
 }
