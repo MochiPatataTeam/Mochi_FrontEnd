@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
+import { Location } from '@angular/common';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class VentanaLoginComponent {
 
   error: any;
 
-  constructor(private authService: AuthService, private router: Router){}
+  constructor(private authService: AuthService, private router: Router, private location: Location){}
 
   customButtonText: string = 'Iniciar sesión';
 
@@ -24,7 +25,15 @@ export class VentanaLoginComponent {
         // Login exitoso si existe el JWT
         if(response){
           localStorage.setItem('jwt', JSON.stringify(response));
-          this.router.navigate(['/Inicio']);
+          this.router.navigate(['../Inicio']);
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          if (this.router.url === '/Inicio') {
+            this.location.replaceState(this.router.url);
+            window.location.reload();
+          }
+        }
+      });
         }
       },
       error => {
