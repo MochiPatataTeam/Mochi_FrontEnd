@@ -40,7 +40,7 @@
       </div>
     </fieldset>
 
-    <app-boton [buttonText]="customButtonText" type="submit"></app-boton>
+    <app-boton [buttonText]="customButtonText" type="submit" style="float: right"></app-boton>
   </form>
 </main>
 <main *ngIf="this.ventana == true" class="card-overlay">
@@ -75,7 +75,7 @@
         <img class="img" src="./assets/imagenes/logo.png" />
         <span class="title">Edición Realizada</span>
         <p class="message">
-          Ha terminado la edición del video vuelve a tu perfil.
+          Video editado con éxito, puedes regresar a tu perfil.
         </p>
         <button class="btn btn-primary" [routerLink]="['/perfil']">
           Volver a Perfil

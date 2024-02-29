@@ -22,7 +22,7 @@
           {{ vi.titulo }}
         </h4>
         <div *ngIf="vi.imagen">
-          <img [src]="vi.imagen" alt="" />
+          <img class="canal" [src]="vi.imagen" alt="" />
         </div>
 
         <div class="name">
@@ -37,7 +37,7 @@
           <li *ngIf="via.visualizacion !== null; else holi"><i class='bx bx-show-alt'></i>  {{via.visualizacion}}</li>
         </p>
         <ng-template #holi><li><i class='bx bx-show-alt'></i>0</li> </ng-template>
-      
+
         <p>{{ vi.descripcion }}</p>
        </div>
     </div>
@@ -51,7 +51,7 @@
   </div>
   <div class="partition" *ngIf="canales.length > 0">
     <div *ngFor="let vi of canales" class="canalContainer">
-      <img class="icon" src="assets/imagenes/naranja.png" />
+      <img class="icon" src="{{ vi.imagen}}" />
       <div class="sub">
         <a [routerLink]="['/perfil', vi.nombre_canal]">
           <h4>{{ vi.nombre_canal }}</h4>

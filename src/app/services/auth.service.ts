@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map, throwError  } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, map, throwError  } from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams, HttpErrorResponse} from '@angular/common/http';
 import { Router } from '@angular/router';
 //import {videoDTO} from "../ventanas/ventana-reproduccion/videoDto";
@@ -12,17 +12,20 @@ export class AuthService {
   constructor(private http: HttpClient,
               private router: Router) {}
 
-  private urlGeneral= 'http://127.0.0.1:8000';
-  private videolista = 'http://127.0.0.1:8000/api/video';
+  private urlGeneral= 'https://127.0.0.1:8000';
+  private videolista = 'https://127.0.0.1:8000/api/video';
 
-  private lista_comentarios ='http://127.0.0.1:8000/api/comentario';
-  private lista_respuestas ='http://127.0.0.1:8000/api/respuesta';
-  private lista_usuarios= 'http://127.0.0.1:8000/api/usuario';
+  private lista_comentarios ='https://127.0.0.1:8000/api/comentario';
+  private lista_respuestas ='https://127.0.0.1:8000/api/respuesta';
+  private lista_usuarios= 'https://127.0.0.1:8000/api/usuario';
 
 
   private userName: string | null = null;
   private nombreCanal: string | null = null;
   private idUsuario: number | null = null;
+  private reloadRequiredSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public reloadRequired$: Observable<boolean> = this.reloadRequiredSubject.asObservable();
+
 
 
 
@@ -53,10 +56,12 @@ export class AuthService {
       telefono: data.telefono,
       nombre_canal: data.nombre_canal,
       descripcion: data.descripcion,
+      imagen: data.imagen // Aquí se incluye la imagen en el payload
     };
 
     return this.http.post(`${this.urlGeneral}/api/registro`, payload);
   }
+
 
   //----------------------------- LOGIN Y LOGOUT -----------------------------------
   getUsername(): string | null { //Para obtener el username como variable y poder mostrarlo
@@ -105,6 +110,12 @@ export class AuthService {
     localStorage.removeItem('seccionElegida');
     this.router.navigate(['/Inicio']);
   }
+
+  //despues del login
+  setReloadRequired(reload: boolean): void {
+    this.reloadRequiredSubject.next(reload);
+  }
+
   //----------------------------- PERFIL -----------------------------------
 
   //Perfil usuario logueado
@@ -389,7 +400,7 @@ export class AuthService {
     return this.http.put(`${this.urlGeneral}/api/notificacion/${id}`, credentials);
   }
   eliminarVideo(id:number): Observable<any> {
-    
+
     return this.http.delete(`${this.urlGeneral}/api/video/${id}`);
   }
   //-----COMENTARIOS Y RESPUESTAS

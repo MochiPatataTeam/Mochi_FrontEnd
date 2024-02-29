@@ -27,7 +27,6 @@ export class VideoSuscripcionesComponent implements OnInit {
     } else {
       this.id_usuario = this.authservice.getStoredIdUsuario();
     }
-    console.log('soy el id', this.id_usuario);
     if(this.id_usuario==null){
       console.log('no funciona');
 

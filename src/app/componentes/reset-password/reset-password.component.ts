@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ResetPasswordComponent {
 
+  ventana: boolean = false;
+
     constructor(private authService: AuthService){}
 
     email: string = '';
@@ -17,6 +19,7 @@ export class ResetPasswordComponent {
       this.authService.requestPasswordReset(this.email)
         .subscribe(response => {
           console.log('si lo tengo', response);
+          this.ventana = true;
         }, error => {
           console.error(':c', error);
         });
