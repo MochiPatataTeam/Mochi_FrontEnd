@@ -7,7 +7,7 @@
 }
 ul {
   list-style: none;
-  width: 58vw;
+  width: 62vw;
 }
 .div {
   background-color: #212529;
@@ -52,6 +52,7 @@ ul {
 .etiqueta img {
   width: 8vh;
   border-radius: 50%;
+  border-bottom: 1px solid White;
 }
 .usuario img {
   width: 8vh;
@@ -63,18 +64,35 @@ ul {
   border-top-left-radius: 5%;
   border-bottom-left-radius: 5%;
 }
+.buscador{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  border-top-left-radius: 3%;
+  height: 12vh;
+  margin-bottom: 0.5em;
+  background-color: #85a1bc;
+}
+.input-busqueda {
+  height: 5vh;
+  border-style: none;
+  width: 15vw;
+  background-color: transparent !important;
+  margin-right: 1em;
+  margin-left: 0.2em;
+  border-bottom: 1px solid #000;
+}
 .etiqueta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 14vw;
+  width: 17vw;
   height: 10vh;
   margin-top: 0.2em;
-  margin-left: 0.2em;
-  margin-right: 0.2em;
   border: none;
   background-color: #334b48;
-  border-radius: 10%;
+  color: White;
 }
 .etiqueta:hover {
   color: white;
@@ -94,117 +112,63 @@ ul {
 }
 .usuario {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: flex-start;
+  flex-direction: row;
   align-items: center;
   border-top-right-radius: 3%;
   background-color: #9dadbd;
+  height: 18vh;
 }
 h6 {
+  margin: 1em;
   text-decoration: underline;
   font-size: 20px;
 }
 .other {
-  margin-top: 1em;
+  margin-top: 2em;
   width: 20vw;
-  background-color: #c1cbcd;
-  border-top-left-radius: 0px;
+  justify-content: flex-end;
+  align-items: flex-end;
   box-shadow: 1px 2px 0px #c1cbcd;
+  border-radius: 0 10px 10px 10px;
 }
 .other1 {
   background-color: #fed96a;
 }
-.other1:before {
-  content: "";
-  position: relative;
-  top: 0.46vh;
-  right: 0px;
-  left: -9px;
-  width: 0px;
-  height: 0px;
-  border: 5px solid #fed96a;
-  border-left-color: transparent;
-  border-bottom-color: transparent;
-}
-
 .other2 {
   background-color: #ff9194;
 }
-.other2:before {
-  content: "";
-  position: relative;
-  top: 0.46vh;
-  right: 0px;
-  left: -9px;
-  width: 0px;
-  height: 0px;
-  border: 5px solid #ff9194;
-  border-left-color: transparent;
-  border-bottom-color: transparent;
-}
+
 .ul-other {
   display: flex;
   justify-content: left;
+  margin-left: -3em;
 }
 .ul-self {
   display: flex;
   justify-content: right;
+  margin-left: -1em;
 }
-.other .msg {
-  margin-top: -2em;
-  padding: 10px;
-  border-radius: 2px;
-}
+
 .msg {
   margin-top: -1em;
   padding: 10px;
   border-radius: 2px;
 }
 .self {
-  margin-top: 3em;
+  margin-top: 2em;
   width: 20vw;
   justify-content: flex-end;
   align-items: flex-end;
-  border-bottom-right-radius: 0px;
   box-shadow: 1px 2px 0px #c1cbcd;
-  border-radius: 3%;
+  border-radius: 10px 0 10px 10px;
 }
 .self1 {
   background-color: #fff8e8;
 }
-.self1:after {
-  content: "";
-  position: relative;
-  display: inline-block;
-  float: right;
-  bottom: 0vh;
-  right: 0px;
-  left: 0.65vw;
-  width: 0px;
-  height: 0px;
-  border: 5px solid #fff8e8;
-  border-right-color: transparent;
-  border-top-color: transparent;
-  box-shadow: 0px 2px 0px #c1cbcd;
-}
 
 .self2 {
   background-color: #c0b562;
-}
-.self2:after {
-  content: "";
-  position: relative;
-  display: inline-block;
-  float: right;
-  bottom: 0vh;
-  right: 0px;
-  left: 0.65vw;
-  width: 0px;
-  height: 0px;
-  border: 5px solid #c0b562;
-  border-right-color: transparent;
-  border-top-color: transparent;
-  box-shadow: 0px 2px 0px #c1cbcd;
 }
 span {
   font-size: 13px;
@@ -255,23 +219,7 @@ span {
   align-items: flex-end;
   border-bottom-right-radius: 0px;
   box-shadow: 1px 2px 0px #c1cbcd;
-  border-radius: 3%;
-}
-.self-dots:after {
-  content: "";
-  position: relative;
-  display: inline-block;
-  float: right;
-  bottom: 0vh;
-  top: -0.9vh;
-  right: 0px;
-  left: 0.65vw;
-  width: 0px;
-  height: 0px;
-  border: 5px solid #c0b562;
-  border-right-color: transparent;
-  border-top-color: transparent;
-  box-shadow: 0px 2px 0px #c1cbcd;
+  border-radius: 10px 0 10px 10px;
 }
 .dots-container {
   display: flex;

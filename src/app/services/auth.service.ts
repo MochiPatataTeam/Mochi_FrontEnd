@@ -388,7 +388,10 @@ export class AuthService {
     };
     return this.http.put(`${this.urlGeneral}/api/notificacion/${id}`, credentials);
   }
-
+  eliminarVideo(id:number): Observable<any> {
+    
+    return this.http.delete(`${this.urlGeneral}/api/video/${id}`);
+  }
   //-----COMENTARIOS Y RESPUESTAS
   crearComentario(usuario: number, video:number, comentario:string): Observable<any>{
     const credentials={

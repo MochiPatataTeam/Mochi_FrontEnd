@@ -27,6 +27,7 @@
   background-color: #fff;
   padding: 10px;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .notification-menu .avatar {
@@ -49,7 +50,7 @@
   position: absolute;
   top: 6px;
   right: 0px;
-  background-color: red;
+  background-color: #DF9A41;
   color: white;
   border-radius: 75%;
   padding-right: 0.5em;

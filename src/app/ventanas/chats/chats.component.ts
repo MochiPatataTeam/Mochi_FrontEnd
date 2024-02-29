@@ -43,7 +43,24 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
   mensajeActualColor = 'even';
   colorSelf = 'chartreuse';
   colorOther = '#c1cbcd';
+  filtroBusqueda: string = '';
+  contactosOriginal: any[] = [];
+  contactosMostrados: any[] = [];
 
+  realizarBusqueda() {
+    if (this.filtroBusqueda.trim() !== '') {
+      this.contactosMostrados = this.filtrarContactos();
+    } else {
+      this.contactosMostrados = this.contactosOriginal;
+    }
+  }
+
+  filtrarContactos() {
+    return this.contactosOriginal.filter((contacto) =>
+      contacto.nombre.toLowerCase().includes(this.filtroBusqueda.toLowerCase())
+    );
+  }
+  
   toggleEtiqueta(id: number) {
     Object.keys(this.estadosBotones).forEach((key) => {
       this.estadosBotones[key] = false;
@@ -72,6 +89,8 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
       this.contactos$ = this.authservice.contactos(this.id);
       this.contactos$.subscribe(
         (contactResponse) => {
+          this.contactosOriginal = contactResponse;
+          this.contactosMostrados = contactResponse;
           this.contactos = contactResponse;
         },
         (error) => {
@@ -97,9 +116,7 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
           this.chatSeleccionado = 1;
           this.mensajesJuntos= this.imprimirMensajesPorEmisor(this.mensajesConver);
           this.nombreIdPersona = nombre;
-          console.log("vvvvvvvvvvvvvvvvvvv",this.mensajesConver)
-          console.log("deeeeeeeeeeeeeee2222",this.mensajesJuntos);
-        },
+         },
         (error) => {
           console.log(error);
         }
@@ -123,9 +140,16 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
   
     const mensajesUnidos = [...mensajesEmisor, ...mensajesReceptor];
   
-    mensajesUnidos.sort((a, b) => new Date(a.fecha.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3')).getTime() - new Date(b.fecha.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3')).getTime());
+    mensajesUnidos.sort((a, b) => {
+      const fechaA = new Date(a.fecha.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3')).getTime();
+      const fechaB = new Date(b.fecha.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3')).getTime();
   
-    console.log("Mensajes ordenados por fecha ascendente:", mensajesUnidos);
+      if (fechaA === fechaB) {
+        return a.id - b.id;
+      }
+  
+      return fechaA - fechaB;
+    });
   
     return mensajesUnidos;
   }
@@ -140,8 +164,6 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
       .padStart(2, '0')}/${(fechaActual.getMonth() + 1)
       .toString()
       .padStart(2, '0')}/${fechaActual.getFullYear()}`;
-
-    console.log(mensaje);
 
     if (this.id != null) {
       this.authservice

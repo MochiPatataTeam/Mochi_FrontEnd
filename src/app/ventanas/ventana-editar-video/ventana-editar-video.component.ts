@@ -80,13 +80,6 @@ export class VentanaEditarVideoComponent implements OnInit {
 
   onSubmit(): void {
     this.ventana = true;
-    console.log(
-      this.id,
-      this.titulo,
-      this.url,
-      this.idTematicas,
-      this.descripcion
-    );
     if (this.idCanal != null) {
       this.authService
         .modificarVideo(

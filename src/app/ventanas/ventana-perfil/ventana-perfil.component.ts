@@ -212,4 +212,16 @@ export class VentanaPerfilComponent implements OnInit{
     );
   }
 }
+
+eliminarVideo(Id: number): void{
+  this.authService.eliminarVideo(Id).subscribe(
+    (response) => {
+      console.log("video borrado", response)
+      window.location.reload();
+    },
+    (error) => {
+      console.log(error);
+    }
+  );
+}
 }

@@ -29,7 +29,6 @@ export class CampanitaComponent {
       this.authservice.notificaciones(this.id).subscribe(
         (response) => {
           this.notificaciones = response;
-          console.log("notiiiiiiiiiii", response)
           this.sortNotificationsByVisibility();
           this.countFalseVisible = this.countFalseNotifications();
         },
@@ -106,7 +105,6 @@ export class CampanitaComponent {
       }
     });
     this.countFalseVisible = 0;
-    console.log(this.notificaciones);
   }
 
   toggleLikeButton(btn: any) {
