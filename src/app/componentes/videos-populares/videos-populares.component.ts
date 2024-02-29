@@ -25,7 +25,6 @@ export class VideosPopularesComponent {
       (response:any)=>{
         this.videos=response;
         this.sanitizarUrls();
-        console.log(this.videos);
       },
       (error:any)=>{
         console.error('No consigo los videos', error);

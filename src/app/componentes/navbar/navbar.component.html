@@ -48,7 +48,7 @@
           <div class="offcanvas-body">
             <div class="botoncitos"><button (click)="llamarComponente3()"><i class='bx bx-home-smile'></i>       INICIO</button></div>
             <div class="botoncitos"><button (click)="llamarComponente()"><i class='bx bxs-hot'></i>         EN TENDENCIAS</button></div>
-            <div class="botoncitos"><button (click)="llamarComponente2()"><i class='bx bxs-user-voice'></i>              SUSCRIPCIONES</button></div>
+            <div class="botoncitos"  *ngIf="isLoggedIn()"><button (click)="llamarComponente2()"><i class='bx bxs-user-voice'></i>              SUSCRIPCIONES</button></div>
             <br>
             <br>
             <!-- otro-componente.component.html -->
