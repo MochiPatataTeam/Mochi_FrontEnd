@@ -993,10 +993,10 @@ Most Popular Style
   margin-top: 10px;
   margin-bottom: 0px;
   display: inline-block;
-  white-space: nowrap;      
-  overflow: hidden;         
-  text-overflow: ellipsis;   
-  max-width: 200px;  
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
 .most-popular .item span {
   color: #666;

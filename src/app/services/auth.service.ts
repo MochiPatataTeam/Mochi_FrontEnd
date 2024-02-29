@@ -12,12 +12,12 @@ export class AuthService {
   constructor(private http: HttpClient,
               private router: Router) {}
 
-  private urlGeneral= 'https://127.0.0.1:8000';
-  private videolista = 'https://127.0.0.1:8000/api/video';
+  private urlGeneral= 'http://127.0.0.1:8000';
+  private videolista = 'http://127.0.0.1:8000/api/video';
 
-  private lista_comentarios ='https://127.0.0.1:8000/api/comentario'
-  private lista_respuestas ='https://127.0.0.1:8000/api/respuesta'
-  private lista_usuarios= 'https://127.0.0.1:8000/api/usuario';
+  private lista_comentarios ='http://127.0.0.1:8000/api/comentario';
+  private lista_respuestas ='http://127.0.0.1:8000/api/respuesta';
+  private lista_usuarios= 'http://127.0.0.1:8000/api/usuario';
 
 
   private userName: string | null = null;
@@ -168,6 +168,12 @@ export class AuthService {
     return this.http.get(`${this.urlGeneral}/api/suscripcion/comprobar/${id_suscritor}/${id_canal}`);
   }
 
+  visualizacion(id_video: number, id_usuario: number): Observable<any> {
+    return this.http.post(`${this.urlGeneral}/api/valoracion/visual/${id_video}/${id_usuario}`, {});
+  }
+  visualizacionSinUser(id_video: number): Observable<any> {
+    return this.http.post(`${this.urlGeneral}/api/valoracion/visual/${id_video}`, {});
+  }
   //----------------------------- VERIFICACION -----------------------------------
 
   verifyEmail(params: any){

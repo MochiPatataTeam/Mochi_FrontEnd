@@ -952,9 +952,10 @@ Most Popular Style
 
 .most-popular .item {
   background-color: #27292a;
-  padding: 30px 15px;
+  padding: 5px 15px 20px 15px;
   border-radius: 23px;
   margin-bottom: 30px;
+  margin-right: -1rem;
   position: relative; /* Agregado para posicionar elementos secundarios */
 }
 
@@ -982,8 +983,11 @@ Most Popular Style
   margin-top: 10px;
   margin-bottom: 0px;
   display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
-
 .most-popular .item span {
   color: #666;
   display: block;
@@ -1014,6 +1018,7 @@ Most Popular Style
   text-align: center;
   margin-bottom: -53px;
 }
+
 
 /*
 ---------------------------------------------

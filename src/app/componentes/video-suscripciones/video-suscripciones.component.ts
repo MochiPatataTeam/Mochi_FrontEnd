@@ -36,6 +36,7 @@ export class VideoSuscripcionesComponent implements OnInit {
         (response: any) => {
           // Manejar la respuesta y asignarla a la variable videosSuscripciones
           this.videos = response;
+          console.log('hola soy yo mira a ver',response)
           this.sanitizarUrls();
           console.log(this.videos);
         },
