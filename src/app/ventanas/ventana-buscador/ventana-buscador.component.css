@@ -103,3 +103,11 @@ iframe {
   left: 0;
   z-index: 1;
 }
+li{
+list-style-type: none;
+}
+.lisa{
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+}

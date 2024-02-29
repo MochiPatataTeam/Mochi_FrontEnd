@@ -154,17 +154,39 @@
                 <div class="row">
                   <div class="col-lg-3 col-sm-6 " *ngFor= "let vid of videos">
                     <div class="item">
+                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Eliminación de Video</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              ¿Estás seguro que deseas eliminar el video?
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="eliminarVideo(vid?.id)">Sí</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                       <button type="button" class="boton-lapiz" [routerLink]="['/editarVideo', vid?.id]">
                         <i class='bx bxs-edit-alt' style='color:white' onmouseover="this.style.color='#df9a41'" onmouseout="this.style.color='white'"></i>
+                      </button>
+                      <button type="button" class="boton-borrar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class='bx bxs-trash' style='color:white' onmouseover="this.style.color='#df9a41'" onmouseout="this.style.color='white'"></i>
                       </button>
                       <iframe  width="310" height="170" [src]="vid?.safeUrl" allow="autoplay"> </iframe>
                       <img (click)="videoDetails(vid?.id)" src="assets/imagenes/blanco.png">
 
                       <h4>{{vid?.titulo}}<br><span>{{vid?.canal}}</span></h4>
-                      <ul>
-                          <li><i class='bx bx-like' ></i> 4.8 M</li>
-                          <li><i class='bx bx-download'></i> 2.3M</li>
+                      <ul *ngFor= "let via of vid.valoracionGlobalDTO" >
+                        <li><i class='bx bx-like'></i> {{via.fav}}</li>
+                        <li><i class='bx bx-dislike'></i> {{via.dislike}}</li>
+                        <li *ngIf="via.visualizacion !== null; else holi"><i class='bx bx-show-alt'></i> {{via.visualizacion}}</li>
                       </ul>
+                      <ng-template #holi><li><i class='bx bx-show-alt'></i>0</li> </ng-template>
                     </div>
                   </div>
                 </div>
@@ -199,10 +221,12 @@
                     <img (click)="videoDetails(vid?.id)" src="assets/imagenes/blanco.png">
 
                     <h4>{{vid?.titulo}}<br><span>{{vid?.canal}}</span></h4>
-                    <ul>
-                        <li><i class='bx bx-like' ></i> 4.8 M</li>
-                        <li><i class='bx bx-download'></i> 2.3M</li>
+                    <ul *ngFor= "let via of vid.valoracionGlobalDTO" >
+                      <li><i class='bx bx-like'></i> {{via.fav}}</li>
+                      <li><i class='bx bx-dislike'></i> {{via.dislike}}</li>
+                      <li *ngIf="via.visualizacion !== null; else holi"><i class='bx bx-show-alt'></i> {{via.visualizacion}}</li>
                     </ul>
+                    <ng-template #holi><li><i class='bx bx-show-alt'></i>0</li> </ng-template>
                   </div>
                 </div>
               </div>

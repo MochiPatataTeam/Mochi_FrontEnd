@@ -2,22 +2,36 @@
   <div class="div" *ngIf="contactos$ | async as contactos; else loading">
     <div class="div2">
       <div class="contactos">
-        <button
-          [class.activado]="estadosBotones[contact.id]"
-          *ngFor="let contact of contactos"
-          class="etiqueta"
-          (click)="mensajesChat(contact.id, contact.nombre)"
-        >
-          <img
-            src="https://bootdey.com/img/Content/avatar/avatar2.png"
-            alt="avatar"
+        <div class="buscador">
+          <input
+            class="input-busqueda"
+            type="text"
+            placeholder="Buscar contactos..."
+            [(ngModel)]="filtroBusqueda"
+            (input)="realizarBusqueda()"
           />
-          <div class="names">
-            <div>{{ contact.nombre }}</div>
-          </div>
-          <div></div>
-        </button>
+        </div>
+      
+        <div *ngIf="contactosMostrados.length > 0; else noContactos">
+          <button
+            [class.activado]="estadosBotones[contact.id]"
+            *ngFor="let contact of contactosMostrados"
+            class="etiqueta"
+            (click)="mensajesChat(contact.id, contact.nombre)"
+          >
+            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar" />
+            <div class="names">
+              <div>{{ contact.nombre }}</div>
+            </div>
+            <div></div>
+          </button>
+        </div>
+      
+        <ng-template #noContactos>
+          <p>No se encontraron contactos con ese nombre.</p>
+        </ng-template>
       </div>
+      
 
       <div
         class="chat-arriba"
@@ -46,8 +60,6 @@
                         [ngClass]="{
                           self1: i % 2 === 0,
                           self2: i % 2 !== 0,
-                          'self1:before': i % 2 === 0,
-                          'self2:before': i % 2 !== 0
                         }"
                       >
                         <div class="msg">
@@ -64,8 +76,6 @@
                         [ngClass]="{
                           other1: i % 2 === 0,
                           other2: i % 2 !== 0,
-                          'other1:before': i % 2 === 0,
-                          'other2:before': i % 2 !== 0
                         }"
                       >
                         <div class="msg">
@@ -87,6 +97,7 @@
             type="text"
             [(ngModel)]="nuevoMensaje"
             placeholder="Escribe tu mensaje..."
+            (keyup.enter)="enviarMensaje(nuevoMensaje, idPersona)"
           />
           <button
             class="button"
@@ -154,8 +165,6 @@
                       [ngClass]="{
                         self1: i % 2 === 0,
                         self2: i % 2 !== 0,
-                        'self1:before': i % 2 === 0,
-                        'self2:before': i % 2 !== 0
                       }"
                     >
                       <div class="msg">
@@ -172,8 +181,6 @@
                       [ngClass]="{
                         other1: i % 2 === 0,
                         other2: i % 2 !== 0,
-                        'other1:before': i % 2 === 0,
-                        'other2:before': i % 2 !== 0
                       }"
                     >
                       <div class="msg">
