@@ -1,362 +1,388 @@
-<form class="Container" [formGroup]="loginForm">
-  <div class="imagenes">
-    <img class="img" src="./assets/imagenes/logito.png" />
-    Descubre un mundo de posibilidades al registrarte en nuestra aplicación.
-    Únete a una comunidad apasionada y accede a funciones exclusivas.
-    ¡Registrate ahora y comienza tu emocionante viaje con nosotros! 🚀✨
-  </div>
-  <div class="box">
-    <div class="logo">
-      <img class="img" src="./assets/imagenes/logo.png" />
-    </div>
-    <ul id="progressbar">
-      <li
-        *ngFor="let step of steps; let i = index"
-        [ngClass]="{ active: i === numPage }"
-      >
-        {{ step }}
-      </li>
-    </ul>
+<main >
 
-    <div class="registro">
-      
-      <div class="Div" *ngIf="this.numPage == 1">
-        <div class="h1"><h1>¡Registrate con Nosotros!</h1></div>
-
-        <div class="globalInput">
-          <div class="input-box">
-            <input
-              required=""
-              name="nombre"
-              type="text"
-              class="input"
-              [(ngModel)]="nombre"
-              formControlName="nombre"
-              (blur)="touched.nombre = true"
-            />
-            <label *ngIf="!touched.nombre" class="label text--flicking"
-              >Nombre:</label
-            >
-            <label
-              *ngIf="
-                touched.nombre && !loginForm.get('nombre')?.hasError('required')
-              "
-              class="label text--flicking"
-              >Nombre:</label
-            >
-            <label
-              *ngIf="
-                touched.nombre && loginForm.get('nombre')?.hasError('required')
-              "
-              class="label text--flicking error"
-              >Nombre requerido:</label
-            >
-          </div>
-          <div class="input-box">
-            <input
-              required=""
-              name="primerApellido"
-              type="text"
-              class="input"
-              [(ngModel)]="primerApellido"
-              formControlName="primerApellido"
-              (blur)="touched.primerApellido = true"
-            />
-            <label *ngIf="!touched.primerApellido" class="label text--flicking"
-              >Primer Apellido:</label
-            >
-            <label
-              *ngIf="
-                touched.primerApellido &&
-                !loginForm.get('primerApellido')?.hasError('required')
-              "
-              class="label text--flicking"
-              >Primer Apellido:</label
-            >
-            <label
-              *ngIf="
-                touched.primerApellido &&
-                loginForm.get('primerApellido')?.hasError('required')
-              "
-              class="label text--flicking error"
-              >Primer Apellido requerido:</label
-            >
-          </div>
-          <div class="input-box">
-            <input
-              required=""
-              name="segundoApellido"
-              type="text"
-              class="input"
-              [(ngModel)]="segundoApellido"
-              formControlName="segundoApellido"
-              (blur)="touched.segundoApellido = true"
-            />
-            <label *ngIf="!touched.segundoApellido" class="label text--flicking"
-              >Segundo Apellido:</label
-            >
-            <label
-              *ngIf="
-                touched.segundoApellido &&
-                !loginForm.get('segundoApellido')?.hasError('required')
-              "
-              class="label text--flicking"
-              >Segundo Apellido:</label
-            >
-            <label
-              *ngIf="
-                touched.segundoApellido &&
-                loginForm.get('segundoApellido')?.hasError('required')
-              "
-              class="label text--flicking error"
-              >Segundo Apellido requerido:</label
-            >
-          </div>
-          <div class="input-box">
-            <input
-              required=""
-              name="telefono"
-              type="text"
-              class="input"
-              [(ngModel)]="telefono"
-              formControlName="telefono"
-              (blur)="touched.telefono = true"
-            />
-            <label *ngIf="!touched.telefono" class="label text--flicking"
-              >Telefono:</label
-            >
-            <label
-              *ngIf="
-                touched.telefono &&
-                !loginForm.get('telefono')?.hasError('required')
-              "
-              class="label text--flicking"
-              >Telefono:</label
-            >
-            <label
-              *ngIf="
-                touched.telefono &&
-                loginForm.get('telefono')?.hasError('required')
-              "
-              class="label text--flicking error"
-              >Telefono requerido:</label
-            >
-          </div>
-          <div class="input-box">
-            <input
-              required=""
-              name="email"
-              type="email"
-              class="input"
-              [(ngModel)]="email"
-              formControlName="email"
-              (blur)="touched.email = true"
-            />
-            <label *ngIf="!touched.email" class="label text--flicking"
-              >Email:</label
-            >
-            <label
-              *ngIf="
-                touched.email && !loginForm.get('email')?.hasError('required')
-              "
-              class="label text--flicking"
-              >Email:</label
-            >
-            <label
-              *ngIf="
-                touched.email && loginForm.get('email')?.hasError('required')
-              "
-              class="label text--flicking error"
-              >Email requerido:</label
-            >
-          </div>
-        </div>
-        <div class="buttons">
-          <button class="button" (click)="avanzar()">
-            Siguiente
-          </button>
-        </div>
+  <section class="container">
+      <div id="imagenes" class="col carousel slide d-none d-lg-block col-md-5 col-lg-5 col-xl-6 " data-bs-ride="carousel"> <!-- class imagenes -->
+        <!-- <img class="img" src="./assets/imagenes/logito.png" /> -->
+        <!-- Descubre un mundo de posibilidades al registrarte en nuestra aplicación.
+        Únete a una comunidad apasionada y accede a funciones exclusivas.
+        ¡Registrate ahora y comienza tu emocionante viaje con nosotros! 🚀✨     -->
       </div>
-      <div class="Div" *ngIf="this.numPage == 2">
-        <div class="h1"><h1>¡Registrate con Nosotros!</h1></div>
 
-        <div class="globalInput">
-          <div class="input-box">
-            <input
-              required=""
-              name="nombre_canal"
-              type="text"
-              class="input"
-              [(ngModel)]="nombre_canal"
-              formControlName="nombre_canal"
-              (blur)="touched.nombre_canal = true"
-            />
-            <label *ngIf="!touched.nombre_canal" class="label text--flicking"
-              >Nombre del Canal:</label
+      <div class="col p-5 row align-items-stretch" id="formulario">
+        <div class="form-register">
+          <h2 class="titulos">¡Regístrate!</h2>
+
+          <ul id="progressbar">
+            <li
+              *ngFor="let step of steps; let i = index"
+              [ngClass]="{ active: i === numPage }"
             >
-            <label
-              *ngIf="
-                touched.nombre_canal &&
-                !loginForm.get('nombre_canal')?.hasError('required')
-              "
-              class="label text--flicking"
-              >Nombre del Canal:</label
-            >
-            <label
-              *ngIf="
-                touched.nombre_canal &&
-                loginForm.get('nombre_canal')?.hasError('required')
-              "
-              class="label text--flicking error"
-              >Nombre del Canal requerido:</label
-            >
-          </div>
-          <div class="input-box">
-            <input
-              required=""
-              name="username"
-              type="text"
-              class="input"
-              [(ngModel)]="username"
-              formControlName="username"
-              (blur)="touched.username = true"
-            />
-            <label *ngIf="!touched.username" class="label text--flicking"
-              >Usuario:</label
-            >
-            <label
-              *ngIf="
-                touched.username &&
-                !loginForm.get('username')?.hasError('required')
-              "
-              class="label text--flicking"
-              >Usuario:</label
-            >
-            <label
-              *ngIf="
-                touched.username &&
-                loginForm.get('username')?.hasError('required')
-              "
-              class="label text--flicking error"
-              >Usuario requerido:</label
-            >
-          </div>
-          <div class="input-box">
-            <input
-              required=""
-              name="password"
-              type="password"
-              class="input"
-              [(ngModel)]="password"
-              formControlName="password"
-              (blur)="touched.password = true"
-            />
-            <label *ngIf="!touched.password" class="label text--flicking"
-              >Contraseña:</label
-            >
-            <label
-              *ngIf="
-                touched.password &&
-                !loginForm.get('password')?.hasError('required') &&
-                !loginForm.get('password')?.hasError('minlength')
-              "
-              class="label text--flicking"
-              >Contraseña:</label
-            >
-            <label
-              *ngIf="
-                touched.password &&
-                loginForm.get('password')?.hasError('required')
-              "
-              class="label text--flicking error"
-              >Contraseña requerido:</label
-            >
-            <label
-              *ngIf="
-                touched.password &&
-                loginForm.get('password')?.hasError('minlength')
-              "
-              class="label text--flicking error"
-              >Contraseña requiere mínimo 5 dígitos:</label
-            >
-          </div>
-          <div class="input-box">
-            <textarea
+              {{ step }}
+            </li>
+          </ul>
+
+          <form [formGroup]="loginForm">
+            <div *ngIf="this.numPage == 1">
+              <div class="inputsUnidos">
+                <div class="wave-group">
+                  <input  required=""
+                  name="nombre"
+                  type="text"
+                  class="input"
+                  [(ngModel)]="nombre"
+                  formControlName="nombre"
+                  (blur)="touched.nombre = true">
+                  <span class="bar"></span>
+                  <!-- <label *ngIf="!touched.nombre" class="label text--flicking"
+                      >Nombre:</label
+                    > -->
+                    <label
+                      *ngIf="
+                        touched.nombre && !loginForm.get('nombre')?.hasError('required')
+                      "
+                      class="label text--flicking"
+                      ></label
+                    >
+                    <label
+                      *ngIf="
+                        touched.nombre && loginForm.get('nombre')?.hasError('required')
+                      "
+                      class="label text--flicking error"
+                      >Nombre requerido:</label
+                    >
+                  <label class="label">
+                    <span class="label-char" style="--index: 0">N</span>
+                    <span class="label-char" style="--index: 1">o</span>
+                    <span class="label-char" style="--index: 2">m</span>
+                    <span class="label-char" style="--index: 3">b</span>
+                    <span class="label-char" style="--index: 3">r</span>
+                    <span class="label-char" style="--index: 3">e</span>
+                  </label>
+                </div>
+
+                <div class="wave-group">
+                  <input required=""
+                  name="primerApellido"
+                  type="text"
+                  class="input"
+                  [(ngModel)]="primerApellido"
+                  formControlName="primerApellido"
+                  (blur)="touched.primerApellido = true">
+                  <span class="bar"></span>
+                  <!-- <label *ngIf="!touched.primerApellido" class="label text--flicking"
+                  >Apellidos:</label
+                  > -->
+                  <label
+                    *ngIf="
+                      touched.primerApellido &&
+                      !loginForm.get('primerApellido')?.hasError('required')
+                    "
+                    class="label text--flicking"
+                    ></label
+                  >
+                  <label
+                    *ngIf="
+                      touched.primerApellido &&
+                      loginForm.get('primerApellido')?.hasError('required')
+                    "
+                    class="label text--flicking error"
+                    >Apellidos requerido:</label
+                  >
+                  <label class="label">
+                    <span class="label-char" style="--index: 0">Ap</span>
+                    <span class="label-char" style="--index: 1">el</span>
+                    <span class="label-char" style="--index: 2">li</span>
+                    <span class="label-char" style="--index: 3">do</span>
+                    <span class="label-char" style="--index: 3">s</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="wave-group">
+                <input required=""
+                name="telefono"
+                type="text"
+                class="input"
+                [(ngModel)]="telefono"
+                formControlName="telefono"
+                (blur)="touched.telefono = true">
+                <span class="bar"></span>
+                <!-- <label *ngIf="!touched.telefono" class="label text--flicking"
+                >Telefono:</label
+                > -->
+                <label
+                  *ngIf="
+                    touched.telefono &&
+                    !loginForm.get('telefono')?.hasError('required')
+                  "
+                  class="label text--flicking"
+                  ></label
+                >
+                <label
+                  *ngIf="
+                    touched.telefono &&
+                    loginForm.get('telefono')?.hasError('required')
+                  "
+                  class="label text--flicking error"
+                  >Telefono requerido:</label
+                >
+                <label class="label">
+                  <span class="label-char" style="--index: 0">Te</span>
+                  <span class="label-char" style="--index: 1">lé</span>
+                  <span class="label-char" style="--index: 2">fo</span>
+                  <span class="label-char" style="--index: 3">no</span>
+                </label>
+              </div>
+
+              <div class="wave-group">
+                <input required=""
+                name="email"
+                type="email"
+                class="input"
+                [(ngModel)]="email"
+                formControlName="email"
+                (blur)="touched.email = true">
+                <!-- <label *ngIf="!touched.email" class="label text--flicking"
+                      >Email:</label
+                    > -->
+                    <label
+                      *ngIf="
+                        touched.email && !loginForm.get('email')?.hasError('required')
+                      "
+                      class="label text--flicking"
+                      ></label
+                    >
+                    <label
+                      *ngIf="
+                        touched.email && loginForm.get('email')?.hasError('required')
+                      "
+                      class="label text--flicking error"
+                      >Email requerido:</label
+                    >
+                <span class="bar"></span>
+                <label class="label">
+                  <span class="label-char" style="--index: 0">E</span>
+                  <span class="label-char" style="--index: 1">m</span>
+                  <span class="label-char" style="--index: 2">a</span>
+                  <span class="label-char" style="--index: 3">il</span>
+                </label>
+              </div>
+
+
+              <button class="btn btn-primary" (click)="avanzar()">
+                Siguiente
+              </button>
+            </div>
+
+          <div *ngIf="this.numPage == 2">
+            <div class="inputsUnidos">
+              <div class="wave-group">
+                <input required=""
+                name="nombre_canal"
+                type="text"
+                class="input"
+                [(ngModel)]="nombre_canal"
+                formControlName="nombre_canal"
+                (blur)="touched.nombre_canal = true">
+                <span class="bar"></span>
+                <!-- <label *ngIf="!touched.nombre_canal" class="label text--flicking"
+                >Nombre del Canal:</label
+                > -->
+                <label
+                  *ngIf="
+                    touched.nombre_canal &&
+                    !loginForm.get('nombre_canal')?.hasError('required')
+                  "
+                  class="label text--flicking"
+                  ></label
+                >
+                <label
+                  *ngIf="
+                    touched.nombre_canal &&
+                    loginForm.get('nombre_canal')?.hasError('required')
+                  "
+                  class="label text--flicking error"
+                  >Nombre del Canal requerido:</label
+                >
+                <label class="label">
+                  <span class="label-char" style="--index: 0">Nom</span>
+                  <span class="label-char" style="--index: 1">bre</span>
+                  <span class="label-char" style="--index: 1">&nbsp;</span>
+                  <span class="label-char" style="--index: 1">del</span>
+                  <span class="label-char" style="--index: 1">&nbsp;</span>
+                  <span class="label-char" style="--index: 2">Ca</span>
+                  <span class="label-char" style="--index: 3">nal</span>
+                </label>
+              </div>
+              <div class="wave-group">
+                <input required=""
+                name="imagen"
+                type="text"
+                class="input"
+                [(ngModel)]="imagen"
+                formControlName="imagen">
+                <span class="bar"></span>
+                <!-- <label class="label text--flicking">Imagen:</label>
+                <label *ngIf="!touched.imagen" class="label text--flicking">Imagen:</label>
+                <label *ngIf="touched.imagen && !loginForm.get('imagen')?.hasError('required')" class="label text--flicking">Imagen:</label>
+                <label *ngIf="touched.imagen && loginForm.get('imagen')?.hasError('required')" class="label text--flicking error">Campo requerido:</label> -->
+                <label class="label">
+                  <span class="label-char" style="--index: 0">I</span>
+                  <span class="label-char" style="--index: 1">ma</span>
+                  <span class="label-char" style="--index: 2">ge</span>
+                  <span class="label-char" style="--index: 3">n</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="inputsUnidos">
+              <div class="wave-group">
+                <input required=""
+                name="username"
+                type="text"
+                class="input"
+                [(ngModel)]="username"
+                formControlName="username"
+                (blur)="touched.username = true">
+                <span class="bar"></span>
+                <!-- <label *ngIf="!touched.username" class="label text--flicking"
+                >Usuario:</label
+                > -->
+                <label
+                  *ngIf="
+                    touched.username &&
+                    !loginForm.get('username')?.hasError('required')
+                  "
+                  class="label text--flicking"
+                  ></label
+                >
+                <label
+                  *ngIf="
+                    touched.username &&
+                    loginForm.get('username')?.hasError('required')
+                  "
+                  class="label text--flicking error"
+                  >Usuario requerido:</label
+                >
+                <label class="label">
+                  <span class="label-char" style="--index: 0">Us</span>
+                  <span class="label-char" style="--index: 1">ua</span>
+                  <span class="label-char" style="--index: 2">ri</span>
+                  <span class="label-char" style="--index: 3">o</span>
+                </label>
+              </div>
+
+              <div class="wave-group">
+                <input required=""
+                name="password"
+                type="password"
+                class="input"
+                [(ngModel)]="password"
+                formControlName="password"
+                (blur)="touched.password = true">
+                <span class="bar"></span>
+                <!-- <label *ngIf="!touched.password" class="label text--flicking"
+                >Contraseña:</label
+                > -->
+                <label
+                  *ngIf="
+                    touched.password &&
+                    !loginForm.get('password')?.hasError('required')
+                  "
+                  class="label text--flicking"
+                  ></label
+                >
+                <label
+                  *ngIf="
+                    touched.password &&
+                    loginForm.get('password')?.hasError('required')
+                  "
+                  class="label text--flicking error"
+                  >Contraseña requerida:</label
+                >
+                <label class="label">
+                  <span class="label-char" style="--index: 0">Con</span>
+                  <span class="label-char" style="--index: 1">tra</span>
+                  <span class="label-char" style="--index: 2">se</span>
+                  <span class="label-char" style="--index: 3">ña</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="wave-group">
+              <textarea
               required=""
               name="descripcion"
               class="textarea"
               [(ngModel)]="descripcion"
               formControlName="descripcion"
               (blur)="touched.descripcion = true"
-            ></textarea>
-            <label *ngIf="!touched.descripcion" class="label text--flicking"
+              ></textarea>
+              <span class="bar"></span>
+              <!-- <label *ngIf="!touched.descripcion" class="label text--flicking"
               >Descripción:</label
-            >
-            <label
-              *ngIf="
-                touched.descripcion &&
-                !loginForm.get('descripcion')?.hasError('required')
+              > -->
+              <label
+                *ngIf="
+                  touched.descripcion &&
+                  !loginForm.get('descripcion')?.hasError('required')
+                "
+                class="label text--flicking"
+                ></label>
+              <label
+                *ngIf="
+                  touched.descripcion &&
+                  loginForm.get('descripcion')?.hasError('required')
+                "
+                class="label text--flicking error"
+                >Descripción requerida:</label
+              >
+              <label class="label">
+                <span class="label-char" style="--index: 0">Des</span>
+                <span class="label-char" style="--index: 1">crip</span>
+                <span class="label-char" style="--index: 2">ci</span>
+                <span class="label-char" style="--index: 3">ón</span>
+              </label>
+            </div>
+
+              <button
+              [disabled]="!loginForm.valid"
+              class="btn btn-primary"
+              (click)="
+                Datos(
+                  nombre,
+                  primerApellido,
+                  username,
+                  password,
+                  email,
+                  telefono,
+                  nombre_canal,
+                  descripcion,
+                  imagen
+                );
+                registrarAction()
               "
-              class="label text--flicking"
-              >Descripción:</label
             >
-            <label
-              *ngIf="
-                touched.descripcion &&
-                loginForm.get('descripcion')?.hasError('required')
-              "
-              class="label text--flicking error"
-              >Descripción requerido:</label
-            >
+              Registrarse
+            </button>
+            <button class="btn btn-primary" (click)="volver()">
+              Volver
+            </button>
+
           </div>
-          <div class="input-box">
-            <input
-              required=""
-              name="imagen"
-              type="text"
-              class="input"
-              [(ngModel)]="imagen"
-              formControlName="imagen"
-            />
-            <!-- (blur)="touched.imagen = true" -->
-            <label class="label text--flicking">Imagen:</label>
-            <!-- <label *ngIf="!touched.imagen" class="label text--flicking">Imagen:</label>
-    <label *ngIf="touched.imagen && !loginForm.get('imagen')?.hasError('required')" class="label text--flicking">Imagen:</label>
-    <label *ngIf="touched.imagen && loginForm.get('imagen')?.hasError('required')" class="label text--flicking error">Campo requerido:</label> -->
-          </div>
+        </form>
+
         </div>
 
 
-        <div class="buttons1">
-          <button class="button" (click)="volver()">
-            Volver
-          </button>
-          <button
-            [disabled]="!loginForm.valid"
-            class="button"
-            (click)="
-              Datos(
-                nombre,
-                primerApellido,
-                segundoApellido,
-                username,
-                password,
-                email,
-                telefono,
-                nombre_canal,
-                descripcion,
-                imagen
-              );
-              registrarAction()
-            "
-          >
-            Registrarse
-          </button>
+        <div class="text-center mt-auto" id="logo">
+          <img class="img" src="./assets/imagenes/logito.png" routerLink="/Inicio" routerLinkActive="active"/>
         </div>
-
 
 
       </div>
-    </div>
-  </div>
-</form>
+  </section>
+</main>
+
+
+

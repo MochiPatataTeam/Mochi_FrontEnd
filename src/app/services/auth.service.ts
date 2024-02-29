@@ -15,8 +15,8 @@ export class AuthService {
   private urlGeneral= 'http://127.0.0.1:8000';
   private videolista = 'http://127.0.0.1:8000/api/video';
 
-  private lista_comentarios ='http://127.0.0.1:8000/api/comentario'
-  private lista_respuestas ='http://127.0.0.1:8000/api/respuesta'
+  private lista_comentarios ='http://127.0.0.1:8000/api/comentario';
+  private lista_respuestas ='http://127.0.0.1:8000/api/respuesta';
   private lista_usuarios= 'http://127.0.0.1:8000/api/usuario';
 
 
@@ -140,6 +140,16 @@ export class AuthService {
     return this.http.put(`${this.urlGeneral}/api/usuario/${id}`, datos);
   }
 
+  //Get priv usuario por id
+  getPrivByUsuariId(id: number): Observable<any> {
+    return this.http.get(`${this.urlGeneral}/api/privacidad/${id}`);
+  }
+
+  //Get priv usuario por canal
+  getPrivByUsuariCanal(canal: string): Observable<any> {
+    return this.http.get(`${this.urlGeneral}/api/privacidad/canal/${canal}`);
+  }
+
   //Get videos del usuario por Id
   getVideosByIDCanal(id: number): Observable<any>{
     return this.http.get(`${this.urlGeneral}/api/video/canalId/${id}`);
@@ -158,6 +168,12 @@ export class AuthService {
     return this.http.get(`${this.urlGeneral}/api/suscripcion/comprobar/${id_suscritor}/${id_canal}`);
   }
 
+  visualizacion(id_video: number, id_usuario: number): Observable<any> {
+    return this.http.post(`${this.urlGeneral}/api/valoracion/visual/${id_video}/${id_usuario}`, {});
+  }
+  visualizacionSinUser(id_video: number): Observable<any> {
+    return this.http.post(`${this.urlGeneral}/api/valoracion/visual/${id_video}`, {});
+  }
   //----------------------------- VERIFICACION -----------------------------------
 
   verifyEmail(params: any){

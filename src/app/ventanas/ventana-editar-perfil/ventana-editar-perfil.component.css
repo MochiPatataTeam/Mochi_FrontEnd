@@ -4,17 +4,41 @@ main {
 	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1200' height='700' preserveAspectRatio='none' viewBox='0 0 1200 700'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1011%26quot%3b)' fill='none'%3e%3crect width='1200' height='700' x='0' y='0' fill='rgba(33%2c 37%2c 41%2c 1)'%3e%3c/rect%3e%3cpath d='M883.27 179.01 a168.76 168.76 0 1 0 337.52 0 a168.76 168.76 0 1 0 -337.52 0z' fill='rgba(255%2c 127%2c 80%2c 0.72)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M133.45 213.58 a203.15 203.15 0 1 0 406.3 0 a203.15 203.15 0 1 0 -406.3 0z' fill='rgba(255%2c 127%2c 80%2c 0.72)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M148.197%2c509.399C170.895%2c509.437%2c193.392%2c500.025%2c204.696%2c480.342C215.96%2c460.727%2c213.271%2c436.249%2c201.186%2c417.129C189.905%2c399.28%2c169.312%2c391.029%2c148.197%2c390.952C126.926%2c390.874%2c105.868%2c398.741%2c94.533%2c416.74C82.451%2c435.926%2c80.661%2c460.534%2c92.024%2c480.154C103.363%2c499.733%2c125.571%2c509.361%2c148.197%2c509.399' fill='rgba(255%2c 127%2c 80%2c 0.72)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M840.06 485.97 a161.5 161.5 0 1 0 323 0 a161.5 161.5 0 1 0 -323 0z' fill='rgba(255%2c 127%2c 80%2c 0.72)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M492.731%2c616.552C562.04%2c613.683%2c603.927%2c545.891%2c634.051%2c483.405C659.561%2c430.489%2c663.745%2c370.869%2c636.183%2c318.992C606.719%2c263.534%2c555.435%2c220.857%2c492.731%2c217.411C423.9%2c213.629%2c353.936%2c242.083%2c319.101%2c301.569C283.946%2c361.6%2c296%2c435.084%2c329.583%2c496.008C364.568%2c559.475%2c420.322%2c619.549%2c492.731%2c616.552' fill='rgba(255%2c 127%2c 80%2c 0.72)' class='triangle-float2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1011'%3e%3crect width='1200' height='700' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
 	background-repeat: no-repeat;
 	background-size: cover;
+	height: 88.2vh;
 }
 
-.form-style-5{
+form{
     /* margin-top: 20rem; */
 	max-width: 500px;
-	padding: 10px 20px;
+	height: 98%;
+	padding: 2.5rem 2rem;
 	background: #393e48;
 	margin: 10px auto;
-	padding: 20px;
+	/* padding: 20px; */
 	border-radius: 8px;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
+
+form::-webkit-scrollbar { /* width de tod0 el scrolllbar. ESTO ES DE PRIMERO, SI NO NO LO AGARRA*/
+    width: 12px;
+}
+
+form::-webkit-scrollbar-track{ /* Carril de la barra*/
+    border-radius: 10px;
+}
+
+form::-webkit-scrollbar-thumb{ /* Barra*/
+    background-color: #f4916d;
+    border-radius: 40px;
+    border: 1px solid rgba(2, 2, 2, 0.6);
+}
+
+form::-webkit-scrollbar-track-piece{ /* Parte interna del carril de la barra*/
+    background-color: rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+}
+
 .form-style-5 fieldset{
 	border: none;
 }
@@ -39,9 +63,9 @@ main {
 	outline: 0;
 	padding: 10px;
 	width: 100%;
-	box-sizing: border-box; 
+	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box; 
+	-moz-box-sizing: border-box;
 	background: rgba(255,255,255,.1);
 	color:#ffff;
 	-webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
@@ -76,3 +100,71 @@ main {
 ::placeholder {
 	color: rgb(186, 184, 184);
   }
+
+/* SWITCH */
+.switch {
+	--button-width: 3.5em;
+	--button-height: 2em;
+	--toggle-diameter: 1.5em;
+	--button-toggle-offset: calc((var(--button-height) - var(--toggle-diameter)) / 2);
+	--toggle-shadow-offset: 10px;
+	--toggle-wider: 3em;
+	--color-grey: #cccccc;
+	--color-green: #eda489;
+   }
+
+   .slider {
+	display: inline-block;
+	width: var(--button-width);
+	height: var(--button-height);
+	background-color: var(--color-grey);
+	border-radius: calc(var(--button-height) / 2);
+	position: relative;
+	transition: 0.3s all ease-in-out;
+   }
+
+   .slider::after {
+	content: "";
+	display: inline-block;
+	width: var(--toggle-diameter);
+	height: var(--toggle-diameter);
+	background-color: #fff;
+	border-radius: calc(var(--toggle-diameter) / 2);
+	position: absolute;
+	top: var(--button-toggle-offset);
+	transform: translateX(var(--button-toggle-offset));
+	box-shadow: var(--toggle-shadow-offset) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+	transition: 0.3s all ease-in-out;
+   }
+
+   .switch input[type="checkbox"]:checked + .slider {
+	background-color: var(--color-green);
+   }
+
+   .switch input[type="checkbox"]:checked + .slider::after {
+	transform: translateX(calc(var(--button-width) - var(--toggle-diameter) - var(--button-toggle-offset)));
+	box-shadow: calc(var(--toggle-shadow-offset) * -1) 0 calc(var(--toggle-shadow-offset) * 4) rgba(0, 0, 0, 0.1);
+   }
+
+   .switch input[type="checkbox"] {
+	display: none;
+   }
+
+   .switch input[type="checkbox"]:active + .slider::after {
+	width: var(--toggle-wider);
+   }
+
+   .switch input[type="checkbox"]:checked:active + .slider::after {
+	transform: translateX(calc(var(--button-width) - var(--toggle-wider) - var(--button-toggle-offset)));
+   }
+
+   .switch p{
+	color: #fff;
+   }
+
+   .switch{
+	display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+	margin-bottom: 0.7rem;
+   }

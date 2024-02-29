@@ -12,6 +12,7 @@ import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 export class VentanaReproduccionComponent implements OnInit {
   id: number = 1;
   id_usuario!: number | null;
+  id_video: number;
   nombre_canal: string;
   comentarioId!: number;
   videoId: any = {}; //video DATA general
@@ -39,8 +40,10 @@ export class VentanaReproduccionComponent implements OnInit {
   ngOnInit(): void {
     if (!this.id_usuario == null) {
       this.id_usuario = 0;
+
     } else {
       this.id_usuario = this.authservice.getStoredIdUsuario();
+
     }
     this.id = this.route.snapshot.params['id'];
     this.authservice.videoid(this.id).subscribe(
@@ -48,31 +51,23 @@ export class VentanaReproduccionComponent implements OnInit {
         console.log("achuuuuu",response);
         this.videoId = response;
         this.nombre_canal=response.canal;
+        this.id_video=response.id;
         this.tematica= this.videoId.tematica;
         console.log('asdfjkasdfjkljklasdf', this.tematica);
-        if (this.id_usuario != null) {
-        this.authservice.listSusyTematica(this.id_usuario!,this.tematica).subscribe(
-          (data)=>{
-            // Verificar si data es un array y tiene al menos un elemento
-            if (Array.isArray(data) && data.length > 0) {
-              // Filtrar los videos sugeridos para excluir el video que se está reproduciendo
-              this.videosug = data.filter((video: any) => video.id !== this.videoId.id);
-              console.log('LEEME A MI', this.videosug);
-              this.sanitizarUrls1();
-            } else {
-              console.log('No se han encontrado datos de video.');
 
-
-
-          }}
-        )}
+        if (this.id_usuario == null){
+          this.visualizacionSinLogin(this.id_video);
+          this.videoSugeridoTematica(this.tematica);
+        }else{
+          this.visualizacionConLogin(this.id_video,this.id_usuario);
+          this.videosSugeridos(this.id_usuario!,this.tematica);
+        }
         this.sanitizarUrls();
       },
       (error) => {
         console.log(error);
       }
     );
-    //borra hasta aqui
     this.authservice.videoid(this.id).subscribe(
       (response) => {
         this.videoId = response;
@@ -250,5 +245,50 @@ export class VentanaReproduccionComponent implements OnInit {
 
   }
 
+  visualizacionConLogin(id_video:number, id_usuario: number){
+    this.authservice.visualizacion(id_video,id_usuario).subscribe(
+      (response)=> {
+        console.log(response);
+      }
+    )
+  }
+  visualizacionSinLogin(id_video:number){
+    this.authservice.visualizacionSinUser(id_video).subscribe(
+      (response)=> {
+      }
+    )
+  }
+
+ videosSugeridos(id_usuario: number, tematica: string ){
+   this.authservice.listSusyTematica(id_usuario,tematica).subscribe(
+     (data)=>{
+       // Verificar si data es un array y tiene al menos un elemento
+       if (Array.isArray(data) && data.length > 0) {
+         // Filtrar los videos sugeridos para excluir el video que se está reproduciendo
+         this.videosug = data.filter((video: any) => video.id !== this.videoId.id);
+         console.log('LEEME A MI', this.videosug);
+         this.sanitizarUrls1();
+       } else {
+         console.log('No se han encontrado datos de video.');
+       }
+     }
+   )
+ }
+
+ videoSugeridoTematica(tematica: string){
+   this.authservice.listTematicaByName(tematica).subscribe(
+     (data)=>{
+       // Verificar si data es un array y tiene al menos un elemento
+       if (Array.isArray(data) && data.length > 0) {
+         // Filtrar los videos sugeridos para excluir el video que se está reproduciendo
+         this.videosug = data.filter((video: any) => video.id !== this.videoId.id);
+         console.log('LEEME A MI', this.videosug);
+         this.sanitizarUrls1();
+       } else {
+         console.log('No se han encontrado datos de video.');
+       }
+     }
+   )
+ }
 
 }

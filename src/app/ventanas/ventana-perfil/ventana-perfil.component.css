@@ -31,7 +31,7 @@ button{
     border-radius: 0 0 10px 10px;
     background-repeat: no-repeat;
     background-position: center;
-    background-size: cover;    
+    background-size: cover;
     box-shadow: 0 0 5rem rgba(220, 220, 220, 0.2);
 
 }
@@ -216,6 +216,7 @@ ul {
     padding: 5px 15px 20px 15px;
     border-radius: 23px;
     margin-bottom: 30px;
+    margin-right: 0.5rem;
     position: relative; /* Agregado para posicionar elementos secundarios */
   }
 
@@ -225,7 +226,7 @@ ul {
     position: absolute; /* Agregado para posicionar la imagen */
     top: 0; /* Ajustado según necesidad */
     left: 0; /* Ajustado según necesidad */
-    z-index: 1; /* Asegura que la imagen esté delante del iframe */
+    z-index: 2; /* Asegura que la imagen esté delante del iframe */
   }
 
   .most-popular .item iframe {
@@ -235,7 +236,7 @@ ul {
     margin-bottom: 0px;
     margin-left: -30px;
     position: relative; /* Agregado para evitar superposiciones con otros elementos */
-    z-index: 0; /* Asegura que el iframe esté detrás de la imagen */
+    z-index: 1; /* Asegura que el iframe esté detrás de la imagen */
   }
 
   .most-popular .item h4 {
@@ -243,10 +244,10 @@ ul {
     margin-top: 10px;
     margin-bottom: 0px;
     display: inline-block;
-    white-space: nowrap;      
-    overflow: hidden;         
-    text-overflow: ellipsis;   
-    max-width: 200px;  
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
   }
 
   .most-popular .item span {
@@ -298,7 +299,7 @@ ul {
 }
 .clips .item h4 {
   font-size: 15px;
-  display: inline-block;  
+  display: inline-block;
 }
 .boton-lapiz{
   position: absolute;
@@ -316,4 +317,22 @@ ul {
 
 .boton-lapiz:hover{
   background-color: black;
+}
+
+#alert{
+  color: #df9a41;
+  font-size: 1.8rem;
+}
+
+.isPublico{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.isPublico img{
+  height: 5rem;
+  width: auto;
+  margin: 2rem 0;
 }

@@ -13,9 +13,9 @@ import {BotonSidebarService} from "../../services/boton-sidebar.service";
 export class VentanaInicioComponent {
   patata: any[] = [];
   video: any[] = [];
-  id!: number;
+  id: number | null;
   nombreCanal: string;
-
+  valoracion: any[] = [];
   constructor(
     private authservice: AuthService,
     private sanitizer: DomSanitizer,
@@ -70,11 +70,25 @@ export class VentanaInicioComponent {
     }
   }
 
-  redirigirAotraPagina(id: number) {
-    window.location.href = `http://localhost:4200/reproducir/${id}`;
-  }
+
 
   videoDetails(id: number) {
     this.router.navigate(['reproducir', id]);
   }
+
+  cargarPerfil(canal: string): void{
+    this.authservice.getUsuariobyCanal(canal).subscribe(
+      (usuario) => {
+        if (usuario) {
+          this.router.navigate(['/perfil', canal]);
+        } else {
+          console.error('No existe ese canal')
+        }
+      },
+      (error) => {
+        console.error('Error al obtener el usuario por el canal', error);
+      }
+    );
+  }
+
 }
