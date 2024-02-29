@@ -27,6 +27,9 @@ export class VentanaReproduccionComponent implements OnInit {
   videosug: any []=[];
   mostrarTituloCompleto: boolean = false;
   longitudMaximaTitulo: number = 15;
+  mostrarDescripcion: boolean = false;
+  mostrarTodosLosVideos: boolean = false;
+
 
 
   constructor(private authservice: AuthService,
@@ -48,12 +51,10 @@ export class VentanaReproduccionComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.authservice.videoid(this.id).subscribe(
       (response) => {
-        console.log("achuuuuu",response);
         this.videoId = response;
         this.nombre_canal=response.canal;
         this.id_video=response.id;
         this.tematica= this.videoId.tematica;
-        console.log('asdfjkasdfjkljklasdf', this.tematica);
 
         if (this.id_usuario == null){
           this.visualizacionSinLogin(this.id_video);
@@ -122,9 +123,6 @@ export class VentanaReproduccionComponent implements OnInit {
   }
 
   crearComentario(comentario:string,username:string) {
-    console.log("Patata",this.id_usuario);
-    console.log("Patata",this.videoId.id);
-    console.log("Patata",comentario);
     if (this.id_usuario !== null) {
       this.authservice.crearComentario(
         this.id_usuario,
@@ -167,10 +165,6 @@ export class VentanaReproduccionComponent implements OnInit {
 
 
   crearRespuesta(mensaje: string, comentarioId: number,canal:string) {
-    console.log("Id usuario", this.id_usuario);
-    console.log("Id comentario", comentarioId);
-    console.log("Mensaje", mensaje);
-
     if (this.id_usuario !== null) {
       this.authservice.crearRespuesta(
         this.id_usuario,
@@ -240,7 +234,6 @@ export class VentanaReproduccionComponent implements OnInit {
 }
   videoDetails2(id: number) {
     this.router.navigate(['reproducir', id]);
-    console.log('soy el id',this.id);
 
 
   }
@@ -266,7 +259,6 @@ export class VentanaReproduccionComponent implements OnInit {
        if (Array.isArray(data) && data.length > 0) {
          // Filtrar los videos sugeridos para excluir el video que se está reproduciendo
          this.videosug = data.filter((video: any) => video.id !== this.videoId.id);
-         console.log('LEEME A MI', this.videosug);
          this.sanitizarUrls1();
        } else {
          console.log('No se han encontrado datos de video.');
@@ -282,7 +274,6 @@ export class VentanaReproduccionComponent implements OnInit {
        if (Array.isArray(data) && data.length > 0) {
          // Filtrar los videos sugeridos para excluir el video que se está reproduciendo
          this.videosug = data.filter((video: any) => video.id !== this.videoId.id);
-         console.log('LEEME A MI', this.videosug);
          this.sanitizarUrls1();
        } else {
          console.log('No se han encontrado datos de video.');
@@ -290,5 +281,8 @@ export class VentanaReproduccionComponent implements OnInit {
      }
    )
  }
+  toggleDescripcion() {
+    this.mostrarDescripcion = !this.mostrarDescripcion;
+  }
 
 }
