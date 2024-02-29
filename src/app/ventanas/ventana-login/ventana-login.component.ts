@@ -26,7 +26,8 @@ export class VentanaLoginComponent {
         if(response){
           localStorage.setItem('jwt', JSON.stringify(response));
           this.router.navigate(['../Inicio']);
-      this.router.events.subscribe((event) => {
+          this.authService.setReloadRequired(true);
+          this.router.events.subscribe((event) => {
         if (event instanceof NavigationEnd) {
           if (this.router.url === '/Inicio') {
             this.location.replaceState(this.router.url);

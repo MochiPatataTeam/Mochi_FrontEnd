@@ -17,7 +17,9 @@ import { ReactiveFormsModule } from '@angular/forms';
   encapsulation: ViewEncapsulation.None,
 })
 export class RegistroComponent {
+
   steps: string[] = ['Datos Personales', 'Datos Del Canal'];
+
   constructor(
     private sanitizer: DomSanitizer,
     private authService: AuthService,
@@ -38,6 +40,8 @@ export class RegistroComponent {
   suscripciones!: 0;
   imagen!: string;
 
+  ventana: boolean = false;
+
   isSubmitting: boolean = false;
 
   //Validadores
@@ -51,7 +55,7 @@ export class RegistroComponent {
     telefono: false,
     nombre_canal: false,
     descripcion: false,
-    // imagen: false,
+    imagen: false,
   };
 
   ngOnInit() {
@@ -64,7 +68,7 @@ export class RegistroComponent {
       telefono: ['', Validators.required],
       nombre_canal: ['', Validators.required],
       descripcion: ['', Validators.required],
-      // imagen: ['', Validators.required],
+      imagen: ['', Validators.required],
     });
 
   }
@@ -116,13 +120,14 @@ export class RegistroComponent {
       telefono: this.telefono,
       nombre_canal: this.nombre_canal,
       descripcion: this.descripcion,
+      imagen: this.imagen
     };
 
     this.authService.registrar(payload).subscribe(
       ({ data }) => {
         console.log('Registrado c:', data);
-        this.router.navigateByUrl('/Inicio');
-
+        this.ventana = true;
+        // this.router.navigateByUrl('/Inicio');
       },
       (error) => {
         console.error(':C', error);

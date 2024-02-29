@@ -16,13 +16,21 @@ export class VentanaInicioComponent {
   id: number | null;
   nombreCanal: string;
   valoracion: any[] = [];
+
   constructor(
     private authservice: AuthService,
     private sanitizer: DomSanitizer,
     private router: Router,
     public botonsidebarservice: BotonSidebarService
   ) {}
+
   ngOnInit(): void {
+    this.authservice.reloadRequired$.subscribe(reload => {
+      if (reload) {
+        window.location.reload(); // Recarga la página
+      }
+    });
+
     const idFromService = this.authservice.getId();
     const nombreCanalFromService = this.authservice.getNombreCanal();
 

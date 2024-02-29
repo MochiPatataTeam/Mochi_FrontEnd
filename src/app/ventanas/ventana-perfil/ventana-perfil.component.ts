@@ -43,6 +43,7 @@ export class VentanaPerfilComponent implements OnInit{
 
     if (this.canal_url && this.canal_url !== this.usuarioLogueadoCanal) { //si el nombre del canal de la url es nulo o es diferente del nombre canal del usuario logueado
       this.cargarDatosByCanal(this.canal_url);
+      // this.comprobar_suscripcion();
     } else {
       this.cargarDatosById(this.usuarioLogueadoId);
     }
@@ -104,7 +105,6 @@ export class VentanaPerfilComponent implements OnInit{
   getPrivacidadUsuarioCanal(canal:string): void{
     this.authService.getPrivByUsuariCanal(canal).subscribe(
       (privacidad) => {
-        console.log(privacidad);
         this.privacidadUsuarioCanal = privacidad;
       },
       (error) => {
@@ -116,7 +116,6 @@ export class VentanaPerfilComponent implements OnInit{
   getPrivacidadUsuarioId(userId: number): void{
     this.authService.getPrivByUsuariId(userId).subscribe(
       (privacidadUsuario) => {
-        console.log(privacidadUsuario);
         this.privacidadUsuarioId = privacidadUsuario;
       },
       (error) => {

@@ -70,8 +70,10 @@ button{
 
 .seccion-perfil-usuario .perfil-usuario-avatar img {
     width: 100%;
+    height: 100%;
     position: relative;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 .seccion-perfil-usuario .perfil-usuario-avatar .boton-avatar { /* btn de ajustes circulo */
@@ -152,7 +154,7 @@ button{
 .perfil-usuario-seguidores {
     width: 40%;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 2fr);
     grid-template-rows: repeat(2, auto);
     gap: 0.2rem;
     margin-bottom: 1.25rem;
@@ -160,7 +162,6 @@ button{
 
 .user-icon {
     text-align: center;
-    /* border: 1px solid #ccc;  */
     padding: 0.7rem
 }
 

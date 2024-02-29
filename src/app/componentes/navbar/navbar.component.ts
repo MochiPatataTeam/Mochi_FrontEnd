@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
   id: any = null;
   input: string = '';
   mostrarVideosPopulares: boolean = false;
+  usuario: any;
 
   constructor(
     public authService: AuthService,
@@ -45,6 +46,14 @@ export class NavbarComponent implements OnInit {
       this.input = params['dato'] || '';
     });
     this.id = JSON.parse(localStorage.getItem('Id')!);
+
+    if(this.id){
+      this.authService.getUsuariobyId(this.id).subscribe(
+        (response) => {
+          this.usuario = response;
+        }
+      )
+    }
   }
 
   //----------------------------- LOGIN Y LOGOUT -----------------------------------

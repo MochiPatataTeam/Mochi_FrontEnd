@@ -13,7 +13,7 @@
 
           <div class="search-input">
             <form id="search" action="#">
-              <input type="text" placeholder="Type Something" id='searchText' name="searchKeyword" [(ngModel)]="input" onkeypress="handle" />
+              <input type="text" placeholder="Busca algo..." id='searchText' name="searchKeyword" [(ngModel)]="input" onkeypress="handle" />
               <button class="button" (click)="enviarDatos()"> <i
                 class='bx bx-search-alt-2'
                 onmouseover="this.style.color='#DF9A37'"
@@ -29,7 +29,7 @@
             <li><a href="streams.html">Streams</a></li>
             <li *ngIf="isLoggedIn()"><app-campanita></app-campanita></li>
             <li *ngIf="isLoggedIn()"> <a (click)="logout()">Logout</a></li>
-            <li *ngIf="isLoggedIn() else prueba"><a routerLink="/perfil" routerLinkActive="active">Perfil de {{authService.getUsername()}} <img src="./assets/imagenes/login_img/avengers.jpg" alt=""></a></li>
+            <li *ngIf="isLoggedIn() else prueba"><a routerLink="/perfil" routerLinkActive="active">Yo<img src="{{ usuario?.imagen }}"></a></li>
             <ng-template #prueba>
             <li ><a routerLink="/Login" routerLinkActive="active">Login</a> </li>
             </ng-template>

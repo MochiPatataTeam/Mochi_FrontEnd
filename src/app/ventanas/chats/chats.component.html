@@ -11,27 +11,27 @@
             (input)="realizarBusqueda()"
           />
         </div>
-      
+
         <div *ngIf="contactosMostrados.length > 0; else noContactos">
           <button
             [class.activado]="estadosBotones[contact.id]"
             *ngFor="let contact of contactosMostrados"
             class="etiqueta"
-            (click)="mensajesChat(contact.id, contact.nombre)"
+            (click)="mensajesChat(contact.id, contact.nombre, contact.imagen)"
           >
-            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="avatar" />
+            <img src="{{ contact.imagen }}" alt="avatar" />
             <div class="names">
               <div>{{ contact.nombre }}</div>
             </div>
             <div></div>
           </button>
         </div>
-      
+
         <ng-template #noContactos>
           <p>No se encontraron contactos con ese nombre.</p>
         </ng-template>
       </div>
-      
+
 
       <div
         class="chat-arriba"
@@ -39,7 +39,7 @@
       >
         <div class="usuario">
           <img
-            src="https://bootdey.com/img/Content/avatar/avatar2.png"
+            src="{{ imagenIdPersona }}"
             alt="avatar"
           />
 

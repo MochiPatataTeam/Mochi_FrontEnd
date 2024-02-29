@@ -39,6 +39,7 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
   fechaFormateada!: string;
   idPersona!: number;
   nombreIdPersona!: string;
+  imagenIdPersona!: string;
   estadosBotones: { [key: string]: boolean } = {};
   mensajeActualColor = 'even';
   colorSelf = 'chartreuse';
@@ -60,7 +61,7 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
       contacto.nombre.toLowerCase().includes(this.filtroBusqueda.toLowerCase())
     );
   }
-  
+
   toggleEtiqueta(id: number) {
     Object.keys(this.estadosBotones).forEach((key) => {
       this.estadosBotones[key] = false;
@@ -102,7 +103,7 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
     this.cdr.detectChanges();
   }
 
-  mensajesChat(idPersona: number, nombre: string) {
+  mensajesChat(idPersona: number, nombre: string, imagen: string) {
     this.toggleEtiqueta(idPersona);
     this.nombreIdPersona = nombre;
     this.idPersona = idPersona;
@@ -116,7 +117,8 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
           this.chatSeleccionado = 1;
           this.mensajesJuntos= this.imprimirMensajesPorEmisor(this.mensajesConver);
           this.nombreIdPersona = nombre;
-         },
+          this.imagenIdPersona = imagen;
+        },
         (error) => {
           console.log(error);
         }
@@ -127,7 +129,7 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
   imprimirMensajesPorEmisor(mensajesConver: any[]) {
     const mensajesEmisor: any[] = [];
     const mensajesReceptor: any[] = [];
-  
+
     mensajesConver.forEach((mensaje) => {
       if (mensaje.idEmisor === this.id?.toString()) {
         mensaje.emisor = true;
@@ -137,24 +139,24 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
         mensajesReceptor.push(mensaje);
       }
     });
-  
+
     const mensajesUnidos = [...mensajesEmisor, ...mensajesReceptor];
-  
+
     mensajesUnidos.sort((a, b) => {
       const fechaA = new Date(a.fecha.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3')).getTime();
       const fechaB = new Date(b.fecha.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3')).getTime();
-  
+
       if (fechaA === fechaB) {
         return a.id - b.id;
       }
-  
+
       return fechaA - fechaB;
     });
-  
+
     return mensajesUnidos;
   }
-  
-  
+
+
 
   enviarMensaje(mensaje: string, idPersona: number) {
     const fechaActual = new Date();
@@ -177,7 +179,7 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
           }
         );
 
-      this.mensajesChat(idPersona, this.nombreIdPersona);
+      this.mensajesChat(idPersona, this.nombreIdPersona, this.imagenIdPersona);
       this.nuevoMensaje = '';
     }
   }

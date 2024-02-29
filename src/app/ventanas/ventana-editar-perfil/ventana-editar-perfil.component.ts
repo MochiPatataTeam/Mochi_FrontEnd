@@ -51,6 +51,7 @@ export class VentanaEditarPerfilComponent implements OnInit{
       telefono: [this.usuario.telefono],
       nombre_canal: [this.usuario.nombreCanal],
       descripcion: [this.usuario.descripcion],
+      imagen: [this.usuario.imagen],
 
       isPublico: [this.privacidadUsuario.isPublico],
       permitirSuscripciones: [this.privacidadUsuario.permitirSuscripciones],

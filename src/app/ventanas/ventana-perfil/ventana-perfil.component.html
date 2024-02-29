@@ -3,13 +3,14 @@
         <section class="perfil-usuario-header">
             <div class="perfil-usuario-portada" [ngStyle]="{'background-image': wallpaperDefault }"> <!-- Wallpaper default -->
 
-                <div class="perfil-usuario-avatar">
-                    <img src="{{ usuario?.imagen }}" alt="img-avatar">
-                    <div *ngIf="!canal">
-                        <button type="button" class="boton-avatar" [routerLink]="['/editarPerfil', usuario?.id]">
-                            <i class='bx bxs-cog'></i>
-                        </button>
-                    </div>
+                <div class="perfil-usuario-avatar" *ngIf="usuario">
+                  <img src="{{ usuario?.imagen }}" alt="img-avatar">
+                    <button *ngIf="!canal" type="button" class="boton-avatar" [routerLink]="['/editarPerfil', usuario?.id]">
+                        <i class='bx bxs-cog'></i>
+                    </button>
+                </div>
+                <div class="perfil-usuario-avatar" *ngIf="canal">
+                  <img src="{{ canal?.imagen }}" alt="img-avatar">
                 </div>
                 <div *ngIf="!canal">
                     <button type="button" data-bs-toggle="modal" data-bs-target="#WallpaperModal" class="boton-portada">
@@ -45,67 +46,64 @@
                     <p class="texto">{{ usuario?.descripcion }}</p>
                 </div>
                 <div class="perfil-usuario-seguidores"> <!-- Btnes de seguidores/seguidos, seguir/dejar de seguir y enviar mensaje -->
-                    <div class="user-icon">
-                        <p><i class='bx bxs-user-voice'></i>545 seguidores</p>
-                    </div>
-                    <div class="user-icon">
-                        <p><i class='bx bxs-star' ></i>65 seguidos</p>
-                    </div>
-                    <div class="user-icon" *ngIf="canal && privacidadUsuarioCanal?.permitirSuscripciones">
-                        <button class="btn btn-primary" (click)="suscripcion(canal?.id)" *ngIf="subs === false else elseBlock"><i class='bx bxs-user-plus'></i>Suscribete</button>
-                          <ng-template class="buttonSub" #elseBlock>
-                        <button class="btn btn-primary" (click)="suscripcion(canal?.id)" (mouseenter)="hovered = true" (mouseleave)="hovered = false" [ngClass]="{'btn-suscrito': hovered, 'btn-desuscribirse': !hovered}">
-                             {{ hovered ? 'Desuscribirse' : 'Suscrito' }}
-                        </button>
-                         </ng-template>
-                    </div>
-                    <div class="user-icon" *ngIf="canal">
-                      <div>
-                        <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-                          <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalToggleLabel"> Envia un mensaje para empezar un Chat </h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <form>
-                                  <div class="mb-3">
-                                    <label for="recipient-name" class="col-form-label"> Mensaje: </label>
-                                    <input type="text" class="form-control" id="recipient-name" [(ngModel)]="mensaje" name="mensaje" (input)="actualizarEstadoBoton()" />
-                                  </div>
-                                </form>
-                              </div>
-                              <div class="modal-footer">
-                                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal" (click)="enviarMensaje(mensaje,canal?.id)" [disabled]="!botonHabilitado">
-                                  Enviar Mensaje
-                                </button>
-                              </div>
+                  <div class="user-icon" style="margin-left: -10%;">
+                        <p><i class='bx bxs-user-voice'></i>545 suscriptores</p>
+                  </div>
+                  <div class="user-icon" *ngIf="canal">
+                    <div>
+                      <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalToggleLabel"> Envia un mensaje para empezar un Chat </h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <form>
+                                <div class="mb-3">
+                                  <label for="recipient-name" class="col-form-label"> Mensaje: </label>
+                                  <input type="text" class="form-control" id="recipient-name" [(ngModel)]="mensaje" name="mensaje" (input)="actualizarEstadoBoton()" />
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal" (click)="enviarMensaje(mensaje,canal?.id)" [disabled]="!botonHabilitado">
+                                Enviar Mensaje
+                              </button>
                             </div>
                           </div>
                         </div>
-                        <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-                          <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalToggleLabel2"> Envia un mensaje para empezar un Chat</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">¡Mensaje Enviado!{{ mensaje }}</div>
-                              <div class="modal-footer">
-                                <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" [routerLink]="['/chats']">
-                                  Ir a Chats
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <button class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button" >
-                          <i class='bx bxs-paper-plane bx-tada'></i>
-                          Enviar Mensaje
-                        </button>
                       </div>
+                      <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+                        <div class="modal-dialog modal-dialog-centered">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalToggleLabel2"> Envia un mensaje para empezar un Chat</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">¡Mensaje Enviado!{{ mensaje }}</div>
+                            <div class="modal-footer">
+                              <button class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close" [routerLink]="['/chats']">
+                                Ir a Chats
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button" >
+                        <i class='bx bxs-paper-plane bx-tada'></i>
+                        Enviar Mensaje
+                      </button>
                     </div>
+                  </div>
+                    <div class="user-icon" *ngIf="canal && privacidadUsuarioCanal?.permitirSuscripciones">
+                      <button class="btn btn-primary" (click)="suscripcion(canal?.id)" *ngIf="subs === false else elseBlock"><i class='bx bxs-user-plus'></i>Suscribete</button>
+                        <ng-template class="buttonSub" #elseBlock>
+                      <button class="btn btn-primary" (click)="suscripcion(canal?.id)" (mouseenter)="hovered = true" (mouseleave)="hovered = false" [ngClass]="{'btn-suscrito': hovered, 'btn-desuscribirse': !hovered}">
+                           {{ hovered ? 'Desuscribirse' : 'Suscrito' }}
+                      </button>
+                       </ng-template>
+                  </div>
                 </div>
             </div>
         </section>
@@ -125,29 +123,6 @@
           </div>
 
         <!-- ***** Videos ***** -->
-        <!-- <div *ngIf="!canal" class="most-popular">
-          <div class="row">
-            <div class="col-lg-12">
-                <div class="row">
-                <div class="col-lg-3 col-sm-6 " *ngFor= "let vid of videos">
-                    <div class="item">
-                      <button  type="button" class="boton-lapiz" [routerLink]="['/editarVideo', vid?.id]">
-                        <i class='bx bxs-edit-alt' style='color:white' onmouseover="this.style.color='#df9a41'" onmouseout="this.style.color='white'"></i>
-                      </button>
-                    <iframe  width="310" height="170" [src]="vid?.safeUrl" allow="autoplay"> </iframe>
-
-                    <h4>{{vid?.titulo}}<br><span>{{vid?.tematica}}</span><span> {{vid?.canal}}</span></h4>
-                    <ul>
-                        <li><i class='bx bx-like' ></i> 4.8 M</li>
-                        <li><i class='bx bx-download'></i> 2.3M</li>
-                    </ul>
-                    </div>
-                </div>
-
-                </div>
-            </div>
-          </div>
-        </div> -->
           <div class="most-popular"  >
             <div class="row">
               <div class="col-lg-12">
