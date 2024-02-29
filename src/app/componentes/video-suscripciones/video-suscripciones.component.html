@@ -13,9 +13,11 @@
 
             <h4 >{{vi.titulo}}<br><span>{{vi.tematica}}</span> <span> {{vi.nombre_canal}}</span></h4>
             <ul>
-              <li><i class='bx bx-like' ></i> 4.8 M</li>
-              <li><i class='bx bx-download'></i> 2.3M</li>
+              <li><i class='bx bx-like'></i> {{vi.fav}}</li>
+              <li><i class='bx bx-dislike'></i> {{vi.dislike}}</li>
+              <li *ngIf="vi.visualizacion !== null; else holi"><i class='bx bx-show-alt'></i> {{vi.visualizacion}}</li>
             </ul>
+            <ng-template #holi><li><i class='bx bx-show-alt'></i>0</li> </ng-template>
           </div>
         </div>
 

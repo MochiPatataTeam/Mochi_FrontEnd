@@ -55,18 +55,20 @@
                <div class="row">
                 <ng-container *ngIf="!botonsidebarservice.mostrarVideosPopulares && !botonsidebarservice.mostrarVideosSuscripciones && !botonsidebarservice.mostrarVideosTematica">
                   <div class="heading-section">
-                    <h4><em>Nuestros</em> videos</h4>
+                    <h4><em>Nuestros</em> videos </h4>
                   </div>
                 <div class="col-lg-3 col-sm-6 " *ngFor= "let vi of video.slice(0,4)" >
                   <div class="item">
-                    <iframe  width="320" height="180" [src]="vi.safeUrl" allow="autoplay"> </iframe>
-                    <img (click)="videoDetails(vi.id)" src="assets/imagenes/blanco.png">
+                    <iframe width="320" height="180" [src]="vi.safeUrl" allow="autoplay"></iframe>
+                    <img (click)="videoDetails(vi.id)"  src="assets/imagenes/blanco.png">
 
-                    <h4>{{vi.titulo}}<br><span>{{vi.tematica}}</span> <span> {{vi.canal}}</span></h4>
-                    <ul>
-                      <li><i class='bx bx-like' ></i> 4.8 M</li>
-                      <li><i class='bx bx-download'></i> 2.3M</li>
+                    <h4><h4 (click)="videoDetails(vi.id)" >{{vi.titulo}}</h4><br><span>{{vi.tematica}}</span> <span (click)="cargarPerfil(vi.canal)"> {{vi.canal}}</span></h4>
+                    <ul *ngFor= "let via of vi.valoracionGlobalDTO" >
+                      <li><i class='bx bx-like'></i> {{via.fav}}</li>
+                      <li><i class='bx bx-dislike'></i> {{via.dislike}}</li>
+                      <li *ngIf="via.visualizacion !== null; else holi"><i class='bx bx-show-alt'></i> {{via.visualizacion}}</li>
                     </ul>
+                    <ng-template #holi><li><i class='bx bx-show-alt'></i>0</li> </ng-template>
                   </div>
                 </div>
                   <app-videos-populares [limitarVideos2]="true"> </app-videos-populares>
