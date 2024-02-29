@@ -25,7 +25,7 @@ export class VideosTematicaComponent {
 
   ngOnInit(): void{
     this.botonsidebarservice.tematicaSeleccionada$.subscribe(tematica => {
-      this.tematica = tematica ?? ''; // Asigna una cadena vacía si tematica es null
+      this.tematica = tematica ?? '';
       if (this.tematica) {
         this.loadVideos();
       }
@@ -41,7 +41,6 @@ export class VideosTematicaComponent {
 
   sanitizarUrls() {
     for (const vi of this.videos) {
-      // Asegúrate de que 'url' sea una propiedad válida de tu objeto de video
       vi.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(vi.url);
     }
   }

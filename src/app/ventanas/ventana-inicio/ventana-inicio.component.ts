@@ -50,7 +50,6 @@ export class VentanaInicioComponent {
 
     this.authservice.usuario().subscribe(
       (response) => {
-        console.log(response);
         this.patata = response;
       },
 

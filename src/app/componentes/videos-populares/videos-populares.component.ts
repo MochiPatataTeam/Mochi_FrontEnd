@@ -33,7 +33,6 @@ export class VideosPopularesComponent {
   }
   sanitizarUrls() {
     for (const vi of this.videos) {
-      // Asegúrate de que 'url' sea una propiedad válida de tu objeto de video
       vi.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(vi.url);
     }
   }

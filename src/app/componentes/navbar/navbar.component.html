@@ -46,21 +46,21 @@
             <button type="button" class="btn-close me-3" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
-            <div class="botoncitos"><button (click)="llamarComponente3()"><i class='bx bx-home-smile'></i>       INICIO</button></div>
-            <div class="botoncitos"><button (click)="llamarComponente()"><i class='bx bxs-hot'></i>         EN TENDENCIAS</button></div>
-            <div class="botoncitos"  *ngIf="isLoggedIn()"><button (click)="llamarComponente2()"><i class='bx bxs-user-voice'></i>              SUSCRIPCIONES</button></div>
+            <div class="botoncitos"><button routerLink="/Inicio" routerLinkActive="active" (click)="llamarComponente3()"><i class='bx bx-home-smile'></i>       INICIO</button></div>
+            <div class="botoncitos"><button routerLink="/Inicio" routerLinkActive="active" (click)="llamarComponente()"><i class='bx bxs-hot'></i>         EN TENDENCIAS</button></div>
+            <div class="botoncitos"  *ngIf="isLoggedIn()"><button routerLink="/Inicio" routerLinkActive="active"  (click)="llamarComponente2()"><i class='bx bxs-user-voice'></i>              SUSCRIPCIONES</button></div>
             <br>
             <br>
             <!-- otro-componente.component.html -->
             <h4 class="offcanvas-title" id="offcanvasWithBothOptionsLabel1">Temáticas</h4>
             <br>
-            <div class="botoncitos"><button (click)="seleccionarTematica('Musica'); llamarComponente4()"><i class='bx bx-music'></i>     MÚSICA</button></div>
-            <div class="botoncitos"><button (click)="seleccionarTematica('Deportes'); llamarComponente4()"><i class='bx bx-football'></i>     DEPORTES</button></div>
-            <div class="botoncitos"><button (click)="seleccionarTematica('VideoJuegos'); llamarComponente4()"><i class='bx bx-joystick' ></i>    VIDEOJUEGOS</button></div>
-            <div class="botoncitos"><button (click)="seleccionarTematica('Podcasts'); llamarComponente4()"><i class='bx bx-microphone' ></i>    PODCASTS</button></div>
-            <div class="botoncitos"><button (click)="seleccionarTematica('Aprendizaje'); llamarComponente4()"><i class='bx bx-book-content' ></i>    APRENDIZAJE</button></div>
-            <div class="botoncitos"><button (click)="seleccionarTematica('Restauracion'); llamarComponente4()"><i class='bx bxs-bowl-rice' ></i>     RESTAURACION</button></div>
-            <div class="botoncitos"><button (click)="seleccionarTematica('Programacion'); llamarComponente4()"><i class='bx bx-code-alt'></i>    PROGRAMACION</button></div>
+            <div class="botoncitos"><button routerLink="/Inicio" routerLinkActive="active" (click)="seleccionarTematica('Musica'); llamarComponente4()"><i class='bx bx-music'></i>     MÚSICA</button></div>
+            <div class="botoncitos"><button routerLink="/Inicio" routerLinkActive="active" (click)="seleccionarTematica('Deportes'); llamarComponente4()"><i class='bx bx-football'></i>     DEPORTES</button></div>
+            <div class="botoncitos"><button routerLink="/Inicio" routerLinkActive="active" (click)="seleccionarTematica('VideoJuegos'); llamarComponente4()"><i class='bx bx-joystick' ></i>    VIDEOJUEGOS</button></div>
+            <div class="botoncitos"><button routerLink="/Inicio" routerLinkActive="active" (click)="seleccionarTematica('Podcasts'); llamarComponente4()"><i class='bx bx-microphone' ></i>    PODCASTS</button></div>
+            <div class="botoncitos"><button routerLink="/Inicio" routerLinkActive="active" (click)="seleccionarTematica('Aprendizaje'); llamarComponente4()"><i class='bx bx-book-content' ></i>    APRENDIZAJE</button></div>
+            <div class="botoncitos"><button routerLink="/Inicio" routerLinkActive="active" (click)="seleccionarTematica('Restauracion'); llamarComponente4()"><i class='bx bxs-bowl-rice' ></i>     RESTAURACION</button></div>
+            <div class="botoncitos"><button routerLink="/Inicio" routerLinkActive="active" (click)="seleccionarTematica('Programacion'); llamarComponente4()"><i class='bx bx-code-alt'></i>    PROGRAMACION</button></div>
 
 
 

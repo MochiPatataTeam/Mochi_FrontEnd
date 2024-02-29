@@ -28,20 +28,17 @@ export class VideoSuscripcionesComponent implements OnInit {
       this.id_usuario = this.authservice.getStoredIdUsuario();
     }
     if(this.id_usuario==null){
-      console.log('no funciona');
+      console.log('error');
 
     }else{
       this.authservice.listTodoBySuscripcion(this.id_usuario).subscribe(
         (response: any) => {
           // Manejar la respuesta y asignarla a la variable videosSuscripciones
           this.videos = response;
-          console.log('hola soy yo mira a ver',response)
           this.sanitizarUrls();
-          console.log(this.videos);
         },
         (error: any) => {
           console.error('Error al obtener los videos de suscripciones:', error);
-          // Manejar el error si es necesario
         }
       );
 
@@ -52,7 +49,6 @@ export class VideoSuscripcionesComponent implements OnInit {
   }
   sanitizarUrls() {
     for (const vi of this.videos) {
-      // Asegúrate de que 'url' sea una propiedad válida de tu objeto de video
       vi.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(vi.url);
     }
   }

@@ -13,8 +13,25 @@
             {{ videoId.titulo }}
             <span class="botoncitomenos"*ngIf="mostrarTituloCompleto" (click)="mostrarTituloCompleto = false">Ver menos</span>
           </ng-container></h1>
+        <ng-container>
+          <p (click)="toggleDescripcion()" style="margin-bottom: 10px;">
+            Descripcion
+            <i [ngClass]="mostrarDescripcion ? 'bx bxs-chevrons-up' : 'bx bxs-chevrons-down'"></i>
+          </p>
+          <p *ngIf="mostrarDescripcion" style="margin-bottom: 10px;">{{videoId.descripcion}}</p>
+        </ng-container>
+
+
+
         <p id="perfil" (click)="cargarPerfil(videoId.canal)">{{videoId.canal}}</p>
-        <p>3 suscriptores</p></div>
+        <p>3 suscriptores</p>
+        <div class="visualizaciones">
+          <i class='bx bx-show-alt'></i>
+          <p>5 visualizaciones</p>
+        </div>
+
+      </div>
+
 
 
     </div>
@@ -36,8 +53,10 @@
   <p >Comentarios</p>
     <div class="texto" *ngIf="id_usuario">
 
-      <textarea class="form-control" [(ngModel)]="nuevoComentario" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px"></textarea>
-      <app-boton [buttonText]="customButtonText" (click)="crearComentario(this.nuevoComentario,videoId.canal)"></app-boton>
+
+      <textarea class="form-control placeholder-white" [(ngModel)]="nuevoComentario" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px;"></textarea>
+      <app-boton [buttonText]="customButtonText" (click)="crearComentario(this.nuevoComentario,videoId.canal)" style="margin-left: 79%;"></app-boton>
+
 
       <!--probando el comentario que he robado-->
       <h1 class="text-light">Comentarios</h1>
@@ -63,7 +82,7 @@
             </div>
 
             <div class="respuestas" *ngIf="comentario.mostrarCajaRespuesta">
-              <input class="form-control" [(ngModel)]="comentario.nuevaRespuesta" placeholder="Escribe tu respuesta aquí" style="height: 100px">
+              <input class="form-control placeholder-white" [(ngModel)]="comentario.nuevaRespuesta" placeholder="Escribe tu respuesta aquí" style="height: 100px">
               <button class="btn btn-primary" (click)="crearRespuesta(comentario.nuevaRespuesta, comentario.id,comentario.usuario)">Enviar respuesta</button>
 
             </div>
@@ -116,9 +135,10 @@
 
   </div>
   <div class="listvideos">
-      <!--Carta-->
-      <div class="card" *ngFor="let video of videosug">
-        <iframe class="image" width="320" height="280" [src]="video.safeUrl" allow="autoplay"> </iframe>
+    <!-- Cartas de video -->
+    <ng-container *ngFor="let video of videosug; let i = index">
+      <div class="card" *ngIf="mostrarTodosLosVideos || i < 3">
+        <iframe class="image" width="320" height="280" [src]="video.safeUrl" allow="autoplay"></iframe>
         <div class="image__overlay"></div>
         <div class="content">
           <div class="avatar"></div>
@@ -129,11 +149,22 @@
               <span class="streamer__name" (click)="cargarPerfil(video.canal)">{{ video.canal }}</span>
               <span class="event">{{ video.tematica }}</span>
             </div>
-
           </div>
         </div>
       </div>
+    </ng-container>
+
+    <!-- Botones para mostrar más videos y cerrar -->
+    <div class="buttons-container">
+      <button class="button1" *ngIf="!mostrarTodosLosVideos && videosug.length > 3" (click)="mostrarTodosLosVideos = true">
+        Mostrar más videos
+      </button>
+      <button class="button1" *ngIf="mostrarTodosLosVideos" (click)="mostrarTodosLosVideos = false">
+        Mostrar menos videos
+      </button>
+    </div>
   </div>
+
+
 </div>
 
-<!---->
