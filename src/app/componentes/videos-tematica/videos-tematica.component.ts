@@ -13,6 +13,9 @@ export class VideosTematicaComponent {
   tematica: string;
   videos: any[]=[];
 
+  usuarioLogueadoCanal = localStorage.getItem('nombre_canal');
+  canalLogueado!: string | null;
+
   constructor(
     private authservice: AuthService,
     private sanitizer: DomSanitizer,

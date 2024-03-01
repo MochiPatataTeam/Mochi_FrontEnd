@@ -11,6 +11,10 @@ import {Router} from "@angular/router";
 export class VideosPopularesComponent {
   @Input() limitarVideos2: boolean = false;
   videos: any[]=[];
+  
+  usuarioLogueadoCanal = localStorage.getItem('nombre_canal');
+  canalLogueado!: string | null;
+
 
   constructor(
     private authservice: AuthService,

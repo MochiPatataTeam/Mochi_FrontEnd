@@ -1895,3 +1895,20 @@ body {
   }
 }
 
+.boton-lapiz{
+  position: absolute;
+    top: 15.5vh;
+    right: 0.5vh;
+    z-index: 7;
+    border: 0;
+    background-color: #df9a41;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.boton-lapiz:hover{
+  background-color: black;
+}
