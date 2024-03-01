@@ -79,13 +79,13 @@
   box-shadow: -1px 1px 0px 0px #df9a41,-2px 2px 0px 0px #df9a41,-3px 3px 0px 0px #df9a41,-4px 4px 0px 0px #df9a41,-5px 5px 0px 0px #df9a41,-6px 6px 0px 0px #df9a41,-7px 7px 0px 0px #df9a41,-8px 8px 0px 0px #df9a41;
 }
 
-.avatar {
+.avatar img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   cursor: pointer;
-  background-image: linear-gradient(to right top, #371f05, #654607, #8b7600, #a4ae00, #a8eb12);
 }
+
 
 .content {
   display: flex;
