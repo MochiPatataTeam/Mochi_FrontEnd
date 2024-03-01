@@ -27,6 +27,8 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
     private cdr: ChangeDetectorRef
   ) {}
 
+  user: string | null;
+  usuario: any;
   id!: number | null;
   mensajesConver: any[] = [];
   contactos: any[] = [];
@@ -86,10 +88,19 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
       this.id = this.authservice.getStoredIdUsuario();
     }
 
+    this.user = localStorage.getItem('nombre_canal');
+    if(this.id){
+      this.authservice.getUsuariobyId(this.id).subscribe(
+        (response) => {
+          this.usuario = response;
+        }
+      )
+    }
     if (this.id != null) {
       this.contactos$ = this.authservice.contactos(this.id);
       this.contactos$.subscribe(
         (contactResponse) => {
+          console.log("aquiiiiii", contactResponse)
           this.contactosOriginal = contactResponse;
           this.contactosMostrados = contactResponse;
           this.contactos = contactResponse;
@@ -113,6 +124,7 @@ export class ChatsComponent implements OnInit, AfterViewChecked {
       this.mensajes$ = this.authservice.mensajes(this.id, idPersona);
       this.mensajes$.subscribe(
         (response) => {
+          console.log("fsfasgagsfsg", response)
           this.mensajesConver = response;
           this.chatSeleccionado = 1;
           this.mensajesJuntos= this.imprimirMensajesPorEmisor(this.mensajesConver);
