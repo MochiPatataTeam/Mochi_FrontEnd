@@ -57,20 +57,25 @@
                   <div class="heading-section">
                     <h4><em>Nuestros</em> videos </h4>
                   </div>
-                <div class="col-lg-3 col-sm-6 " *ngFor= "let vi of video.slice(0,4)" >
-                  <div class="item">
-                    <iframe width="320" height="180" [src]="vi.safeUrl" allow="autoplay"></iframe>
-                    <img (click)="videoDetails(vi.id)"  src="assets/imagenes/blanco.png">
+                <ng-container *ngFor= "let vi of video.slice(0,4)">
+                  <div class="col-lg-3 col-sm-6 " *ngIf="vi.PrivacidadDTO[0].isPublico">
+                    <div class="item">
+                      <button type="button" class="boton-lapiz" *ngIf="vi.PrivacidadDTO[0].permitirDescargar && (!canalLogueado || vi.canal !== canalLogueado)"> <!-- Q no me muestre el boton si no permite descargar y si el canal del video es el mismo q esta logueado -->
+                        <i class='bx bxs-download' style='color:white' onmouseover="this.style.color='#df9a41'" onmouseout="this.style.color='white'"></i>
+                      </button>
+                      <iframe width="320" height="180" [src]="vi.safeUrl" allow="autoplay"></iframe>
+                      <img (click)="videoDetails(vi.id)"  src="assets/imagenes/blanco.png">
 
-                    <h4><h4 (click)="videoDetails(vi.id)" >{{vi.titulo}}</h4><br><span>{{vi.tematica}}</span> <span (click)="cargarPerfil(vi.canal)"> {{vi.canal}}</span></h4>
-                    <ul *ngFor= "let via of vi.valoracionGlobalDTO" >
-                      <li><i class='bx bx-like'></i> {{via.fav}}</li>
-                      <li><i class='bx bx-dislike'></i> {{via.dislike}}</li>
-                      <li *ngIf="via.visualizacion !== null; else holi"><i class='bx bx-show-alt'></i> {{via.visualizacion}}</li>
-                    </ul>
-                    <ng-template #holi><li><i class='bx bx-show-alt'></i>0</li> </ng-template>
+                      <h4><h4 (click)="videoDetails(vi.id)" >{{vi.titulo}}</h4><br><span>{{vi.tematica}}</span> <span (click)="cargarPerfil(vi.canal)"> {{vi.canal}}</span></h4>
+                      <ul *ngFor= "let via of vi.valoracionGlobalDTO" >
+                        <li><i class='bx bx-like'></i> {{via.fav}}</li>
+                        <li><i class='bx bx-dislike'></i> {{via.dislike}}</li>
+                        <li *ngIf="via.visualizacion !== null; else holi"><i class='bx bx-show-alt'></i> {{via.visualizacion}}</li>
+                      </ul>
+                      <ng-template #holi><li><i class='bx bx-show-alt'></i>0</li> </ng-template>
+                    </div>
                   </div>
-                </div>
+                </ng-container>
                   <app-videos-populares [limitarVideos2]="true"> </app-videos-populares>
                   <app-video-suscripciones [limitarVideos]="true"></app-video-suscripciones>
                 </ng-container>

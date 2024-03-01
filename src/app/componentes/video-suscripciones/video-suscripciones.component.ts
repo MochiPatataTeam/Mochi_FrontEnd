@@ -12,6 +12,9 @@ export class VideoSuscripcionesComponent implements OnInit {
   id_usuario!: number | null;
   videos: any[] = [];
 
+  usuarioLogueadoCanal = localStorage.getItem('nombre_canal');
+  canalLogueado!: string | null;
+
 
   constructor(
     private authservice: AuthService,

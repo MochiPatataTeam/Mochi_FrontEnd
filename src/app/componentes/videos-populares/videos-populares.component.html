@@ -5,8 +5,12 @@
           <h4><em>En</em> tendencias</h4>
         </div>
         <div class="row">
-          <div class="col-lg-3 col-sm-6 " *ngFor= "let vi of (limitarVideos2 ? videos.slice(0,4) : videos)">
+        <ng-container *ngFor= "let vi of (limitarVideos2 ? videos.slice(0,4) : videos)">
+          <div class="col-lg-3 col-sm-6 " *ngIf="vi.is_publico">
             <div class="item">
+              <button type="button" class="boton-lapiz" *ngIf="vi.permitir_descargar && (!canalLogueado || vi.canal !== canalLogueado)"> <!-- Q no me muestre el boton si no permite descargar el canal y si el canal del video es el mismo q esta logueado -->
+                <i class='bx bxs-download' style='color:white' onmouseover="this.style.color='#df9a41'" onmouseout="this.style.color='white'"></i>
+              </button>
               <iframe  width="320" height="180" [src]="vi.safeUrl" allow="autoplay"> </iframe>
               <img (click)="videoDetails2(vi.id)" src="assets/imagenes/blanco.png">
 
@@ -19,6 +23,7 @@
               <ng-template #holi><li><i class='bx bx-show-alt'></i>0</li> </ng-template>
             </div>
           </div>
+        </ng-container>
 
           <!-- <div class="col-lg-12">
              <div class="main-button">

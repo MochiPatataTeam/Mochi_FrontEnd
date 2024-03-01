@@ -17,6 +17,9 @@ export class VentanaInicioComponent {
   nombreCanal: string;
   valoracion: any[] = [];
 
+  usuarioLogueadoCanal = localStorage.getItem('nombre_canal');
+  canalLogueado!: string | null;
+
   constructor(
     private authservice: AuthService,
     private sanitizer: DomSanitizer,
@@ -25,6 +28,8 @@ export class VentanaInicioComponent {
   ) {}
 
   ngOnInit(): void {
+    this.canalLogueado = this.authservice.getStoredCanal() || 'no hay. Chipi chipi chapa chapa dubidubi dabadaba';
+
     this.authservice.reloadRequired$.subscribe(reload => {
       if (reload) {
         window.location.reload(); // Recarga la página
@@ -47,16 +52,6 @@ export class VentanaInicioComponent {
     } else {
       console.error('No hay canal');
     }
-
-    this.authservice.usuario().subscribe(
-      (response) => {
-        this.patata = response;
-      },
-
-      (error) => {
-        console.log(error);
-      }
-    );
 
     this.authservice.video().subscribe(
       (response) => {
