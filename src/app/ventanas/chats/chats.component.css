@@ -1,7 +1,6 @@
-
 .Container {
   background-color: #212529;
-  width: 100%;
+  width: 100vw;
   display: flex;
   justify-content: center;
   height: 91vh;
@@ -40,7 +39,7 @@ ul {
   align-content: space-between;
   width: 65vw;
   height: 100vh;
-  background-image: url("../../../assets/imagenes/mochi_fondo.png");
+  background-color: #e0e1f6;
   background-size: 35vw 60vh;
   background-repeat: no-repeat;
   background-position: center center;
@@ -55,25 +54,33 @@ ul {
   border-radius: 50%;
   border-bottom: 1px solid White;
 }
-.usuario img {
+.user {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  border-top-right-radius: 3%;
+  background-color: #6c6998;
+  height: 10vh;
+}
+.user img {
   width: 8vh;
   border-radius: 50%;
 }
 .contactos {
   width: 20vw;
-  background-color: #9dadbd;
+  background-color: #4c4a6f;
   border-top-left-radius: 5%;
   border-bottom-left-radius: 5%;
 }
-.buscador{
+.buscador {
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
   align-items: center;
   border-top-left-radius: 3%;
-  height: 12vh;
-  margin-bottom: 0.5em;
-  background-color: #85a1bc;
+  height: 8vh;
+  background-color: #4c4a6f;
 }
 .input-busqueda {
   height: 5vh;
@@ -90,22 +97,21 @@ ul {
   align-items: center;
   width: 17vw;
   height: 10vh;
-  margin-top: 0.2em;
   border: none;
-  background-color: #334b48;
+  background-color: #4c4a6f;
   color: White;
 }
 .etiqueta:hover {
   color: white;
-  background-color: #df9a37;
+  background-color: #3e3d5f;
 }
 .etiqueta.activado {
   color: white;
-  background-color: #df9a37;
+  background-color: #3e3d5f;
 }
 .names {
-  margin-left: 0.5em;
-  font-size: 20px;
+  margin-left: -3em;
+  font-size: 24px;
 }
 .time {
   opacity: 50%;
@@ -117,12 +123,12 @@ ul {
   flex-direction: row;
   align-items: center;
   border-top-right-radius: 3%;
-  background-color: #9dadbd;
-  height: 18vh;
+  background-color: #6c6998;
+  height: 14.5vh;
 }
 h6 {
   margin: 1em;
-  text-decoration: underline;
+  color: White;
   font-size: 20px;
 }
 .other {
@@ -131,24 +137,18 @@ h6 {
   justify-content: flex-end;
   align-items: flex-end;
   box-shadow: 1px 2px 0px #c1cbcd;
+  background-color: #fdfffe;
   border-radius: 0 10px 10px 10px;
 }
-.other1 {
-  background-color: #fed96a;
-}
-.other2 {
-  background-color: #ff9194;
-}
-
 .ul-other {
   display: flex;
   justify-content: left;
-  margin-left: -3em;
+  margin-left: -1em;
 }
 .ul-self {
   display: flex;
   justify-content: right;
-  margin-left: -1em;
+  margin-right: 1em;
 }
 
 .msg {
@@ -161,15 +161,20 @@ h6 {
   width: 20vw;
   justify-content: flex-end;
   align-items: flex-end;
-  box-shadow: 1px 2px 0px #c1cbcd;
+  box-shadow: 1px 2px 0px #94a8fe;
   border-radius: 10px 0 10px 10px;
+  background-color: #FEC627;
 }
-.self1 {
-  background-color: #fff8e8;
+.position {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
 }
-
-.self2 {
-  background-color: #c0b562;
+.position img {
+  margin-top: 1em;
+  width: 8vh;
+  border-radius: 50%;
 }
 span {
   font-size: 13px;
@@ -184,7 +189,7 @@ span {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   border-bottom-right-radius: 3%;
 }
 .button {
@@ -193,7 +198,7 @@ span {
   border-style: none;
   border-bottom-right-radius: 5%;
 }
-.input{
+.input {
   height: 5vh;
   border-style: none;
   width: 10vw;
@@ -211,8 +216,7 @@ span {
 }
 
 .self-dots {
-  margin-right: -2em;
-  background-color: #c0b562;
+  background-color: #FEC627;
   margin-top: 3em;
   width: 20vw;
   height: 8vh;
@@ -229,7 +233,7 @@ span {
   margin-top: 2em;
   height: 4vh;
   width: 10vw;
-  background-color: #c0b562;
+  background-color: #FEC627;
 }
 
 .dot {
@@ -281,7 +285,7 @@ span {
   align-items: center;
   height: 87vh;
   width: 65vw;
-  background-color: #9dadbd;
+  background-color: #e0e1f6;
   border-top-right-radius: 3%;
   border-bottom-right-radius: 3%;
 }

@@ -2,6 +2,13 @@
   <div class="div" *ngIf="contactos$ | async as contactos; else loading">
     <div class="div2">
       <div class="contactos">
+        <div class="user">
+          <img src="{{ usuario?.imagen }}" alt="avatar" />
+
+          <div>
+            <h6>{{ user }} Chat</h6>
+          </div>
+        </div>
         <div class="buscador">
           <input
             class="input-busqueda"
@@ -32,17 +39,11 @@
         </ng-template>
       </div>
 
-
       <div
         class="chat-arriba"
         *ngIf="mensajes$ | async as mensajesConver; else datos"
       >
         <div class="usuario">
-          <img
-            src="{{ imagenIdPersona }}"
-            alt="avatar"
-          />
-
           <div>
             <h6>{{ nombreIdPersona }}</h6>
           </div>
@@ -53,31 +54,21 @@
             <div>
               <ul>
                 <li *ngFor="let mensaje of mensajesJuntos; let i = index">
-                  <div *ngIf="mensaje.emisor">
+                  <div class="position" *ngIf="mensaje.emisor">
                     <ul class="ul-self">
-                      <li
-                        class="self"
-                        [ngClass]="{
-                          self1: i % 2 === 0,
-                          self2: i % 2 !== 0,
-                        }"
-                      >
+                      <li class="self">
                         <div class="msg">
                           <span>{{ mensaje.fecha }}:</span>
                         </div>
                         <div class="conver">{{ mensaje.mensaje }}</div>
                       </li>
                     </ul>
+                    <img src="{{ usuario?.imagen }}" alt="avatar" />
                   </div>
-                  <div *ngIf="!mensaje.emisor">
+                  <div class="position" *ngIf="!mensaje.emisor">
+                    <img src="{{ imagenIdPersona }}" alt="avatar" />
                     <ul class="ul-other">
-                      <li
-                        class="other"
-                        [ngClass]="{
-                          other1: i % 2 === 0,
-                          other2: i % 2 !== 0,
-                        }"
-                      >
+                      <li class="other">
                         <div class="msg">
                           <span>{{ mensaje.fecha }}:</span>
                         </div>
@@ -137,17 +128,12 @@
       <div *ngIf="contactos.length == 0" class="text">
         <h1>Aún no tienes conversaciones.</h1>
       </div>
-      <div *ngIf="contactos.length > 0"  class="text">
+      <div *ngIf="contactos.length > 0" class="text">
         <h1>Elige un chat.</h1>
       </div>
     </div>
     <div class="chat-arriba" *ngIf="chatSeleccionado">
       <div class="usuario">
-        <img
-          src="https://bootdey.com/img/Content/avatar/avatar2.png"
-          alt="avatar"
-        />
-
         <div>
           <h6>{{ nombreIdPersona }}</h6>
         </div>
@@ -158,31 +144,21 @@
           <div>
             <ul>
               <li *ngFor="let mensaje of mensajesJuntos; let i = index">
-                <div *ngIf="mensaje.emisor">
+                <div class="position" *ngIf="mensaje.emisor">
                   <ul class="ul-self">
-                    <li
-                      class="self"
-                      [ngClass]="{
-                        self1: i % 2 === 0,
-                        self2: i % 2 !== 0,
-                      }"
-                    >
+                    <li class="self">
                       <div class="msg">
                         <span>{{ mensaje.fecha }}:</span>
                       </div>
                       <div class="conver">{{ mensaje.mensaje }}</div>
                     </li>
                   </ul>
+                  <img src="{{ usuario?.imagen }}" alt="avatar" />
                 </div>
-                <div *ngIf="!mensaje.emisor">
+                <div class="position" *ngIf="!mensaje.emisor">
+                  <img src="{{ imagenIdPersona }}" alt="avatar" />
                   <ul class="ul-other">
-                    <li
-                      class="other"
-                      [ngClass]="{
-                        other1: i % 2 === 0,
-                        other2: i % 2 !== 0,
-                      }"
-                    >
+                    <li class="other">
                       <div class="msg">
                         <span>{{ mensaje.fecha }}:</span>
                       </div>
