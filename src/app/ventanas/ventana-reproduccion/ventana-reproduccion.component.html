@@ -138,15 +138,18 @@
     <!-- Cartas de video -->
     <ng-container *ngFor="let video of videosug; let i = index">
       <div class="card" *ngIf="mostrarTodosLosVideos || i < 3">
+
         <iframe class="image" width="320" height="280" [src]="video.safeUrl" allow="autoplay"></iframe>
         <div class="image__overlay"></div>
         <div class="content">
-          <div class="avatar"></div>
+          <div class="avatar">
+            <img [src]="video.imagen">
+          </div>
           <div class="content__text">
             <span class="stream__title" (click)="videoDetails2(video.id)">{{ video.titulo }}</span>
             <!--<img (click)="videoDetails2(video.id)" src="assets/imagenes/blanco.png">-->
             <div class="content__body">
-              <span class="streamer__name" (click)="cargarPerfil(video.canal)">{{ video.canal }}</span>
+              <span class="streamer__name" (click)="cargarPerfil(video.nombre_canal)">{{ video.nombre_canal }}</span>
               <span class="event">{{ video.tematica }}</span>
             </div>
           </div>
