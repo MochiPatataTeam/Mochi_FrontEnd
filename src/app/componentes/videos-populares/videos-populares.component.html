@@ -14,7 +14,7 @@
               <iframe  width="320" height="180" [src]="vi.safeUrl" allow="autoplay"> </iframe>
               <img (click)="videoDetails2(vi.id)" src="assets/imagenes/blanco.png">
 
-              <h4 >{{vi.titulo}}<br><span>{{vi.tematica}}</span> <span> {{vi.nombre_canal}}</span></h4>
+              <h4 >{{vi.titulo}}<br><span>{{vi.tematica}}</span> <span class="spansito" (click)="cargarPerfil(vi.nombre_canal)"> {{vi.nombre_canal}}</span></h4>
               <ul>
                 <li><i class='bx bx-like'></i> {{vi.fav}}</li>
                 <li><i class='bx bx-dislike'></i> {{vi.dislike}}</li>

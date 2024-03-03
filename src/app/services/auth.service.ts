@@ -189,6 +189,29 @@ export class AuthService {
   subsTotalesPerfil(id_canal: number): Observable<any> {
     return this.http.get(`${this.urlGeneral}/api/suscripcion/substotales/${id_canal}`);
   }
+
+  subsTotalesReproduccion(id_canal: string): Observable<any> {
+    return this.http.get(`${this.urlGeneral}/api/suscripcion/substotalesReproduccion/${id_canal}`);
+  }
+
+  comprobarlikesporvideo(id_video: number, id_usuario: number):Observable<any> {
+    return this.http.post(`${this.urlGeneral}/api/valoracion/comprobar/fav/${id_video}/${id_usuario}`, {});
+  }
+
+  darLike(id_video: number, id_usuario: number):Observable<any> {
+    return this.http.post(`${this.urlGeneral}/api/valoracion/favorito/${id_video}/${id_usuario}`, {});
+  }
+
+  comprobardislikesporvideo(id_video: number, id_usuario: number):Observable<any> {
+    return this.http.post(`${this.urlGeneral}/api/valoracion/comprobar/dislike/${id_video}/${id_usuario}`, {});
+  }
+
+  dardisLike(id_video: number, id_usuario: number):Observable<any> {
+    return this.http.post(`${this.urlGeneral}/api/valoracion/dislike/${id_video}/${id_usuario}`, {});
+  }
+
+
+
   //----------------------------- VERIFICACION -----------------------------------
 
   verifyEmail(params: any){

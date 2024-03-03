@@ -1000,6 +1000,10 @@ Most Popular Style
   font-weight: 400;
 }
 
+.spansito{
+  cursor: pointer;
+}
+
 .most-popular .item ul {
   float: right;
   margin-top: 20px;
