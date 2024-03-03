@@ -198,6 +198,7 @@ export class VentanaPerfilComponent implements OnInit{
         console.log(error);
       }
     );
+    this.totalSuscriptores(this.canal.id);
   }
 
   comprobar_suscripcion(){
