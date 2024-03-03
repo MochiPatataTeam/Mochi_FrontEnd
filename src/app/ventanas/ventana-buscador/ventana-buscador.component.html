@@ -12,12 +12,12 @@
   <div *ngIf="videos.length > 0">
   <div class="videos" *ngFor="let vi of videos">
     <div class="item">
-      <div>
+      <div class="margin">
         <iframe width="320" height="180" [src]="vi.safeUrl" allow="autoplay">
         </iframe>
         <img class="imagen" (click)="videoDetails(vi.id)" src="assets/imagenes/blanco.png">
       </div>
-      <div>
+      <div class="foto">
         <h4 (click)="videoDetails(vi.id)">
           {{ vi.titulo }}
         </h4>
@@ -27,7 +27,7 @@
 
         <div class="name">
           <div *ngIf="!vi.imagen">
-            <img class="canal" (click)="cargarPerfil(vi.canal)" src="{{vi.imagen}}" alt="" />
+            <img class="canal" (click)="cargarPerfil(vi.canal)" src="../../../assets/imagenes/naranja.png" alt="" />
           </div>
           <p class="p" (click)="cargarPerfil(vi.canal)">{{ vi.canal }}</p>
         </div>
