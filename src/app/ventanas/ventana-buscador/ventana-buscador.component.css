@@ -58,6 +58,13 @@ h4 {
   word-wrap: break-word;
   cursor: pointer;
 }
+.margin{
+  margin-right: 3em;
+}
+.foto{
+  width: 40vw;
+  margin-left: 3em;
+}
 .descripcion {
   font-size: 12px;
 }
@@ -77,9 +84,10 @@ h4 {
   width: 60vw;
 }
 .item {
+  margin-left: 2em;
   width: 60vw;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   position: relative;
 }
@@ -110,6 +118,7 @@ list-style-type: none;
 }
 .lisa{
   display: flex;
-  justify-content: space-between;
-  align-items: left;
+  width: 10vw;
+  justify-content: space-evenly;
+  align-items: flex-start;
 }
