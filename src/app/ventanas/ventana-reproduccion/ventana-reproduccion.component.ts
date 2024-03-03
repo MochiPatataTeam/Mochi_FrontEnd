@@ -17,7 +17,6 @@ export class VentanaReproduccionComponent implements OnInit {
   comentarioId!: number;
   videoId: any = {}; //video DATA general
   videopatata: { url?: SafeResourceUrl } = {};
-  //videopatata1: { url: SafeResourceUrl }[] = [];
   nuevoComentario!: string;
   customButtonText: string = 'Enviar comentario';
   idUsuarioSubidaVideo: number | undefined;
@@ -29,8 +28,9 @@ export class VentanaReproduccionComponent implements OnInit {
   longitudMaximaTitulo: number = 15;
   mostrarDescripcion: boolean = false;
   mostrarTodosLosVideos: boolean = false;
-
-
+  substotales : any;
+  like: boolean = false;
+  dislike: boolean = false;
 
   constructor(private authservice: AuthService,
               private route: ActivatedRoute,
@@ -98,7 +98,10 @@ export class VentanaReproduccionComponent implements OnInit {
       (data) => {
         this.videoId = data;
         this.canal = data.canal;
-        console.log('adkjf',data);
+        this.comprobarlike(data.id,this.id_usuario!);
+        this.comprobardislike(data.id,this.id_usuario!);
+        this.suscripcionesTotales(this.canal);
+
       },
       (error => {
         console.log(error);
@@ -285,5 +288,78 @@ export class VentanaReproduccionComponent implements OnInit {
   toggleDescripcion() {
     this.mostrarDescripcion = !this.mostrarDescripcion;
   }
+
+ suscripcionesTotales(canal:string){
+    this.authservice.subsTotalesReproduccion(canal).subscribe(
+      (response)=>{
+        this.substotales = response;
+      }
+    )
+ }
+
+ comprobarlike(canal: number, id_usuario: number){
+   this.authservice.comprobarlikesporvideo(canal,id_usuario).subscribe(
+     (response)=>{
+       this.like = response;
+       if (response === true){
+         this.dislike = false;
+       }
+     }
+   )
+ }
+
+  darlike(canal: number, id_usuario: number){
+    this.authservice.darLike(canal,id_usuario).subscribe(
+      (response)=>{
+        console.log(response.like);
+        this.like = response.like;
+      }
+    )
+    this.authservice.videoid(this.id).subscribe(
+      (data) => {
+        this.videoId = data;
+        this.canal = data.canal;
+        this.comprobarlike(data.id,this.id_usuario!);
+        this.suscripcionesTotales(this.canal);
+
+      },
+      (error => {
+        console.log(error);
+      })
+    )
+  }
+
+  comprobardislike(canal: number, id_usuario: number){
+    this.authservice.comprobardislikesporvideo(canal,id_usuario).subscribe(
+      (response)=>{
+        this.dislike = response;
+        if (response === true){
+          this.like = false;
+        }
+      }
+    )
+  }
+
+  dardislike(canal: number, id_usuario: number){
+    this.authservice.dardisLike(canal,id_usuario).subscribe(
+      (response)=>{
+        console.log(response.dislike);
+        this.dislike = response.dislike;
+      }
+    )
+    this.authservice.videoid(this.id).subscribe(
+      (data) => {
+        this.videoId = data;
+        this.canal = data.canal;
+        this.comprobarlike(data.id,this.id_usuario!);
+        this.suscripcionesTotales(this.canal);
+
+      },
+      (error => {
+        console.log(error);
+      })
+    )
+  }
+
 
 }

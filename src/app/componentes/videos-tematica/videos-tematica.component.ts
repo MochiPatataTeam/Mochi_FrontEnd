@@ -51,4 +51,19 @@ export class VideosTematicaComponent {
     this.router.navigate(['reproducir', id]);
   }
 
+  cargarPerfil(canal: string): void{
+    this.authservice.getUsuariobyCanal(canal).subscribe(
+      (usuario) => {
+        if (usuario) {
+          this.router.navigate(['/perfil', canal]);
+        } else {
+          console.error('No existe ese canal')
+        }
+      },
+      (error) => {
+        console.error('Error al obtener el usuario por el canal', error);
+      }
+    );
+  }
+
 }

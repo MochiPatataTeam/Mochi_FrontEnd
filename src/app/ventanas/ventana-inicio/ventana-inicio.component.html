@@ -66,7 +66,7 @@
                       <iframe width="320" height="180" [src]="vi.safeUrl" allow="autoplay"></iframe>
                       <img (click)="videoDetails(vi.id)"  src="assets/imagenes/blanco.png">
 
-                      <h4><h4 (click)="videoDetails(vi.id)" >{{vi.titulo}}</h4><br><span>{{vi.tematica}}</span> <span (click)="cargarPerfil(vi.canal)"> {{vi.canal}}</span></h4>
+                      <h4><h4 (click)="videoDetails(vi.id)" >{{vi.titulo}}</h4><br><span>{{vi.tematica}}</span> <span class="spansito" (click)="cargarPerfil(vi.canal)"> {{vi.canal}}</span></h4>
                       <ul *ngFor= "let via of vi.valoracionGlobalDTO" >
                         <li><i class='bx bx-like'></i> {{via.fav}}</li>
                         <li><i class='bx bx-dislike'></i> {{via.dislike}}</li>
