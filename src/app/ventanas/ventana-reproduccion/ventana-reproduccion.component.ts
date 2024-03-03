@@ -98,6 +98,7 @@ export class VentanaReproduccionComponent implements OnInit {
       (data) => {
         this.videoId = data;
         this.canal = data.canal;
+        console.log('adkjf',data);
       },
       (error => {
         console.log(error);
