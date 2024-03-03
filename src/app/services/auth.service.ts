@@ -185,6 +185,10 @@ export class AuthService {
   visualizacionSinUser(id_video: number): Observable<any> {
     return this.http.post(`${this.urlGeneral}/api/valoracion/visual/${id_video}`, {});
   }
+
+  subsTotalesPerfil(id_canal: number): Observable<any> {
+    return this.http.get(`${this.urlGeneral}/api/suscripcion/substotales/${id_canal}`);
+  }
   //----------------------------- VERIFICACION -----------------------------------
 
   verifyEmail(params: any){

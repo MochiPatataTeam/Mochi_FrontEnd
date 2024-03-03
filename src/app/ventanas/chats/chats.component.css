@@ -1,6 +1,6 @@
 .Container {
   background-color: #212529;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   height: 91vh;

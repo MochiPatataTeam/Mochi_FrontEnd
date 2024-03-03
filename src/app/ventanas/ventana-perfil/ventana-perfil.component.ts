@@ -23,7 +23,7 @@ export class VentanaPerfilComponent implements OnInit{
   videos: any;
   privacidadUsuarioId: any;
   privacidadUsuarioCanal: any;
-
+  substotales: any;
   fechaFormateada!: string;
   mensaje: string = '';
   botonHabilitado: boolean = false;
@@ -55,6 +55,7 @@ export class VentanaPerfilComponent implements OnInit{
         this.canal = data;
         this.getPrivacidadUsuarioCanal(canal);
         this.comprobar_suscripcion();
+        this.totalSuscriptores(this.canal.id);
         this.authService.getVideosByNombreCanal(canal).subscribe(
           (video) => {
             this.videos = Object.values(video);
@@ -73,6 +74,7 @@ export class VentanaPerfilComponent implements OnInit{
         this.getPrivacidadUsuarioId(userId);
         this.privacidadUsuarioId = response.privacidadUsuarioId;
         this.cargarVideosById(userId);
+        this.totalSuscriptores(this.usuario.id);
       },
       (error) => {
         console.log(error);
@@ -223,4 +225,18 @@ eliminarVideo(Id: number): void{
     }
   );
 }
+
+totalSuscriptores(id_canal: number){
+  this.authService.subsTotalesPerfil(id_canal).subscribe(
+    (response)=>{
+      console.log(response);
+      this.substotales=response;
+    }
+  )
+}
+
+
+
+
+
 }
