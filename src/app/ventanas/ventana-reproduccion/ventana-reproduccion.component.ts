@@ -114,11 +114,6 @@ export class VentanaReproduccionComponent implements OnInit {
         window.location.reload();
       }
     });
-
-
-
-
-
   }
 
 
