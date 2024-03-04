@@ -14,6 +14,8 @@ export class VentanaEditarPerfilComponent implements OnInit{
   usuario: any;
   privacidadUsuario: any;
   usuarioForm: FormGroup;
+  isPublicoInicial: boolean | null = null;
+  subs: any;
 
   customButtonText: string = 'Guardar cambios';
 
@@ -56,13 +58,45 @@ export class VentanaEditarPerfilComponent implements OnInit{
       isPublico: [this.privacidadUsuario.isPublico],
       permitirSuscripciones: [this.privacidadUsuario.permitirSuscripciones],
       permitirDescargar: [this.privacidadUsuario.permitirDescargar],
+      
     });
+    const isPublicoControl = this.usuarioForm.get('isPublico');
+  if (isPublicoControl) {
+    this.isPublicoInicial = isPublicoControl.value;
+  } else {
+    console.error('Error al obtener el valor inicial de isPublico');
+  }
   }
 
 
 
   onSubmit(): void{
     const formData = this.usuarioForm.getRawValue(); // Obtener solo los valores del formulario
+
+    if (this.isPublicoInicial !== null && this.isPublicoInicial && formData.isPublico !== this.isPublicoInicial) {
+      this.authService.buscarSubs(this.id).subscribe(
+        (response: any) => {
+          this.subs = response;
+          if(this.id != null){
+          for (var i = 0; i < this.subs.length; i += 1) {
+            console.log("sadfasfasdfasdf",this.subs[i].id)
+            this.authService.notificacionesCrear(this.subs[i].id_suscriptor,5,this.id).subscribe(
+              (response: any) => {
+                console.error(response);
+              }, 
+              (error) => {
+                console.error(error);
+             }
+            );
+          }
+        }
+        }, 
+        (error) => {
+          console.error(error);
+       }
+      );
+
+    }
 
     this.authService.perfilEdit(this.id, formData).subscribe
     (data =>{

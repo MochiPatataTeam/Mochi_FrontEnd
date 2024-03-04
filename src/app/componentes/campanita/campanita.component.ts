@@ -124,6 +124,9 @@ export class CampanitaComponent {
         case 4:
           this.router.navigate(['perfil', username]);
         break;
+        case 5:
+          this.router.navigate(['perfil', username]);
+        break;
     }
   }
 }
