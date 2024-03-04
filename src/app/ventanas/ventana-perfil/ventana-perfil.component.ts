@@ -30,6 +30,8 @@ export class VentanaPerfilComponent implements OnInit{
   id!: number | null;
   subs: boolean ;
 
+  numSuscriptores: number = 0;
+
 
   constructor(private authService: AuthService, private route: ActivatedRoute, private sanitizer: DomSanitizer, private router: Router) {}
 
@@ -141,8 +143,6 @@ export class VentanaPerfilComponent implements OnInit{
       .toString()
       .padStart(2, '0')}/${fechaActual.getFullYear()}`;
 
-    console.log(mensaje);
-
     if (this.id != null) {
       this.authService
         .enviarMensaje(mensaje, this.fechaFormateada, this.id, idCanal)
@@ -160,22 +160,21 @@ export class VentanaPerfilComponent implements OnInit{
     }
   }
 
+  //----------------- SUSCRIPCIONES ---------------
   suscripcion(canal: any) {
-    console.log("fasfasfda", canal);
+    console.log(canal);
     this.authService.subs(this.id!, this.canal.id).subscribe(
       (data) => {
         this.subs = data.prueba;
-        console.log(data);
+        window.location.reload();
 
         if (this.id != null) {
           this.authService.comprobar_subs(this.id, this.canal.id).subscribe(
             (data) => {
               this.subs = data.prueba;
-              console.log("fiusghasfkjghgf", data);
-              console.log(data);
 
               if (data.prueba === false) {
-                console.log("entro en falseeeeeeeee")
+                console.log("entro en false")
               }
               if (data.prueba === true) {
                  this.authService.notificacionesCrear(canal, 2, this.id!).subscribe(
@@ -203,38 +202,41 @@ export class VentanaPerfilComponent implements OnInit{
 
   comprobar_suscripcion(){
     if(this.id != null){
-    this.authService.comprobar_subs(this.id,this.canal.id).subscribe(
-      (data)=>{
-        this.subs = data.prueba;
-        console.log(data);
+      this.authService.comprobar_subs(this.id,this.canal.id).subscribe(
+        (data)=>{
+          this.subs = data.prueba;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
+  }
+
+  eliminarVideo(Id: number): void{
+    this.authService.eliminarVideo(Id).subscribe(
+      (response) => {
+        console.log("video borrado", response)
+        window.location.reload();
       },
       (error) => {
         console.log(error);
       }
     );
   }
-}
 
-eliminarVideo(Id: number): void{
-  this.authService.eliminarVideo(Id).subscribe(
-    (response) => {
-      console.log("video borrado", response)
-      window.location.reload();
-    },
-    (error) => {
-      console.log(error);
+  totalSuscriptores(id_canal: number){
+    if(this.usuario && this.privacidadUsuarioId && !this.privacidadUsuarioId.is_publico){
+      this.numSuscriptores = 0;
+    } else {
+      this.authService.subsTotalesPerfil(id_canal).subscribe(
+        (response)=>{
+          // console.log(response);
+          this.substotales=response;
+        }
+      );
     }
-  );
-}
-
-totalSuscriptores(id_canal: number){
-  this.authService.subsTotalesPerfil(id_canal).subscribe(
-    (response)=>{
-      console.log(response);
-      this.substotales=response;
-    }
-  )
-}
+  }
 
 
 

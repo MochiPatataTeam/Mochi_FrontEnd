@@ -46,9 +46,25 @@
                     <p class="texto">{{ usuario?.descripcion }}</p>
                 </div>
                 <div class="perfil-usuario-seguidores"> <!-- Btnes de seguidores/seguidos, seguir/dejar de seguir y enviar mensaje -->
-                  <div class="user-icon" style="margin-left: -10%;">
-                        <p><i class='bx bxs-user-voice' ></i> {{substotales[0].total_subs}} suscriptores</p>
+                  <div *ngIf="usuario" class="user-icon" style="margin-left: -10%;">
+                    <div *ngIf="!privacidadUsuarioId?.isPublico else elseBlock" >
+                          <p><i class='bx bxs-user-voice'></i> {{ numSuscriptores }} suscriptores</p>
+                    </div>
+                    <ng-template class="user-icon" style="margin-left: -10%;" #elseBlock>
+                          <p><i class='bx bxs-user-voice'></i> {{substotales[0].total_subs}} suscriptores</p>
+                    </ng-template>
                   </div>
+                  <div *ngIf="canal" class="user-icon" style="margin-left: -10%;">
+                    <div *ngIf="!privacidadUsuarioCanal?.isPublico else elseBlock1" >
+                      <p><i class='bx bxs-user-voice'></i> {{ numSuscriptores }} suscriptores</p>
+                    </div>
+                    <ng-template class="user-icon" style="margin-left: -10%;" #elseBlock1>
+                          <p><i class='bx bxs-user-voice'></i> {{substotales[0].total_subs}} suscriptores</p>
+                    </ng-template>
+                  </div>
+                  <!-- <div class="user-icon" style="margin-left: -10%;" >
+                    <p><i class='bx bxs-user-voice' ></i> {{substotales[0].total_subs}} suscriptores</p>
+                  </div> -->
                   <div class="user-icon" *ngIf="canal">
                     <div>
                       <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
@@ -96,7 +112,7 @@
                       </button>
                     </div>
                   </div>
-                    <div class="user-icon" *ngIf="canal && privacidadUsuarioCanal?.permitirSuscripciones">
+                    <div class="user-icon" *ngIf="canal && privacidadUsuarioCanal?.permitirSuscripciones && privacidadUsuarioCanal?.isPublico">
                       <button class="btn btn-primary" (click)="suscripcion(canal?.id)" *ngIf="subs === false else elseBlock"><i class='bx bxs-user-plus'></i>Suscribete</button>
                         <ng-template class="buttonSub" #elseBlock>
                       <button class="btn btn-primary" (click)="suscripcion(canal?.id)" (mouseenter)="hovered = true" (mouseleave)="hovered = false" [ngClass]="{'btn-suscrito': hovered, 'btn-desuscribirse': !hovered}">
