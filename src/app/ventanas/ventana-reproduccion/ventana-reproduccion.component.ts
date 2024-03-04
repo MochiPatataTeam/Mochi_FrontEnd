@@ -98,8 +98,10 @@ export class VentanaReproduccionComponent implements OnInit {
       (data) => {
         this.videoId = data;
         this.canal = data.canal;
+        if (this.id_usuario !== null){
         this.comprobarlike(data.id,this.id_usuario!);
         this.comprobardislike(data.id,this.id_usuario!);
+        }
         this.suscripcionesTotales(this.canal);
 
       },
