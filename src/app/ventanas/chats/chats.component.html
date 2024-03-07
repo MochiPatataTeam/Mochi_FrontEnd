@@ -1,82 +1,210 @@
 <div class="Container">
-  <div class="div">
+  <div class="div" *ngIf="contactos$ | async as contactos; else loading">
     <div class="div2">
       <div class="contactos">
-        <button
-          *ngFor="let chat of obtenerContactos(persona[idPersona].id)"
-          (click)="obtenerUsuario(chat.id)"
-          class="etiqueta"
-        >
-          <img
-           [src]="persona[chat.id_receptor].img"
-            alt="avatar"
-          />
-          <div class="names">
-            <div>{{ persona[chat.id_receptor].nombre }}</div>
-            <p class="time">left 7 mins ago</p>
-          </div>
-        </button>
-      </div>
-      <div class="chat-arriba">
-        <div *ngIf="idChatBuscado != null" class="usuario">
+        <div class="user">
+          <img src="{{ usuario?.imagen }}" alt="avatar" />
+
           <div>
-            <img
-            [src]="persona[chat[idChatBuscado].id_receptor].img"
-              alt="avatar"
-            />
-            <div>
-              <h6>
-                {{
-                  chat[idChatBuscado].id_receptor
-                    ? persona[chat[idChatBuscado].id_receptor].nombre
-                    : "Usuario Desconocido"
-                }}
-              </h6>
-              <small>Last seen: 2 hours ago</small>
+            <h6>{{ user }} Chat</h6>
+          </div>
+        </div>
+        <div class="buscador">
+          <input
+            class="input-busqueda"
+            type="text"
+            placeholder="Buscar contactos..."
+            [(ngModel)]="filtroBusqueda"
+            (input)="realizarBusqueda()"
+          />
+        </div>
+
+        <div *ngIf="contactosMostrados.length > 0; else noContactos">
+          <button
+            [class.activado]="estadosBotones[contact.id]"
+            *ngFor="let contact of contactosMostrados"
+            class="etiqueta"
+            (click)="mensajesChat(contact.id, contact.nombre, contact.imagen)"
+          >
+            <img src="{{ contact.imagen }}" alt="avatar" />
+            <div class="names">
+              <div>{{ contact.nombre }}</div>
             </div>
+            <div></div>
+          </button>
+        </div>
+
+        <ng-template #noContactos>
+          <p>No se encontraron contactos con ese nombre.</p>
+        </ng-template>
+      </div>
+
+      <div
+        class="chat-arriba"
+        *ngIf="mensajes$ | async as mensajesConver; else datos"
+      >
+        <div class="usuario">
+          <div>
+            <h6>{{ nombreIdPersona }}</h6>
           </div>
         </div>
 
         <div #componentContainer class="chat">
-          <div class="scroll">
-            <div *ngFor="let mensaje of mensajesDelChat">
-              <ul
-                *ngIf="mensaje.id_usuario === chat[idChatBuscado].id_emisor"
-                class="ul-self"
-              >
-                <li class="self">
-                  <div class="msg">
-                    <span>{{ mensaje.fecha }}:</span>
+          <div class="scroll" #chatContainer>
+            <div>
+              <ul>
+                <li *ngFor="let mensaje of mensajesJuntos; let i = index">
+                  <div class="position" *ngIf="mensaje.emisor">
+                    <ul class="ul-self">
+                      <li class="self">
+                        <div class="msg">
+                          <span>{{ mensaje.fecha }}:</span>
+                        </div>
+                        <div class="conver">{{ mensaje.mensaje }}</div>
+                      </li>
+                    </ul>
+                    <img src="{{ usuario?.imagen }}" alt="avatar" />
                   </div>
-                  <div class="conver">{{ mensaje.mensaje }}</div>
-                </li>
-              </ul>
-
-              <ul
-                *ngIf="mensaje.id_usuario === chat[idChatBuscado].id_receptor"
-                class="ul-other"
-              >
-                <li class="other">
-                  <div class="msg">
-                    <span>{{ mensaje.fecha }}:</span>
+                  <div class="position" *ngIf="!mensaje.emisor">
+                    <img src="{{ imagenIdPersona }}" alt="avatar" />
+                    <ul class="ul-other">
+                      <li class="other">
+                        <div class="msg">
+                          <span>{{ mensaje.fecha }}:</span>
+                        </div>
+                        <div class="conver">{{ mensaje.mensaje }}</div>
+                      </li>
+                    </ul>
                   </div>
-                  <div class="conver">
-                    {{ mensaje.mensaje }}
-                  </div>
-                  <br />
                 </li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div class="chat-abajo">
-          <button (click)="enviarMensaje(nuevoMensaje)">
-            <img src="../../../assets/imagenes/envio.png" alt="" />
+        <div *ngIf="chatSeleccionado" class="chat-abajo">
+          <input
+            class="input"
+            type="text"
+            [(ngModel)]="nuevoMensaje"
+            placeholder="Escribe tu mensaje..."
+            (keyup.enter)="enviarMensaje(nuevoMensaje, idPersona)"
+          />
+          <button
+            class="button"
+            (click)="enviarMensaje(nuevoMensaje, idPersona)"
+          >
+            <i
+              class="bx bxs-send"
+              style="color: #030606"
+              onmouseover="this.style.color='#DF9A37'"
+              onmouseout="this.style.color='#030606'"
+            ></i>
           </button>
-          <input type="text" [(ngModel)]="nuevoMensaje" placeholder="Escribe tu mensaje..." />
         </div>
       </div>
     </div>
   </div>
+  <ng-template #loading>
+    <div class="image">
+      <img class="img" src="./assets/imagenes/logito.png" />
+      <div class="spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #datos>
+    <div *ngIf="!chatSeleccionado">
+      <div *ngIf="contactos.length == 0" class="text">
+        <h1>Aún no tienes conversaciones.</h1>
+      </div>
+      <div *ngIf="contactos.length > 0" class="text">
+        <h1>Elige un chat.</h1>
+      </div>
+    </div>
+    <div class="chat-arriba" *ngIf="chatSeleccionado">
+      <div class="usuario">
+        <div>
+          <h6>{{ nombreIdPersona }}</h6>
+        </div>
+      </div>
+
+      <div #componentContainer class="chat">
+        <div class="scroll" #chatContainer>
+          <div>
+            <ul>
+              <li *ngFor="let mensaje of mensajesJuntos; let i = index">
+                <div class="position" *ngIf="mensaje.emisor">
+                  <ul class="ul-self">
+                    <li class="self">
+                      <div class="msg">
+                        <span>{{ mensaje.fecha }}:</span>
+                      </div>
+                      <div class="conver">{{ mensaje.mensaje }}</div>
+                    </li>
+                  </ul>
+                  <img src="{{ usuario?.imagen }}" alt="avatar" />
+                </div>
+                <div class="position" *ngIf="!mensaje.emisor">
+                  <img src="{{ imagenIdPersona }}" alt="avatar" />
+                  <ul class="ul-other">
+                    <li class="other">
+                      <div class="msg">
+                        <span>{{ mensaje.fecha }}:</span>
+                      </div>
+                      <div class="conver">{{ mensaje.mensaje }}</div>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+
+            <ul class="ul-self">
+              <li class="self-dots">
+                <div class="msg">
+                  <span></span>
+                  <div class="conver">
+                    <section class="dots-container">
+                      <div class="dot"></div>
+                      <div class="dot"></div>
+                      <div class="dot"></div>
+                      <div class="dot"></div>
+                      <div class="dot"></div>
+                    </section>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-abajo">
+        <input
+          class="input"
+          type="text"
+          [(ngModel)]="nuevoMensaje"
+          placeholder="Escribe tu mensaje..."
+        />
+        <button class="button">
+          <i
+            class="bx bxs-send"
+            style="color: #030606"
+            onmouseover="this.style.color='#DF9A37'"
+            onmouseout="this.style.color='#030606'"
+          ></i>
+        </button>
+      </div>
+    </div>
+  </ng-template>
 </div>

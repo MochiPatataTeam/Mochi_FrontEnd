@@ -1,11 +1,16 @@
 import {
   Component,
-  ChangeDetectorRef,
   ChangeDetectionStrategy,
+  OnInit,
+  TemplateRef,
+  ElementRef,
+  ViewChild,
+  AfterViewChecked,
 } from '@angular/core';
-import { Persona } from 'src/app/componentes/Interfaces/Persona';
-import { Chat } from 'src/app/componentes/Interfaces/Chat';
-import { Mensajes } from 'src/app/componentes/Interfaces/Mensajes';
+import { AuthService } from '../../services/auth.service';
+import { Observable } from 'rxjs';
+import { NgIfContext } from '@angular/common';
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-chats',
@@ -13,192 +18,181 @@ import { Mensajes } from 'src/app/componentes/Interfaces/Mensajes';
   styleUrls: ['./chats.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ChatsComponent {
-  persona: Persona = {
-    1: {
-      id: 1,
-      nombre: 'Manuel',
-      img: 'https://bootdey.com/img/Content/avatar/avatar2.png',
-    },
-    2: {
-      id: 2,
-      nombre: 'Federico',
-      img: 'https://bootdey.com/img/Content/avatar/avatar6.png',
-    },
-    3: {
-      id: 3,
-      nombre: 'Federicaa',
-      img: 'https://bootdey.com/img/Content/avatar/avatar8.png',
-    },
-  };
+export class ChatsComponent implements OnInit, AfterViewChecked {
+  mensajes: any;
+  @ViewChild('chatContainer') private chatContainer: ElementRef | undefined;
 
-  chat: Chat = {
-    1: { id: 1, id_emisor: 1, id_receptor: 2 },
-    2: { id: 2, id_emisor: 2, id_receptor: 1 },
-    3: { id: 3, id_emisor: 1, id_receptor: 3 },
-    4: { id: 4, id_emisor: 3, id_receptor: 1 },
-  };
+  constructor(
+    private authservice: AuthService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
-  mensajes: Mensajes = {
-    1: {
-      id: 1,
-      mensaje: 'Hola..',
-      id_chatE: 1,
-      id_chatR: 2,
-      fecha: '10-15-2024',
-      id_usuario: 1,
-    },
-    2: {
-      id: 2,
-      mensaje: 'Holiiiiiiiiiiiiiiiiiiiiiii',
-      id_chatE: 2,
-      id_chatR: 1,
-      fecha: '13-15-2024',
-      id_usuario: 2,
-    },
-    3: {
-      id: 3,
-      mensaje: '¿Qué tal?',
-      id_chatE: 1,
-      id_chatR: 2,
-      fecha: '19-15-2024',
-      id_usuario: 1,
-    },
-    4: {
-      id: 4,
-      mensaje: 'Deseando irme a mi casa',
-      id_chatE: 2,
-      id_chatR: 1,
-      fecha: '13-15-2024',
-      id_usuario: 2,
-    },
-    5: {
-      id: 5,
-      mensaje: 'y tu?',
-      id_chatE: 2,
-      id_chatR: 1,
-      fecha: '13-15-2024',
-      id_usuario: 2,
-    },
-    6: {
-      id: 6,
-      mensaje: 'Igual xd',
-      id_chatE: 1,
-      id_chatR: 2,
-      fecha: '19-15-2024',
-      id_usuario: 1,
-    },
-    7: {
-      id: 7,
-      mensaje: 'Quedamos mañana por lo de ayer?',
-      id_chatE: 1,
-      id_chatR: 2,
-      fecha: '19-15-2024',
-      id_usuario: 1,
-    },
-    8: {
-      id: 8,
-      mensaje: 'En el bar de la esquina de mi casa?',
-      id_chatE: 1,
-      id_chatR: 2,
-      fecha: '19-15-2024',
-      id_usuario: 1,
-    },
-    9: {
-      id: 9,
-      mensaje: 'Hola..',
-      id_chatE: 2,
-      id_chatR: 1,
-      fecha: '10-15-2024',
-      id_usuario: 2,
-    },
-    10: {
-      id: 10,
-      mensaje: 'Hola..',
-      id_chatE: 3,
-      id_chatR: 4,
-      fecha: '10-15-2024',
-      id_usuario: 1,
-    },
-    11: {
-      id: 11,
-      mensaje: 'Holiiiiiiiiii',
-      id_chatE: 4,
-      id_chatR: 3,
-      fecha: '10-15-2024',
-      id_usuario: 3,
-    },
-  };
-
-  idChatBuscado!: number;
-  mensajesDelChat!: any[];
-  idPersona: number = 2;
+  user: string | null;
+  usuario: any;
+  id!: number | null;
+  mensajesConver: any[] = [];
+  contactos: any[] = [];
+  contactos$!: Observable<any[]>;
   nuevoMensaje: string = '';
+  chatSeleccionado: any = null;
+  mensajes$!: Observable<any[]>;
+  loading!: TemplateRef<NgIfContext<any>> | null;
+  mensajesJuntos: any[] = [];
+  fechaFormateada!: string;
+  idPersona!: number;
+  nombreIdPersona!: string;
+  imagenIdPersona!: string;
+  estadosBotones: { [key: string]: boolean } = {};
+  mensajeActualColor = 'even';
+  colorSelf = 'chartreuse';
+  colorOther = '#c1cbcd';
+  filtroBusqueda: string = '';
+  contactosOriginal: any[] = [];
+  contactosMostrados: any[] = [];
 
-  constructor(private cdr: ChangeDetectorRef) {}
-  ngOnInit() {
-    this.mensajesDelChat = this.obtenerMensajesPorChat(this.idChatBuscado);
+  realizarBusqueda() {
+    if (this.filtroBusqueda.trim() !== '') {
+      this.contactosMostrados = this.filtrarContactos();
+    } else {
+      this.contactosMostrados = this.contactosOriginal;
+    }
+  }
+
+  filtrarContactos() {
+    return this.contactosOriginal.filter((contacto) =>
+      contacto.nombre.toLowerCase().includes(this.filtroBusqueda.toLowerCase())
+    );
+  }
+
+  toggleEtiqueta(id: number) {
+    Object.keys(this.estadosBotones).forEach((key) => {
+      this.estadosBotones[key] = false;
+    });
+    this.estadosBotones[id] = true;
+  }
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom(): void {
+    if (this.chatContainer) {
+      this.chatContainer.nativeElement.scrollTop =
+        this.chatContainer.nativeElement.scrollHeight;
+    }
+  }
+
+  ngOnInit(): void {
+    if (!this.id == null) {
+      this.id = 0;
+    } else {
+      this.id = this.authservice.getStoredIdUsuario();
+    }
+
+    this.user = localStorage.getItem('nombre_canal');
+    if(this.id){
+      this.authservice.getUsuariobyId(this.id).subscribe(
+        (response) => {
+          this.usuario = response;
+        }
+      )
+    }
+    if (this.id != null) {
+      this.contactos$ = this.authservice.contactos(this.id);
+      this.contactos$.subscribe(
+        (contactResponse) => {
+          console.log("aquiiiiii", contactResponse)
+          this.contactosOriginal = contactResponse;
+          this.contactosMostrados = contactResponse;
+          this.contactos = contactResponse;
+        },
+        (error) => {
+          console.log('Error fetching contacts:', error);
+        }
+      );
+    }
+
     this.cdr.detectChanges();
   }
-  ngAfterViewInit() {
-    this.mensajesDelChat = this.obtenerMensajesPorChat(this.idChatBuscado);
-    this.cdr.detectChanges();
+
+  mensajesChat(idPersona: number, nombre: string, imagen: string) {
+    this.toggleEtiqueta(idPersona);
+    this.nombreIdPersona = nombre;
+    this.idPersona = idPersona;
+    this.ngAfterViewChecked();
+
+    if (this.id != null) {
+      this.mensajes$ = this.authservice.mensajes(this.id, idPersona);
+      this.mensajes$.subscribe(
+        (response) => {
+          console.log("fsfasgagsfsg", response)
+          this.mensajesConver = response;
+          this.chatSeleccionado = 1;
+          this.mensajesJuntos= this.imprimirMensajesPorEmisor(this.mensajesConver);
+          this.nombreIdPersona = nombre;
+          this.imagenIdPersona = imagen;
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    }
   }
-  obtenerMensajesPorChat(idChat: number) {
-    return Object.values(this.mensajes).filter(
-      (mensaje) => mensaje.id_chatE == idChat
-    );
+
+  imprimirMensajesPorEmisor(mensajesConver: any[]) {
+    const mensajesEmisor: any[] = [];
+    const mensajesReceptor: any[] = [];
+
+    mensajesConver.forEach((mensaje) => {
+      if (mensaje.idEmisor === this.id?.toString()) {
+        mensaje.emisor = true;
+        mensajesEmisor.push(mensaje);
+      } else {
+        mensaje.emisor = false;
+        mensajesReceptor.push(mensaje);
+      }
+    });
+
+    const mensajesUnidos = [...mensajesEmisor, ...mensajesReceptor];
+
+    mensajesUnidos.sort((a, b) => {
+      const fechaA = new Date(a.fecha.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3')).getTime();
+      const fechaB = new Date(b.fecha.replace(/(\d{2})\/(\d{2})\/(\d{4})/, '$2/$1/$3')).getTime();
+
+      if (fechaA === fechaB) {
+        return a.id - b.id;
+      }
+
+      return fechaA - fechaB;
+    });
+
+    return mensajesUnidos;
   }
-  obtenerMensajesRPorChat(idChat: number) {
-    return Object.values(this.mensajes).filter(
-      (mensaje) => mensaje.id_chatR == idChat
-    );
-  }
 
-  obtenerNombreUsuario(idUsuario: number) {
-    const usuario = this.persona[idUsuario];
-    return usuario ? usuario.nombre : 'Usuario Desconocido';
-  }
-  obtenerUsuario(id: number) {
-    this.idChatBuscado = id;
-    console.log('aaaaaaaaaaaaa', this.idChatBuscado);
-    this.mensajesDelChat = this.obtenerMensajesPorChat(this.idChatBuscado);
-    this.cdr.detectChanges();
-  }
 
-  obtenerContactos(idEmisor: number): any[] {
-    let mensajesReceptor = this.obtenerMensajesRPorChat(this.idChatBuscado);
 
-    mensajesReceptor = mensajesReceptor.filter(
-      (mensajeR) =>
-        !this.mensajesDelChat.some((mensaje) => mensaje.id === mensajeR.id)
-    );
+  enviarMensaje(mensaje: string, idPersona: number) {
+    const fechaActual = new Date();
+    this.fechaFormateada = `${fechaActual
+      .getDate()
+      .toString()
+      .padStart(2, '0')}/${(fechaActual.getMonth() + 1)
+      .toString()
+      .padStart(2, '0')}/${fechaActual.getFullYear()}`;
 
-    this.mensajesDelChat = this.mensajesDelChat.concat(mensajesReceptor);
+    if (this.id != null) {
+      this.authservice
+        .enviarMensaje(mensaje, this.fechaFormateada, this.id, idPersona)
+        .subscribe(
+          (response) => {
+            this.contactos = response;
+          },
+          (error) => {
+            console.log(error);
+          }
+        );
 
-    this.mensajesDelChat.sort((a, b) => a.id - b.id);
-    console.log(this.mensajesDelChat);
-
-    return Object.values(this.chat).filter(
-      (chat) => chat.id_emisor === idEmisor
-    );
-  }
-  enviarMensaje(nuevoMensaje: string) {
-    //este metodo esta aun en proceso se va a cambiar
-    const nuevoId = Object.keys(this.mensajes).length + 1;
-
-    const nuevoMensajeObj = {
-      id: nuevoId,
-      mensaje: nuevoMensaje,
-      id_chatE: this.idPersona,
-      id_chatR: this.idChatBuscado,
-      fecha: new Date().toLocaleDateString(),
-      id_usuario: this.idPersona,
-    };
-
-    this.mensajes[nuevoId] = nuevoMensajeObj;
-
-    this.mensajesDelChat = this.obtenerMensajesPorChat(this.idChatBuscado);
-    this.nuevoMensaje = '';
+      this.mensajesChat(idPersona, this.nombreIdPersona, this.imagenIdPersona);
+      this.nuevoMensaje = '';
+    }
   }
 }

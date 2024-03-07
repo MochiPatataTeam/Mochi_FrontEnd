@@ -1,0 +1,16 @@
+<div class="notification" (click)="toggleNotification()">
+  <img
+    class="notification-icon"
+    src="https://s3.amazonaws.com/codecademy-content/projects/2/feedster/bell.svg"
+  />
+  <div class="notification-badge">{{ countFalseVisible }}</div>
+  <ul class="notification-menu">
+    <li *ngFor="let notification of notificaciones" [ngStyle]="{'opacity': notification.visible ? '0.5' : '1'}" (click)="handleClick(notification.id_tipo,notification.nombre_canal)">
+      <img
+        class="avatar"
+        src="https://s3.amazonaws.com/codecademy-content/projects/2/feedster/fn.svg"
+      />
+      <h3>{{ notification.tipo }}: {{notification.nombre_canal}}</h3>
+    </li>
+  </ul>
+</div>

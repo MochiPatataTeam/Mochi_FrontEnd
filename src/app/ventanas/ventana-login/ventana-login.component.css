@@ -1,0 +1,197 @@
+
+h2{
+    text-align: center;
+    color: #fff;
+}
+
+p, span, :placeholder-shown, a, button{
+    font-family: 'Raleway', sans-serif;
+    color: #fff;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    min-height: 100%;
+    /* background: rgb(89, 178, 223); */
+    /* background-image: url(../../../assets/imagenes/a.jpg); */
+    background-size: cover;
+
+    animation: change 10s ease-in-out infinite;
+}
+
+  @keyframes change{
+    0%{
+      background-image: url(../../../assets/imagenes/login_img/avengers.jpg);
+    }
+    20%{
+      background-image: url(../../../assets/imagenes/login_img/dr_House.jpg);
+    }
+    40%{
+      background-image: url(../../../assets/imagenes/login_img/sociedad_nieve.jpg);
+    }
+    60%{
+      background-image: url(../../../assets/imagenes/login_img/interstellar.jpeg);
+    }
+    80%{
+      background-image: url(../../../assets/imagenes/login_img/invencible.jpg);
+    }
+    100%{
+      background-image: url(../../../assets/imagenes/login_img/strangerthings.jpg);
+    }
+  }
+
+img{
+    width: 10rem;
+    height: auto;
+    margin-bottom: 2rem;
+    display: flex;
+    margin: auto;
+    cursor: pointer;
+}
+
+.card-header{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card-container{
+    width: 35%;
+    background: rgba(128, 128, 128, 0.474);
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    padding: 3rem;
+    border-radius: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.card-container::before{
+    content: '';
+    position: absolute;
+    background: rgb(255, 255, 255, .15);
+    inset: 0;
+    border-radius: 1rem;
+
+    transform: rotate(-5deg);
+    z-index: -1;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    position: relative;
+  }
+
+
+  .form label, i {
+    position: relative;
+  }
+
+  .form label .input {
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 10px;
+    padding-left: 2rem;
+    color: rgb(255, 255, 255);
+  }
+
+  .form label .input + span {
+    position: absolute;
+    left: 35px;
+    top: 15px;
+    color: rgb(255, 255, 255); /* Color letras input*/
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+  }
+
+  .form i {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: rgb(255, 255, 255);
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+  }
+
+  .form label .input:placeholder-shown + span {
+    top: 15px;
+    font-size: 0.9em;
+  }
+
+  .form label .input:focus + span,.form label .input:valid + span {
+    top: 30px;
+    font-size: 0.7em;
+    font-weight: 600;
+  }
+
+  .form label .input:valid + span {
+    color: rgb(211, 136, 50);
+  }
+
+  /* .submit {
+    border: none;
+    outline: none;
+    background-color: rgb(225, 158, 65);
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transform: .3s ease;
+  }
+
+  .submit:hover {
+    background-color: rgb(211, 136, 50);
+  } */
+
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+
+.card-footer p,
+.card-footer a {
+    display: inline-block;
+    margin-right: 1px;
+    margin-top: 1.5rem;
+}
+
+input[type="text"],
+input[type="password"] {
+    background: rgba(255, 255, 255, .3);
+    padding: 1rem 1.5rem;
+    padding-left: calc(1rem * 3.5);
+    border-radius: 100px;
+    width: 100%;
+
+}
+
+::ng-deep .modal-backdrop {
+  --bs-backdrop-zindex: 0;
+  z-index: var(--bs-backdrop-zindex);
+}
+
+.right-align {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+  color: #fff;
+}

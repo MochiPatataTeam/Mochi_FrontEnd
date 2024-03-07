@@ -1,0 +1,86 @@
+<main>
+  <form [formGroup]="videoForm" (ngSubmit)="onSubmit()" class="form-style-5">
+    <fieldset>
+      <legend><span class="number">1</span>Edición Del Video</legend>
+
+      <div>
+        <input
+          type="text"
+          formControlName="titulo"
+          [(ngModel)]="titulo"
+          placeholder="Título"
+        />
+      </div>
+
+      <div>
+        <input
+          type="text"
+          formControlName="url"
+          [(ngModel)]="url"
+          placeholder="Url"
+        />
+      </div>
+
+      <div>
+        <select formControlName="tematica" [(ngModel)]="idTematicas">
+          <option value="" disabled selected>Selecciona una temática</option>
+          <option *ngFor="let item of tematicas" [value]="item.id">
+            {{ item.tematica }}
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <textarea
+          type="text"
+          formControlName="descripcion"
+          [(ngModel)]="descripcion"
+          placeholder="Descripción"
+        ></textarea>
+      </div>
+    </fieldset>
+
+    <app-boton [buttonText]="customButtonText" type="submit" style="float: right"></app-boton>
+  </form>
+</main>
+<main *ngIf="this.ventana == true" class="card-overlay">
+  <div class="card">
+    <div class="header">
+      <div class="div_image_v">
+        <div class="image">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path
+                d="M20 7L9.00004 18L3.99994 13"
+                stroke="#000000"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="content">
+        <img class="img" src="./assets/imagenes/logo.png" />
+        <span class="title">Edición Realizada</span>
+        <p class="message">
+          Video editado con éxito, puedes regresar a tu perfil.
+        </p>
+        <button class="btn btn-primary" [routerLink]="['/perfil']">
+          Volver a Perfil
+        </button>
+      </div>
+    </div>
+  </div>
+</main>

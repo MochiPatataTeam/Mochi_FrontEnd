@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-spinner',
@@ -7,7 +9,9 @@ import { Component } from '@angular/core';
 })
 export class SpinnerComponent {
   progreso: number = 0;
-  valorMaximo: number = 100; // Establece el valor máximo de la barra de progreso
+  valorMaximo: number = 100;
+
+  constructor(private router: Router, private location: Location) {}
 
   ngOnInit() {
     setInterval(() => {
@@ -16,12 +20,21 @@ export class SpinnerComponent {
   }
 
   aumentarProgreso() {
-    // Aumenta el progreso en un valor específico (puedes ajustar según tus necesidades)
-    this.progreso += 9;
 
-    // Asegúrate de que el progreso no supere el valor máximo
+    this.progreso += 8;
+
     if (this.progreso > this.valorMaximo) {
       this.progreso = this.valorMaximo;
+
+      this.router.navigate(['../Inicio']);
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          if (this.router.url === '/Inicio') {
+            this.location.replaceState(this.router.url);
+            window.location.reload();
+          }
+        }
+      });
     }
   }
 }

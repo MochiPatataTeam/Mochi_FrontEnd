@@ -1,0 +1,58 @@
+.notification {
+  position: relative;
+  text-align: right;
+  z-index: 2;
+}
+
+.notification img {
+  padding: 10px 0;
+}
+
+.notification-menu {
+  position: absolute;
+  top: 50px;
+  left: -150px;
+  background-color: #e5e5e5;
+  border: #989898;
+  padding: 10px;
+  list-style: none;
+  width: 250px;
+  display: none;
+  text-align: left;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.notification-menu li {
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.notification-menu .avatar {
+  padding: 2px 0;
+}
+
+.notification-menu h3 {
+  font-size: 15px;
+  margin: 0 0 5px 0;
+  display: inline;
+}
+
+.notification-menu p {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+.notification-badge {
+  width: 2vh;
+  height: 2vh;
+  position: absolute;
+  top: 6px;
+  right: 0px;
+  background-color: #DF9A41;
+  color: white;
+  border-radius: 75%;
+  padding-right: 0.5em;
+  font-size: 10px;
+}

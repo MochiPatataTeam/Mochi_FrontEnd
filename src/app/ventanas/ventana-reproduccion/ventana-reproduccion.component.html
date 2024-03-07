@@ -1,0 +1,200 @@
+<div class="contenedor" >
+  <div class="contenedor1"  >
+    <iframe class="reproductor" width="860" height="415" [src]="videopatata.url" ></iframe>
+    <!--La zona a cambiar-->
+    <div class="datos text-light">
+      <div class="datos-canal">
+        <h1>
+          <ng-container *ngIf="videoId.titulo.length > 15 && !mostrarTituloCompleto">
+            {{ videoId.titulo.slice(0, 15) }}...
+            <span class="botoncitomas"(click)="mostrarTituloCompleto = true">Ver más</span>
+          </ng-container>
+          <ng-container *ngIf="videoId.titulo.length <= 15 || mostrarTituloCompleto">
+            {{ videoId.titulo }}
+            <span class="botoncitomenos"*ngIf="mostrarTituloCompleto" (click)="mostrarTituloCompleto = false">Ver menos</span>
+          </ng-container></h1>
+
+      </div>
+    </div>
+
+    <div class="perfil-likes mt-3">
+      <div class="perfil-suscriptores-imagen">
+        <img class="imagen-perfil" src="{{ videoId.imagenCanal }}">
+        <div class="perfil-suscriptores">
+          <p id="perfil" (click)="cargarPerfil(videoId.canal)">{{videoId.canal}}</p>
+          <p class="subs">{{substotales[0].total_subs}} suscriptores</p>
+        </div>
+      </div>
+
+
+      <div class="barrita" *ngFor= "let vi of videoId.valoracionGlobalDTO">
+        <div class="likes-dislikes">
+          <label class="container1" *ngIf="id_usuario !== null,else holi1">
+          <input (click)="darlike(videoId.id,id_usuario!)" type="checkbox" [checked]="like" (change)="like = !like">
+          <svg id="Glyph" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M29.845,17.099l-2.489,8.725C26.989,27.105,25.804,28,24.473,28H11c-0.553,0-1-0.448-1-1V13  c0-0.215,0.069-0.425,0.198-0.597l5.392-7.24C16.188,4.414,17.05,4,17.974,4C19.643,4,21,5.357,21,7.026V12h5.002  c1.265,0,2.427,0.579,3.188,1.589C29.954,14.601,30.192,15.88,29.845,17.099z" id="XMLID_254_"></path><path d="M7,12H3c-0.553,0-1,0.448-1,1v14c0,0.552,0.447,1,1,1h4c0.553,0,1-0.448,1-1V13C8,12.448,7.553,12,7,12z   M5,25.5c-0.828,0-1.5-0.672-1.5-1.5c0-0.828,0.672-1.5,1.5-1.5c0.828,0,1.5,0.672,1.5,1.5C6.5,24.828,5.828,25.5,5,25.5z" id="XMLID_256_"></path></svg>
+          </label>
+          <ng-template #holi1>
+            <label class="container1">
+              <svg id="Glyph" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M29.845,17.099l-2.489,8.725C26.989,27.105,25.804,28,24.473,28H11c-0.553,0-1-0.448-1-1V13  c0-0.215,0.069-0.425,0.198-0.597l5.392-7.24C16.188,4.414,17.05,4,17.974,4C19.643,4,21,5.357,21,7.026V12h5.002  c1.265,0,2.427,0.579,3.188,1.589C29.954,14.601,30.192,15.88,29.845,17.099z" id="XMLID_254_"></path><path d="M7,12H3c-0.553,0-1,0.448-1,1v14c0,0.552,0.447,1,1,1h4c0.553,0,1-0.448,1-1V13C8,12.448,7.553,12,7,12z   M5,25.5c-0.828,0-1.5-0.672-1.5-1.5c0-0.828,0.672-1.5,1.5-1.5c0.828,0,1.5,0.672,1.5,1.5C6.5,24.828,5.828,25.5,5,25.5z" id="XMLID_256_"></path></svg>
+            </label>
+          </ng-template>
+          <p class="me-1"> {{vi.fav}} likes</p>
+        </div>
+
+        <div class="likes-dislikes">
+          <label class="container" *ngIf="id_usuario !== null,else holi">
+            <input (click)="dardislike(videoId.id,id_usuario!)" type="checkbox" [checked]="dislike" (change)="dislike = !dislike">
+            <svg id="Glyph" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M2.156,14.901l2.489-8.725C5.012,4.895,6.197,4,7.528,4h13.473C21.554,4,22,4.448,22,5v14  c0,0.215-0.068,0.425-0.197,0.597l-5.392,7.24C15.813,27.586,14.951,28,14.027,28c-1.669,0-3.026-1.357-3.026-3.026V20H5.999  c-1.265,0-2.427-0.579-3.188-1.589C2.047,17.399,1.809,16.12,2.156,14.901z" id="XMLID_259_"></path><path d="M25.001,20h4C29.554,20,30,19.552,30,19V5c0-0.552-0.446-1-0.999-1h-4c-0.553,0-1,0.448-1,1v14  C24.001,19.552,24.448,20,25.001,20z M27.001,6.5c0.828,0,1.5,0.672,1.5,1.5c0,0.828-0.672,1.5-1.5,1.5c-0.828,0-1.5-0.672-1.5-1.5  C25.501,7.172,26.173,6.5,27.001,6.5z" id="XMLID_260_"></path></svg>
+          </label>
+
+          <ng-template #holi>
+            <label class="container">
+              <svg id="Glyph" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M2.156,14.901l2.489-8.725C5.012,4.895,6.197,4,7.528,4h13.473C21.554,4,22,4.448,22,5v14  c0,0.215-0.068,0.425-0.197,0.597l-5.392,7.24C15.813,27.586,14.951,28,14.027,28c-1.669,0-3.026-1.357-3.026-3.026V20H5.999  c-1.265,0-2.427-0.579-3.188-1.589C2.047,17.399,1.809,16.12,2.156,14.901z" id="XMLID_259_"></path><path d="M25.001,20h4C29.554,20,30,19.552,30,19V5c0-0.552-0.446-1-0.999-1h-4c-0.553,0-1,0.448-1,1v14  C24.001,19.552,24.448,20,25.001,20z M27.001,6.5c0.828,0,1.5,0.672,1.5,1.5c0,0.828-0.672,1.5-1.5,1.5c-0.828,0-1.5-0.672-1.5-1.5  C25.501,7.172,26.173,6.5,27.001,6.5z" id="XMLID_260_"></path></svg>
+            </label>
+          </ng-template>
+          <p class="me-1">{{vi.dislike}} dislikes</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="descripcion-valoraciones mt-4">
+      <div class="descripcion">
+        <ng-container >
+          <p (click)="toggleDescripcion()" style="margin-bottom: 10px;">
+            Descripcion
+            <i id="i-button" [ngClass]="mostrarDescripcion ? 'bx bxs-chevrons-up' : 'bx bxs-chevrons-down'"></i>
+          </p>
+          <p *ngIf="mostrarDescripcion" style="margin-bottom: 10px;">{{videoId.descripcion}}</p>
+        </ng-container>
+      </div>
+
+      <div class="visualizaciones" *ngFor= "let vi of videoId.valoracionGlobalDTO">
+        <i id="i-button" class='bx bx-show-alt'></i>
+        <p>{{vi.visualizacion}} visualizaciones</p>
+      </div>
+    </div>
+
+    <!--aqui termina-->
+    <div class="texto mt-3" *ngIf="id_usuario">
+
+
+
+      <!--probando el comentario que he robado-->
+      <h1 class="text-light" id="titulo-comentarios">Comentarios</h1>
+
+
+      <textarea class="form-control placeholder-white" [(ngModel)]="nuevoComentario" placeholder="Deja aquí tu comentario" id="floatingTextarea2" style="height: 100px;"></textarea>
+      <app-boton [buttonText]="customButtonText" (click)="crearComentario(this.nuevoComentario,videoId.canal)" style="margin-left: 79%;"></app-boton>
+
+
+      <div class="comments-container" *ngFor="let comentario of videoId.comentarioDTO ">
+
+        <ul id="comments-list"class="comments-list">
+          <li>
+            <div class="comment-main-level">
+              <!--Contenedor del comentario-->
+              <div class="comment-box">
+                <div class="comment-head">
+                  <h6 class="comment-name by-author">{{comentario.usuario}}</h6>
+                  <i class="fa fa-reply"></i>
+                  <i class="fa fa-heart"></i>
+                </div>
+                <div class="comment-content">
+                  <p>{{comentario.comentario}}</p>
+                </div>
+                <!--Capar aqui-->
+                <button *ngIf="activo==true" class="btn btn-primary" (click)="mostrarRespuesta(comentario)">Responder</button>
+              </div>
+
+            </div>
+
+            <div class="respuestas" *ngIf="comentario.mostrarCajaRespuesta">
+              <input class="form-control placeholder-white" [(ngModel)]="comentario.nuevaRespuesta" placeholder="Escribe tu respuesta aquí" style="height: 100px">
+              <button class="btn btn-primary" (click)="crearRespuesta(comentario.nuevaRespuesta, comentario.id,comentario.usuario)">Enviar respuesta</button>
+
+            </div>
+
+            <div *ngFor="let resp of comentario.respuesta">
+              <!-- Respuestas de los comentarios -->
+              <ul class="comments-list reply-list">
+                <li>
+                  <!-- Contenedor del Comentario -->
+                  <div class="comment-box">
+                    <div class="comment-head">
+                      <h6 class="comment-name"><a href="http://creaticode.com/blog">{{resp.usuario }}</a></h6>
+                      <i class="fa fa-reply"></i>
+                      <i class="fa fa-heart"></i>
+                    </div>
+                    <div class="comment-content">
+                      <p>{{resp.mensaje}}</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+          </li>
+        </ul>
+      </div>
+
+      <!--LOS COMENTARIOS ANTIGUOS-->
+      <!-- Iterar sobre la lista de comentarios -->
+
+      <!--<div class="comentario text-light" *ngFor="let comentario of videoId.comentarioDTO">
+        <p class="datos_usuario">{{comentario.usuario}}</p>
+        <p class="comentario1">{{comentario.comentario}}</p>
+
+        <button class="btn btn-primary" (click)="mostrarRespuesta(comentario)">Responder</button>
+
+
+        <div *ngIf="comentario.mostrarCajaRespuesta">
+          <input class="form-control" [(ngModel)]="comentario.nuevaRespuesta" placeholder="Escribe tu respuesta aquí" style="height: 100px">
+          <button class="btn btn-primary" (click)="crearRespuesta( comentario)">Enviar respuesta</button>
+        </div>
+
+        Iterar sobre las respuestas
+        <div class="comentario" *ngFor="let resp of comentario.respuesta">
+          <p class="datos_usuario">{{resp.usuario}}</p>
+          <p class="comentario1">{{resp.mensaje}}</p>
+        </div>
+      </div>-->
+    </div>
+
+  </div>
+  <div class="listvideos">
+    <!-- Cartas de video -->
+    <ng-container *ngFor="let video of videosug; let i = index">
+      <div class="card" *ngIf="mostrarTodosLosVideos || i < 3">
+
+        <iframe class="image" width="320" height="280" [src]="video.safeUrl" allow="autoplay"></iframe>
+        <div class="image__overlay"></div>
+        <div class="content">
+          <div class="avatar">
+            <img [src]="video.imagen">
+          </div>
+          <div class="content__text">
+            <span class="stream__title" (click)="videoDetails2(video.id)">{{ video.titulo }}</span>
+            <!--<img (click)="videoDetails2(video.id)" src="assets/imagenes/blanco.png">-->
+            <div class="content__body">
+              <span class="streamer__name" (click)="cargarPerfil(video.nombre_canal)">{{ video.nombre_canal }}</span>
+              <span class="event">{{ video.tematica }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Botones para mostrar más videos y cerrar -->
+    <div class="buttons-container">
+      <button class="button1" *ngIf="!mostrarTodosLosVideos && videosug.length > 3" (click)="mostrarTodosLosVideos = true">
+        Mostrar más videos
+      </button>
+      <button class="button1" *ngIf="mostrarTodosLosVideos" (click)="mostrarTodosLosVideos = false">
+        Mostrar menos videos
+      </button>
+    </div>
+  </div>
+
+
+</div>
+

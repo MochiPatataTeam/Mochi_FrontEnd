@@ -1,0 +1,59 @@
+<main >
+    <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" class="form-style-5">
+
+        <fieldset>
+            <legend><span class="number">1</span>Información personal</legend>
+
+            <div [formGroup]="usuarioForm">
+                <input type="text" formControlName="nombre" placeholder="Nombre">
+            </div>
+            <div [formGroup]="usuarioForm">
+                <input type="text" formControlName="apellidos" placeholder="Apellidos">
+            </div>
+            <div [formGroup]="usuarioForm">
+                <input type="text" formControlName="username" placeholder="Username">
+            </div>
+            <div [formGroup]="usuarioForm">
+                <input type="email" formControlName="email" placeholder="Email">
+            </div>
+            <div [formGroup]="usuarioForm">
+                <input type="text" formControlName="telefono" placeholder="Teléfono">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend><span class="number">2</span> Información del canal </legend>
+            <div [formGroup]="usuarioForm">
+                <input type="text" formControlName="nombre_canal" placeholder="Nombre canal">
+            </div>
+            <div [formGroup]="usuarioForm">
+                <input type="text" formControlName="descripcion" placeholder="Descripción">
+            </div>
+            <div [formGroup]="usuarioForm">
+                <input type="text" formControlName="imagen" placeholder="Imagen">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend><span class="number">3</span> Configuraciones de privacidad </legend>
+            <label class="switch" [formGroup]="usuarioForm">
+                <p>Público</p>
+                <input type="checkbox" formControlName="isPublico">
+                <span class="slider"></span>
+            </label>
+            <label class="switch">
+                <p>Permitir suscripciones</p>
+                <input type="checkbox" formControlName="permitirSuscripciones">
+                <span class="slider"></span>
+            </label>
+            <label class="switch">
+                <p>Permitir descargas</p>
+                <input type="checkbox" formControlName="permitirDescargar">
+                <span class="slider"></span>
+            </label>
+        </fieldset>
+
+    <app-boton [buttonText]="customButtonText" type="submit" class="mt-1 float-end"></app-boton>
+
+    </form>
+</main>

@@ -1,0 +1,43 @@
+<ng-container *ngIf="id_usuario !== null">
+<div class="most-popular">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="heading-section">
+        <h4><em>Tus</em> suscripciones</h4>
+      </div>
+      <div class="row">
+        <ng-container *ngFor= "let vi of (limitarVideos ? videos.slice(0, 4) : videos)">
+          <div class="col-lg-3 col-sm-6" *ngIf="vi.is_publico">
+            <div class="item">
+              <button type="button" class="boton-lapiz" *ngIf="vi.permitir_descargar && (!canalLogueado || vi.canal !== canalLogueado)"> <!-- Q no me muestre el boton si no permite descargar el canal y si el canal del video es el mismo q esta logueado -->
+                <i class='bx bxs-download' style='color:white' onmouseover="this.style.color='#df9a41'" onmouseout="this.style.color='white'"></i>
+              </button>
+              <iframe  width="320" height="180" [src]="vi.safeUrl" allow="autoplay"> </iframe>
+              <img (click)="videoDetails2(vi.id)" src="assets/imagenes/blanco.png">
+
+              <h4 >{{vi.titulo}}<br><span>{{vi.tematica}}</span> <span class="spansito" (click)="cargarPerfil(vi.nombre_canal)"> {{vi.nombre_canal}}</span></h4>
+              <ul>
+                <li><i class='bx bx-like'></i> {{vi.fav}}</li>
+                <li><i class='bx bx-dislike'></i> {{vi.dislike}}</li>
+                <li *ngIf="vi.visualizacion !== null; else holi"><i class='bx bx-show-alt'></i> {{vi.visualizacion}}</li>
+              </ul>
+              <ng-template #holi><li><i class='bx bx-show-alt'></i>0</li> </ng-template>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- <div class="col-lg-12">
+           <div class="main-button">
+             <a href="browse.html">Discover Popular</a>
+           </div>
+         </div> -->
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- <div class="col-lg-12">
+     <div class="main-button">
+       <a href="browse.html">Discover Popular</a>
+     </div>
+   </div> -->
+</ng-container>
